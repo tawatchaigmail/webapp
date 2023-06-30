@@ -1,0 +1,75 @@
+<style>
+</style>
+            <div class="container">
+                 <button type="button" (click)="goBack()">Back</button>
+                 <form name="detailName" #detailForm="ngForm" (ngSubmit)="doSubmit(detailForm)">
+                      <div *ngIf="selectDet" class="form-group" >
+                         <label for="seq-no">seqNo</label>     
+                         <input name="SEQ_NO" id="seq-no" required minlength=2 maxlength=4 [(ngModel)]="selectDet.SEQ_NO" #seqno="ngModel" placeholder="seqNo" />
+                          <div *ngIf="seqno.invalid" >
+                               <div [hidden]="companyCode.errors?.['required']">
+                                 seqNo is required
+                                </div>
+                               <div [hidden]="companyCode.errors?.['minlength']">
+                                 Name must be at least 2 characters long.
+                               </div>                                    
+                          </div>
+
+                         <label for="company-code">companyCode</label>     
+                         <input name="COMPANY" id="company-code" required maxlength=2 [(ngModel)]="selectDet.COMPANY" #companyCode="ngModel" placeholder="companyCode" />
+                          
+                          <div *ngIf="companyCode.invalid">
+                               <div [hidden]="companyCode.errors?.['required']">
+                                 companyCode is required
+                                </div>
+                               <div [hidden]="companyCode.errors?.['maxlength']">
+                                 Name must be at least 2 characters long.
+                               </div>
+                          </div>
+                          
+                         <label for="description">description</label>     
+                         <input name="DESCRIPTION" id="description" [(ngModel)]="selectDet.DESCRIPTION" placeholder="description" />
+                       
+                         <label for="company-address">Company Adress</label>     
+                         <input name="COMPANY_ADDRESS" id="company-address" [(ngModel)]="selectDet.COMPANY_ADDRESS" placeholder="companyADress" />
+
+                         <label for="texId">TAX ID</label>     
+                         <input name="TAX_ID" id="texId" [(ngModel)]="selectDet.TAX_ID" #taxId="ngModel" pattern="^\d{4}-\d{4}-\d{4}$" placeholder="0000-00000-000" />
+
+                          <div *ngIf="taxId.invalid">
+                               <div [hidden]="taxId.errors?.['pattern']">
+                                 taxId is invalid
+                                </div>
+                          </div>
+
+                         <label for="telePhone">Tele Phone</label>     
+                         <input name="TELEPHONE" id="telePhone" [(ngModel)]="selectDet.TELEPHONE" #telePhone="ngModel"  pattern="^\d{3}-\d{3}-\d{4}$" placeholder="000-0000-000" />
+
+                          <div *ngIf="telePhone.invalid">
+                               <div [hidden]="telePhone.errors?.['pattern']">
+                                 telePhone is invalid
+                                </div>
+                          </div>
+
+                         <label for="telePhone">Created On</label>     
+                         <input name="CREATED_ON" id="createdOn" [(ngModel)]="selectDet.CREATED_ON" #createdOn="ngModel"  pattern="^(([1-9]|1[012])[-/.]([1-9]|[12][0-9]|3[01])[-/.](19|20)\d\d)|((1[012]|0[1-9])(3[01]|2\d|1\d|0[1-9])(19|20)\d\d)|((1[012]|0[1-9])[-/.](3[01]|2\d|1\d|0[1-9])[-/.](19|20)\d\d)$
+
+" placeholder="" />
+
+                         <label for="created-by">createdBy</label>     
+                         <input name="CREATED_BY" id="created-by" [(ngModel)]="selectDet.CREATED_BY" placeholder="createdBy" />
+
+                         <label for="created-by">Narration</label>     
+                         <input name="NARRATION" id="narration" [(ngModel)]="selectDet.NARRATION" placeholder="narration" />
+
+                         <input type="File">
+
+
+                          <button type="submit">submit</button>
+                      </div>
+
+
+                  </form>                  
+             </div>
+
+

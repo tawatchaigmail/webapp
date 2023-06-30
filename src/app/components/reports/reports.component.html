@@ -1,0 +1,60 @@
+<p>reports</p>
+
+<div class="container" id="company">
+  <table name="nametablId" id="tablId" >
+  <caption> Company </caption>
+  <thead>
+    <tr> 
+        <td>Seq</td>
+        <td>Company</td>
+        <td>Description </td>
+        <td>Address</td>
+        <td>TAX ID</td>
+        <td>Phone</td>
+        <td>Create On</td>
+        <td>Last Upd On</td>
+        <td>Narration</td>
+        <td>status</td>
+    </tr>
+  </thead>
+  <tbody id="tbodyId" *ngFor = "let company of companies" >
+       <tr>
+        <td>{{company.SEQ_NO}}</td>  
+        <td>{{company.COMPANY}}</td>                                
+        <td>{{company.DESCRIPTION}}</td>  
+        <td>{{company.COMPANY_ADDRESS}}</td>
+        <td>{{company.TAX_ID}}</td>
+        <td>{{company.TELEPHONE}}</td>
+        <td>{{company.CREATED_ON | date :'dd-MM-yyyy'}}</td>
+        <td>{{company.LAST_UPD_ON | date :'dd-MMM-yyyy'}}</td>
+        <td>{{company.NARRATION}}</td>
+        <td>{{company.STATUS}}</td>
+       </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>Count</td>
+      <td>5</td>
+      <td>Sum</td>
+      <td>1800</td>
+    </tr>
+  </tfoot>
+
+  </table>
+</div>
+
+<div>
+      <button (click)="onPreview()" type="button"> Previw </button>
+</div>
+
+<div>
+      <button (click)="onHtml()" type="button"> GenHtml </button>
+</div>
+
+<div>
+      <button (click)="onAutotable()" type="button"> GenTable </button>
+</div>
+
+<div>
+      <button (click)="onCanvas()" type="button"> GenCanvas </button>
+</div>

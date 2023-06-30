@@ -1,0 +1,45 @@
+               <div class="container">
+                 <table class="table table-condensed">
+                  <thead>
+                  <tr>
+                   <td>Seq</td>
+                   <td>CompanyCode</td>
+                   <td>Description</td>
+                   <td>Address</td>
+                   <td>TAX ID</td>
+                   <td>Phone</td>
+                   <td>Create On</td>
+                   <td>Last Upd On</td>
+                   <td>Narration</td>
+                   <td>status</td>
+
+                   <td>CreatedBy</td>
+                  </tr>  
+                  </thead>
+                    <tbody>
+                     <tr *ngFor = "let company of companies ">
+                           
+                           <td>{{company.SEQ_NO}}</td>  
+                           <td>{{company.COMPANY}}</td>                                
+                           <td>{{company.DESCRIPTION}}</td>  
+                           <td>{{company.COMPANY_ADDRESS}}</td>
+                           <td>{{company.TAX_ID}}</td>
+                           <td>{{company.TELEPHONE}}</td>
+                           <td>{{company.CREATED_ON | date :'dd-MM-yyyy'}}</td>
+                           <td>{{company.LAST_UPD_ON | date :'dd-MMM-yyyy'}}</td>
+                           <td>{{company.NARRATION}}</td>
+                           <td>{{company.STATUS}}</td>
+                           <td><button class="btn btn-sm" type="button" (click)="onSelect(company)"> Select </button> </td>
+                           <td><button class="btn btn-sm" type="button" > Edit </button> </td>                         
+                           <td><button class="btn btn-sm" type="button" (click)="onDelete(company.COMPANY)" > Delete </button> </td>
+
+                     </tr>
+                    </tbody> 
+                     </table> 
+                     <div>
+                          <td><button class="btn btn-sm" type="button" (click)="onAdd()" > Add </button> </td>
+                     </div>
+                     <!-- property  --> 
+                     <com-details [selectDet]="selectCompany"></com-details>
+                    
+                </div>

@@ -1,0 +1,35 @@
+
+{
+"results": [
+             {
+             "SEQ_NO" : 1 ,
+             "COMPANY" : "PE",
+             "DESCRIPTION" : "Plan",
+             "COMPANY_ADDRESS" : " MBK Center Tower, Phayathai Rd.",
+             "TELEPHONE" : "",
+             "TAX_ID" : '',
+             "CREATED_BY" :  "2023-05-26 12:10:30",             
+             },
+             {
+             "SEQ_NO" : 2 ,
+             "COMPANY" : "MS",
+             "DESCRIPTION" : "MBK Sukhumvit",
+             "COMPANY_ADDRESS" : "444 8th Fl. MBK Center Tower, Phayathai Rd.",
+             "TELEPHONE" : "",
+             "TAX_ID" : '',
+             "CREATED_BY" :  "2023-05-26 12:10:30",             
+             },
+             {
+             "SEQ_NO" : 3 ,
+             "COMPANY" : "ME",
+             "DESCRIPTION" : "MBK Sukhumvit",
+             "COMPANY_ADDRESS" : "444 8th Fl. MBK Center Tower, Phayathai Rd.",
+             "TELEPHONE" : "",
+             "TAX_ID" : '',
+             "CREATED_BY" :  "2023-05-26 12:10:30",             
+             },
+               
+   ]
+
+}
+
