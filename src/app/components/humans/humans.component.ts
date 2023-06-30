@@ -1,72 +1,50 @@
-import {Component, Input, OnInit, Output}  from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {FormsModule,FormGroup,FormControl} from '@angular/forms';
+import { Component,OnInit } from '@angular/core';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable'
+import { HumansInterface} from '../../models/humansInterface';
+import { HumansService} from '../../service/humans.service';
 
-import {CompanyInterface} from '../../models/companyInterface';
- //import {CompanyModels} from '../../models/companyModels';
-import {CompanyService} from '../../service/company.service';
-
-import { CompanyDetails } from '../../components/CompanyDetails/CompanyDetails';
+import { CompanyInterface} from '../../models/companyInterface';
+import { CompanyService} from '../../service/company.service';
 
 @Component({
-    selector : 'com-company',
-    standalone: true,  
-    imports: [
-              CommonModule,
-              FormsModule,
-              CompanyDetails
-    ],
+  selector: 'app-humans',
+  templateUrl: './humans.component.html',
+  styleUrls: ['./humans.component.scss']
+}) 
 
-    templateUrl : './companyComponent.html' ,
-    styleUrls : ['./companyComponent.scss']
-})
+export class HumansComponent implements OnInit {
 
-export class CompanyComponent implements OnInit{
+  humans : HumansInterface[] = [] ;
+  company? : CompanyInterface ;
+//  base64Img? : string | HTMLImageElement | HTMLCanvasElement | Uint8Array | RGBADat ; 
+  logoImg? : string  ; 
 
-  selectCompany? : CompanyInterface ;  
-  companyById? : CompanyInterface ;
-  companies : CompanyInterface[] = [] ;
-  rowbank : CompanyInterface =  {
-             SEQ_NO : 0 ,
-             COMPANY : ' ',
-             DESCRIPTION : ' ',
-             COMPANY_ADDRESS : ' ',
-             TELEPHONE : '',
-             TAX_ID : '',
-             CREATED_BY :  ' ',             
-             CREATED_ON :  Date.now(),
-             LAST_UPD_ON :  new Date(),
-             LAST_UPD_BY :  ' ',
-             NARRATION : '',
-             STATUS : '',
-             LOGO : '',
-             logoContentType : 'image/jpeg',
-             }
-
-  constructor( private companyService : CompanyService) {
+  constructor( private humansService : HumansService, private companyService : CompanyService) {
   
-  } ;
-/*  
-  getCompany() : void {
-     this.companies = this.companyService.getCompany() ;
-  }
-*/
- 
- getCompanyById(id : String) :void {
-   this.companyService.getCompanyById(id).subscribe( comByid  => this.companyById = comByid );  
- // console.log(companyById);
- }
+  };
 
-  getCompany() : void {
+  getCompanyById( id : string) : void {
+          
+     this.companyService.getCompanyById(id).subscribe( 
+                                                       (response :any) => { this.company = response },
+                                                      
+                                                       (error:any) => { 
+                                                                    console.error('Request failed with error')
+                                                                    alert(error); 
+                                                                   },
+                                                       
+                                                       () => {console.log('Request completed')}
+                                                     )
+  }
+  getHumans() : void {
 // Observable
-  //   this.companyService.getCompany().subscribe(companies => this.companies =  companies)
-     this.companyService.getCompanyUrl().subscribe(
+  //   this.humansService.getHumans().subscribe(humans => this.humans =  humans)
+     this.humansService.getHumans().subscribe(
         (response) => {                           //Next callback
           console.log('response received')
           console.log(response);
-          this.companies = response; 
+          this.humans = response; 
         },
         (error) => {                              //Error callback
           console.error('Request failed with error')
@@ -77,45 +55,18 @@ export class CompanyComponent implements OnInit{
         }
      )
   }
-
-  getCompanyAssets() : void {
-   
-  }
-
-  ngOnInit() : void{
-    this.getCompany();
-  }
-
-  onSelect(company : CompanyInterface ) : void {
-             this.selectCompany = company ;
-  } ;
+  
+  onSelect(human :HumansInterface){
+  } 
 
   onAdd(){
-    console.log(' onAdd ');
-    this.selectCompany = this.rowbank;
-    this.companies.push(this.rowbank);
-   // this.companyService.addCompany(comData)
-  }  
-  
-  onDelete(id :any){
-      console.log(' onDelete '+id);
-
-      this.companyService.removeCompany(id)
   }
-  onPrint(){
-           var doc = new jsPDF('p', 'pt', 'a4');
-           doc.addFont('../../../assets/fonts/micross72.ttf', 'Microsoft Sans Serif', 'normal');
-           doc.setFont("Microsoft Sans Serif","normal")
-           doc.setFontSize(12);
-           doc.html(document.getElementById("companyTableId") as HTMLElement , {     // HTMLElement
-                                                                              callback: function (doc) {
-                                                                                                       doc.save();
-                                                                                                       },
-                                                                            x: 10,
-                                                                            y: 10
-          });
-
+  onDelete(id : any){
   }
+  ngOnInit() : void{
+    this.getHumans();
+  }
+
   onGeneratePdfHtml2Canvas() {
     var doc : any = new jsPDF('p', 'pt', 'a4');
     var htmlElement = document.getElementById('tableId');
@@ -138,7 +89,24 @@ export class CompanyComponent implements OnInit{
             scale: .8
         }
     };
-    doc.html(document.getElementById('companyTableId') as HTMLElement , opt);
+
+    doc.html(document.getElementById('humanTableId') as HTMLElement , opt);
+  }
+
+  
+  onPrint(){
+           var doc = new jsPDF('p', 'pt', 'a4');
+           doc.addFont('../../../assets/fonts/micross72.ttf', 'Microsoft Sans Serif', 'normal');
+           doc.setFont("Microsoft Sans Serif","normal")
+           doc.setFontSize(12);
+           doc.html(document.getElementById("humanTableId") as HTMLElement , {     // HTMLElement
+                                                                              callback: function (doc) {
+                                                                                                       doc.save();
+                                                                                                       },
+                                                                            x: 10,
+                                                                            y: 10
+          });
+
   }
   onPrintAuto(){ 
            var doc = new jsPDF('p', 'pt', 'a4');
@@ -146,14 +114,14 @@ export class CompanyComponent implements OnInit{
            doc.setFont("Microsoft Sans Serif","normal")
       autoTable(doc,
                  {
-                  html: '#companyTableId',
+                  html: '#humanTableId',
                   startY: 70,
                   head:[['Header','Company']],
       //            showHead: 'everyPage'|'firstPage'|'never' = 'everyPage''
                   showHead: 'everyPage',        
                   foot:[[' ', 'Price total', '130000', '  ']],
-      //            showFoot: 'everyPage'|'firstPage'|'never' = 'everyPage''
-                  showFoot: 'everyPage',
+      //            showFoot: 'everyPage'|'lastPage'|'never' = 'everyPage''
+                  showFoot: 'lastPage',
                   headStyles :{
                            //    lineWidth: 1, fillColor: [1,1,1], textColor: [255,255,255],
                                lineWidth: 1, fillColor: '#f3f3f3', textColor: '#010101',
@@ -190,22 +158,26 @@ export class CompanyComponent implements OnInit{
                                        //  console.log(data)
                                        //  if (data.section === 'body' && data.column.index === 0) {
                                          if (data.section === 'head' && data.column.index === 0) {
-                                                                                                  var base64Img = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=='
+                                                                                                   var base64Img = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=='
                                                                                                 //  doc.addImage('../../../assets/nw.jpg', 'JPEG', data.cell.x + 2, data.cell.y + 2, 10, 10)
                                                                                                  }
                   },
                  willDrawCell: (data) => {} ,
                  didDrawPage: (data) => {
                                         console.log(data)
-                                        doc.addImage('../../../assets/nw.jpg', 'JPEG', 40, 20, 40, 40);
+                                        var base64Img = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=='
+                                      //  doc.addImage('../../../assets/nw.jpg', 'JPEG', 40, 20, 40, 40);
+                                        doc.addImage(base64Img, 'JPEG', 40, 20, 40, 40);
+
                                         doc.setFontSize(10);
-                                        doc.text('Cpmpany Name',80,40);
+                                        doc.text('Reort Name',80,40);
                                         doc.setFontSize(10);
                                         doc.text('Project Name',80,55);
                                         doc.text(' Page '+data.pageNumber,520,20)
 
                  } ,
-              //   willDrawPage: (data)  => {} ,
+               //  willDrawPage: (data : any)  => {} ,
+
                  
 
                  }
@@ -216,6 +188,4 @@ export class CompanyComponent implements OnInit{
       doc.save('table.pdf');                
   }
 
-  
-} 
-
+}

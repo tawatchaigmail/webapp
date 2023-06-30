@@ -11,8 +11,16 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { HousingLocationComponent } from './components/housing-location/housing-location.component';
 
-import {DashbordComponent} from './components/dashbord/dashbord.component';
+import { DashbordComponent} from './components/dashbord/dashbord.component';
+
 import { ReportsComponent } from './components/reports/reports.component';
+
+import { HumansComponent } from './components/humans/humans.component';
+import { HumansDetailsComponent } from './components/humans-details/humans-details.component';
+
+import { Base64Pipe } from './share/convert-base64-img.pipe';
+
+//export const ENVIRONMENT = new InjectionToken<{ [key: string]: any }>('environment');
 
 //import { CompanyComponent } from './components/company/companyComponent';
 //import { CompanyDetails } from './components/CompanyDetails/CompanyDetails';
@@ -23,6 +31,9 @@ import { ReportsComponent } from './components/reports/reports.component';
       AppComponent,
       DashbordComponent,
       ReportsComponent,
+      HumansComponent,
+      HumansDetailsComponent,
+      Base64Pipe,
   ],
   imports: [
     BrowserModule,

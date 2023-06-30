@@ -26,6 +26,8 @@ export const CompanyModels : CompanyInterface[] = [
              LAST_UPD_ON :  new Date(),             
              NARRATION : '', 
              STATUS : 'A',
+             LOGO : '',
+             logoContentType : 'image/jpeg',
              },
              {
              SEQ_NO : 2 ,
@@ -41,6 +43,8 @@ export const CompanyModels : CompanyInterface[] = [
              LAST_UPD_ON :  new Date(),             
              NARRATION : '',
              STATUS : 'A',
+             LOGO : '',
+             logoContentType : 'image/jpeg',
              },
              {
              SEQ_NO : 3 ,
@@ -56,6 +60,8 @@ export const CompanyModels : CompanyInterface[] = [
              LAST_UPD_ON :  new Date(),             
              NARRATION : '',
              STATUS : 'A',
+             LOGO : '',
+             logoContentType : 'image/jpeg',
              },
                
    ];

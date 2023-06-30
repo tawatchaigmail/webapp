@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HousingLocation } from '../models/housinglocation';
 
+import {environment} from '../environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
 export class HousingService {
-
-// url = 'http://localhost:3000/api/readall';
 
 url = '/assets/data_hou.json';
 

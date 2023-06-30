@@ -11,5 +11,6 @@ export interface CompanyInterface {
   LAST_UPD_BY : string;
   LAST_UPD_ON : Date;
   STATUS : string;
-//  LOGO : string;
+  LOGO : string;
+  logoContentType : string ;
 }

@@ -6,6 +6,7 @@ import { CompanyComponent } from './components/company/companyComponent';
 import {DashbordComponent} from './components/dashbord/dashbord.component';
 import {AboutComponent} from './components/about/about.component';
 import {ReportsComponent} from './components/reports/reports.component';
+import {HumansComponent} from './components/humans/humans.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashbord', pathMatch: 'full'},
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'dashbord', component: DashbordComponent }, 
   { path: 'home', component: HomeComponent },
   { path: 'report', component: ReportsComponent },
+  { path: 'humans', component: HumansComponent },
   { path: 'company', component: CompanyComponent,  title: 'company' },
 ];
 

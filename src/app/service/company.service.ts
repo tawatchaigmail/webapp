@@ -7,13 +7,15 @@ import { catchError, map, tap } from 'rxjs/operators';
 import {CompanyInterface} from '../models/companyInterface';
 import {CompanyModels} from '../models/companyModels';
 
-  var baseUrl = 'http://localhost:3000';
+import {environment} from '../environments/environment';
+
+  var baseUrl = environment.apiUrl;
   var apiurl = {
-     getAll : baseUrl + '/api/readall',
-     getById : baseUrl + '/api/reada/',
-     addCompany : baseUrl + '/api/create',
-     editCompany : baseUrl + '/api/update',
-     deleteCompany : baseUrl + '/api/delete',
+     getAll : baseUrl + '/api/company/readall',
+     getById : baseUrl + '/api/company/reada/',
+     addCompany : baseUrl + '/api/company/create',
+     editCompany : baseUrl + '/api/company/update',
+     deleteCompany : baseUrl + '/api/company/delete',
   }
 
 
@@ -25,7 +27,8 @@ import {CompanyModels} from '../models/companyModels';
 
 export class CompanyService{
 
-  private companyUrl = 'http://localhost:3000/api';  // URL to web api
+  private companyUrl = environment.apiUrl+'/api/company';  // URL to web api
+   
   private assetUrl = '/assets/data_com.json';
   
 
@@ -129,12 +132,12 @@ private log(message: string) {
      );  
  }
 
- getCompanyByid(id : String) : Observable<CompanyInterface> {
+ getCompanyById(id : String) : Observable<CompanyInterface> {
       const url = `${this.companyUrl}/read/${id}`; 
     return this.http.get<CompanyInterface>(url)
         .pipe(
           tap(_ => this.log('fetched companie ${id} ')),
-          catchError(this.handleError<CompanyInterface>('getCompanyByid id=${id}'))
+          catchError(this.handleError<CompanyInterface>('getCompanyById id=${id}'))
      );  
  }
 

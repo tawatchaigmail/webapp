@@ -1,14 +1,27 @@
 <p>Dashbord</p>
-<div>
-<!--a class="navbar-brand" routerLink="/company" routerLinkActive="active" >Company</a-->
-<a routerLink="/company" >Company</a> 
-</div>
+<div class='card-container'>
 
-<div>
-<a routerLink="/report" >Reports</a> 
-</div>
+   <!--a class="navbar-brand" routerLink="/company" routerLinkActive="active" >Company</a-->
+     <a class="card" routerLink="/company" >
+           <svg class="material-icons" width="24" height="24" viewBox="0 0 24 24"></svg>
+           <span>Company</span>
+     </a> 
 
-<div>
-<!--a class="navbar-brand" routerLink="/about" routerLinkActive="active" >About</a-->
-<a routerLink="/about" >About</a> 
+     <a class="card" routerLink="/report" >
+        <svg class="material-icons" width="24" height="24" viewBox="0 0 24 24"></svg> 
+        <span>Reports</span>
+     </a> 
+
+    <a class="card" routerLink="/humans" >
+       <svg class="material-icons" width="24" height="24" viewBox="0 0 24 24"></svg>
+       <span>Humans</span>
+    </a> 
+
+   <!--a class="navbar-brand" routerLink="/about" routerLinkActive="active" >About</a-->
+     <a class="card" routerLink="/about" >
+      <svg class="material-icons" width="24" height="24" viewBox="0 0 24 24"></svg> 
+      <span>About</span>
+     </a> 
+
+
 </div>

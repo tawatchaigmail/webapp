@@ -1,7 +1,11 @@
-import { Component ,OnInit } from '@angular/core';
+import { Component ,OnInit , Pipe, PipeTransform } from '@angular/core';
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
-import autoTable from 'jspdf-autotable'
+import autoTable from 'jspdf-autotable';
+
+//import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
+
 import font from '../../fonts/micross72Es-normal';
 import {CompanyInterface} from '../../models/companyInterface';
 import {CompanyService} from '../../service/company.service';
@@ -13,11 +17,12 @@ import {CompanyService} from '../../service/company.service';
 })
 
 
-export class ReportsComponent implements OnInit {
+export class ReportsComponent implements OnInit  {
 
     companies : CompanyInterface[] = [] ;
-
-    constructor(private companyService : CompanyService){
+    logoContentType : string = 'image/jpeg';
+    thumbnail: any;
+    constructor(private companyService : CompanyService, private sanitizer: DomSanitizer){
 
     }
 
@@ -30,6 +35,10 @@ export class ReportsComponent implements OnInit {
           console.log('response received')
           console.log(response);
           this.companies = response; 
+
+        // let objectURL = 'data:image/jpe;base64,'+ response.data.LOGO ;
+        // this.thumbnail = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+
         },
         (error) => {                              //Error callback
           console.error('Request failed with error')
@@ -41,10 +50,44 @@ export class ReportsComponent implements OnInit {
      )
   }
 
+  onGeneratePdfHtml2Canvas() {
+    var doc : any = new jsPDF('p', 'pt', 'a4');
+    var htmlElement = document.getElementById('tableId');
+    // you need to load html2canvas (and dompurify if you pass a string to html)
+       doc.addFont('../../../assets/fonts/micross72.ttf','Microsoft Sans Serif', 'normal');
+
+    const opt = {
+        callback: function (jsPdf :any) {
+            doc.save("genPdf.pdf");
+            // to open the generated PDF in browser window
+            // window.open(jsPdf.output('bloburl'));
+        },
+        margin: [20, 20, 20, 20],
+        autoPaging: 'text',
+        html2canvas: {
+            allowTaint: true,
+            dpi: 300,
+            letterRendering: true,
+            logging: false,
+            scale: .8
+        }
+    };
+
+    doc.html(document.getElementById('tablId') as HTMLElement , opt);
+
+  }
+
+  onHtml2Canvas(){
+  
+   html2canvas(document.body).then(function(canvas) {
+           document.body.appendChild(canvas);
+   });
+  }
+
   onCanvas(){
 
         var quotes  = document.getElementById('tableId') ;  // as HTMLElement ;
-        html2canvas(quotes as HTMLElement ).then((canvas) => {
+        html2canvas(document.getElementById("tablId") as HTMLElement).then((canvas) => {
                 var srcImg  = canvas;
                 var sX      = 0;
                 var sY      = 980; // start 980 pixels down for every new page
@@ -55,12 +98,14 @@ export class ReportsComponent implements OnInit {
                 var dWidth  = 900;
                 var dHeight = 980;
 
-               var onePageCanvas = document.createElement("canvas") ;
-//               var onePageCanvas = canvas;
-//        onePageCanvas.setAttribute('width', 900);
-//        onePageCanvas.setAttribute('height', 980);
-          var ctx = onePageCanvas.getContext('2d');
-       //   ctx.drawImage(srcImg,sX,sY,sWidth,sHeight,dX,dY,dWidth,dHeight);
+                var onePageCanvas = document.createElement("canvas") ;
+
+                onePageCanvas.setAttribute( 'width' , '900');
+                onePageCanvas.setAttribute('height' , '980');
+                var ctx = onePageCanvas.getContext('2d');   // | undefined | null
+                ctx?.fillText("COMPANY", 10, 50);
+              
+                ctx?.drawImage(srcImg,sX,sY,sWidth,sHeight,dX,dY,dWidth,dHeight);
                 var canvasDataURL = onePageCanvas.toDataURL("image/png", 1.0);
                 var width         = onePageCanvas.width;
                 var height        = onePageCanvas.clientHeight;
@@ -70,27 +115,24 @@ export class ReportsComponent implements OnInit {
         doc.addImage(canvasDataURL, 'PNG', 20, 40, (width*.62), (height*.62));      
 
             doc.save('canvas.pdf');
-
-
         })
-
 
   }    
 
   onAutotable(){
       var doc = new jsPDF('p', 'pt', 'a4');
 
-      doc.addFileToVFS('micross72Es-normal.ttf', font);
-      doc.addFont('micross72Es-normal.ttf', 'micross72Es', 'normal');
+    //  doc.addFileToVFS('micross72Es-normal.ttf', font);
+    //  doc.addFont('micross72Es-normal.ttf', 'micross72Es', 'normal');
 
    //   doc.addFileToVFS("../../../assets/fonts/micross.ttf", 'Microsoft Sans Serif');
       doc.addFont('../../../assets/fonts/micross72.ttf','Microsoft Sans Serif', 'normal');
-   //   doc.setFont("Microsoft Sans Serif","normal")
+      doc.setFont("Microsoft Sans Serif","normal")
 //       autoTable(doc,{html: '#tablId'});
       autoTable(doc,
                  {
                   html: '#tablId',
-                  startY: 70,
+                  startY: 30,
                   foot:[[' ', 'Price total', '130000', '  ']],
                   headStyles :{
                                lineWidth: 1, fillColor: [1,1,1], textColor: [255,255,255],
@@ -110,12 +152,12 @@ export class ReportsComponent implements OnInit {
                                     cellWidth: 50,
                                     },
                                  2: {
-                                    halign: 'right',
-                                  
+                                       halign: 'right',
+                                       font : "Microsoft Sans Serif",
                                     },
                                  3: {
                                      halign: 'right',
-                                  
+                                     font : "Microsoft Sans Serif",
                                     }
                                 },
 
@@ -152,7 +194,7 @@ export class ReportsComponent implements OnInit {
              console.log(' length '+this.companies.length);
              
              const doc = new jsPDF('p', 'pt', 'a4');
-            // doc.addFont('../../../assets/fonts/micross72.ttf','Microsoft Sans Serif', 'normal');
+             doc.addFont('../../../assets/fonts/micross72.ttf','Microsoft Sans Serif', 'normal');
              var quotes = document.getElementById('content');
              doc.setFontSize(8); 
              for(let i = 0; i < this.companies.length;i++ ){

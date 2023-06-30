@@ -4,7 +4,7 @@
 <div class="toolbar" role="banner">
  
   <!--span>Welcome</span-->
-    <a routerLink="/company" > Company </a>
+    <a routerLink="/home" > Home </a>
     <div class="spacer"></div>
      
     <div>
@@ -17,22 +17,25 @@
 
   <!-- Highlight Card -->
   <div>
-    <nav>
+    <!--nav>
 
     <span>{{ title }} app is {{1+1}}</span>
     
      <a [routerLink]="['/home']"> Home </a>     
 
-    </nav>
-   <section>
-    <router-outlet />
-   </section>
+    </nav-->
+   <!--section-->
+
+         <router-outlet />
+
+   <!--/section-->
   </div>
 
   <!-- Next Steps -->
 
   <!-- Footer -->
   <footer>
+     <div><button>back</button></div>
   </footer>
 
 </div>

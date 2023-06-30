@@ -1,5 +1,11 @@
+               <div>
+                     <button type="button" (click)="onPrint()" > Print </button>
+                     <button type="button" (click)="onPrintAuto()" > Print AutoTable </button>
+                     <button type="button" (click)="onGeneratePdfHtml2Canvas()" > Print html2Canvas </button>
+
+               </div> 
                <div class="container">
-                 <table class="table table-condensed">
+                 <table class="table table-condensed" id="companyTableId">
                   <thead>
                   <tr>
                    <td>Seq</td>
@@ -8,9 +14,9 @@
                    <td>Address</td>
                    <td>TAX ID</td>
                    <td>Phone</td>
-                   <td>Create On</td>
-                   <td>Last Upd On</td>
-                   <td>Narration</td>
+                   <td>CreateOn</td>
+                   <td>LastUpdOn</td>
+                   <td>Remark</td>
                    <td>status</td>
 
                    <td>CreatedBy</td>

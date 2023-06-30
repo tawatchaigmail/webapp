@@ -1,0 +1,62 @@
+               <div class="container">
+                     <div>
+                          <tr>
+                          <td><button class="btn btn-sm" type="button" (click)="onPrint()" > Print </button> </td>
+                          <td><button class="btn btn-sm" type="button" (click)="onPrintAuto()" > autoTable </button> </td>
+                          <td><button class="btn btn-sm" type="button" (click)="onGeneratePdfHtml2Canvas()" > html2Canvas </button> </td>
+                          </tr>
+                     </div>
+
+                 <table name="humanTableName" id="humanTableId">
+                  <thead>
+                  <tr>
+                   
+                   <td>Com</td>
+                   <td>Human</td>
+                   <td>Name1</td>
+                   <td>Name2</td>
+                   <!--td>TAX ID</td-->
+                   <!--td>Department</td-->
+                   <td>EndEffective</td>
+                   <!--td>CreateOn</td-->
+                   <!--td>LastUpd On</td-->
+                   <!--td>RefreshToken</td-->
+                   <!--td>status</td-->
+                  </tr>  
+                  </thead>
+                    <tbody>
+                     <tr *ngFor = "let human of humans ">
+                           
+                           <td>{{human.COMPANY}}</td>                                
+                           <td>{{human.HUMAN_CODE}}</td>  
+                           <td>{{human.NAME_1}}</td>  
+                           <td>{{human.NAME_2}}</td>
+                           <!--td>{{human.TAX_ID}}</td-->
+                           <!--td>{{human.DEPARTMENT_CODE}}</td-->
+                           <td>{{human.END_EFFECTIVE_DATE | date :'dd-MM-yyyy' }}</td>
+                           <!--td>{{human.CREATED_ON | date :'dd-MM-yyyy'}}</td-->
+                           <!--td>{{human.LAST_UPD_ON | date :'dd-MMM-yyyy'}}</td-->
+                           <!--td>{{human.REFRESH_TOKEN}}</td-->
+                           <!--td>{{human.STATUS}}</td-->
+                           <!--td><button class="btn btn-sm" type="button" (click)="onSelect(human)"> Select </button> </td-->
+                           <!--td><button class="btn btn-sm" type="button" > Edit </button> </td-->                         
+                           <!--td><button class="btn btn-sm" type="button" (click)="onDelete(human.COMPANY)" > Delete </button> </td-->
+
+                     </tr>
+                    </tbody> 
+                    <tfoot>
+                      <tr>
+                          <td>  Cont  </td>
+                          <td>  200  </td> 
+                          <td>  Total  </td>
+                          <td>  132000  </td>
+                      </tr>
+                    </tfoot>
+                     </table> 
+                     <div>
+                          <td><button class="btn btn-sm" type="button" (click)="onAdd()" > Add </button> </td>
+                     </div>
+                     <!-- property  --> 
+                     <!--com-details [selectDet]="selectCompany"></com-details-->
+                    
+                </div>
