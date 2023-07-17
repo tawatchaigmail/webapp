@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
@@ -31,14 +31,15 @@ import { Base64Pipe } from './share/convert-base64-img.pipe';
       AppComponent,
       DashbordComponent,
       ReportsComponent,
-      HumansComponent,
+   //   HumansComponent,
       HumansDetailsComponent,
       Base64Pipe,
   ],
   imports: [
     BrowserModule,
-    FormsModule,
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
     HomeComponent ,   

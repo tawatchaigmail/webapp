@@ -5,6 +5,52 @@
                           <td><button class="btn btn-sm" type="button" (click)="onPrintAuto()" > autoTable </button> </td>
                           <td><button class="btn btn-sm" type="button" (click)="onGeneratePdfHtml2Canvas()" > html2Canvas </button> </td>
                           </tr>
+                          <tr>
+                              <!--td> <div>
+                                     <ol>
+                                             <li>PE</li>
+                                             <li>ME</li>
+                                             <li>MR</li>
+                                             <li>RG</li>
+                                     </ol>
+                               </div>
+                               </td-->
+                               <td>
+                      
+                               <form [formGroup]="companyForm" (ngSubmit)="submit()" >
+                               <div>
+                                   <label for="nameInputId" name="name"  > name :
+                                       <input id="nameInputId" name="nameInputName"  formControlName="nameInput" >
+                                   </label>
+                                   
+                               </div>
+                               <div>
+                                   <label for="companyId">Choose a Company:</label>
+                                      <select id="companyId" name="companyName" formControlName="companySelectName" >
+                                         <!--option *ngFor = " let com of companies"  value={{com.COMPANY}}>{{com.DESCRIPTION}}</option-->
+                                         <option [ngValue]= "null"> Select Company </option>
+                                         <option *ngFor = " let com of companies"  [ngValue]="com.COMPANY">{{com.DESCRIPTION}}</option>
+                                      </select> 
+                               </div>
+
+                               <button type="submit">Submit</button>
+                               </form>
+                               </td>
+                               <!--td>
+                                   <input list="browsers">
+                                    <datalist id="browsers">
+                                      <option value="Internet Explorer">
+                                      <option value="Firefox">
+                                      <option value="Chrome">
+                                      <option value="Opera">
+                                      <option value="Safari">
+                                    </datalist>
+                               </td-->
+                          </tr>
+                          <tr>
+                              <p>{{companyForm.value | json}} </p>
+                              <p>{{companyForm.status | json}} </p>
+                          </tr>
                      </div>
 
                  <table name="humanTableName" id="humanTableId">

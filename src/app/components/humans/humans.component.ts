@@ -1,4 +1,7 @@
 import { Component,OnInit } from '@angular/core';
+import { ReactiveFormsModule,FormBuilder,FormsModule,FormGroup,FormControl,NgForm} from '@angular/forms';
+import {CommonModule,Location} from '@angular/common';
+import { Buffer } from "buffer";
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable'
 import { HumansInterface} from '../../models/humansInterface';
@@ -9,32 +12,74 @@ import { CompanyService} from '../../service/company.service';
 
 @Component({
   selector: 'app-humans',
+  standalone: true,   
+  imports: [
+              CommonModule,
+              ReactiveFormsModule,
+              FormsModule,
+
+  ],  
   templateUrl: './humans.component.html',
   styleUrls: ['./humans.component.scss']
 }) 
 
 export class HumansComponent implements OnInit {
+  companyForm :FormGroup = new FormGroup({
+                                          companySelectName : new FormControl(),
+                                          nameInput : new FormControl(),
+                                        }) ;
 
   humans : HumansInterface[] = [] ;
-  company? : CompanyInterface ;
+ // company? : CompanyInterface ;
+  company : any ;
+  companies? : CompanyInterface[] = []; 
+  logoContentType : string = 'image/jpeg';
+
 //  base64Img? : string | HTMLImageElement | HTMLCanvasElement | Uint8Array | RGBADat ; 
   logoImg? : string  ; 
 
-  constructor( private humansService : HumansService, private companyService : CompanyService) {
-  
+  constructor(private fb :FormBuilder, private humansService : HumansService, private companyService : CompanyService) {
+     this.createForm();
   };
+  getCompany() : void {
+// Observable
+
+     this.companyService.getCompanyUrl().subscribe(
+        (response) => {                           //Next callback
+          console.log('response comapanies received')
+         // console.log(response);
+          this.companies = response; 
+
+        // let objectURL = 'data:image/jpe;base64,'+ response.data.LOGO ;
+        // this.thumbnail = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+
+        },
+        (error) => {                              //Error callback
+          console.error('Request comapanies failed with error')
+          alert(error);
+        },
+        () => {                                   //Complete callback
+          console.log('Request comapanies completed')
+        }
+     )
+  }
 
   getCompanyById( id : string) : void {
           
      this.companyService.getCompanyById(id).subscribe( 
-                                                       (response :any) => { this.company = response },
+                                                       (response :any) => { 
+                                                                           console.log('response company receipve');
+                                                                           console.log(response.data[0]);
+                                                                           this.company = response 
+                                                                          // console.log(this.company.data[0]);
+                                                                          },
                                                       
                                                        (error:any) => { 
-                                                                    console.error('Request failed with error')
+                                                                    console.error('Request company failed with error')
                                                                     alert(error); 
                                                                    },
                                                        
-                                                       () => {console.log('Request completed')}
+                                                       () => {console.log('Request company completed')}
                                                      )
   }
   getHumans() : void {
@@ -42,16 +87,16 @@ export class HumansComponent implements OnInit {
   //   this.humansService.getHumans().subscribe(humans => this.humans =  humans)
      this.humansService.getHumans().subscribe(
         (response) => {                           //Next callback
-          console.log('response received')
-          console.log(response);
+          console.log('response human received')
+         // console.log(response);
           this.humans = response; 
         },
         (error) => {                              //Error callback
-          console.error('Request failed with error')
+          console.error('Request human failed with error')
           alert(error);
         },
         () => {                                   //Complete callback
-          console.log('Request completed')
+          console.log('Request human completed')
         }
      )
   }
@@ -61,9 +106,22 @@ export class HumansComponent implements OnInit {
 
   onAdd(){
   }
+
   onDelete(id : any){
   }
+
+  submit(){
+    console.log(this.companyForm.value);
+    console.log(this.companyForm.value.companySelectName);
+    this.getCompanyById(this.companyForm.value.companySelectName);
+  }
+
+  createForm(){
+   // this.companyForm = this.fb.group({});
+  }
+
   ngOnInit() : void{
+    this.getCompany();
     this.getHumans();
   }
 
@@ -75,9 +133,10 @@ export class HumansComponent implements OnInit {
 
     const opt = {
         callback: function (jsPdf :any) {
-            doc.save("genPdf.pdf");
+           //  doc.save("genPdf.pdf");
             // to open the generated PDF in browser window
             // window.open(jsPdf.output('bloburl'));
+            doc.output('dataurlnewwindow');
         },
         margin: [20, 20, 20, 20],
         autoPaging: 'text',
@@ -101,7 +160,9 @@ export class HumansComponent implements OnInit {
            doc.setFontSize(12);
            doc.html(document.getElementById("humanTableId") as HTMLElement , {     // HTMLElement
                                                                               callback: function (doc) {
-                                                                                                       doc.save();
+                                                                                                     //   doc.save();
+                                                                                                     doc.output('dataurlnewwindow');
+                                                                                                     //  console.log(doc.output('datauristring'));
                                                                                                        },
                                                                             x: 10,
                                                                             y: 10
@@ -164,15 +225,19 @@ export class HumansComponent implements OnInit {
                   },
                  willDrawCell: (data) => {} ,
                  didDrawPage: (data) => {
-                                        console.log(data)
-                                        var base64Img = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=='
+                                      //  console.log(data)
+                                        console.log('data:'+this.logoContentType+';base64,'+this.company.data[0]);
+                                        var base64Img =  'data:'+this.logoContentType+';base64,'+new Buffer(this.company.data[0].LOGO.data).toString('base64') ;
+
+                                      //  var base64Img =  'data:'+this.logoContentType+';base64'+this.company?.LOGO;
+                                         
                                       //  doc.addImage('../../../assets/nw.jpg', 'JPEG', 40, 20, 40, 40);
                                         doc.addImage(base64Img, 'JPEG', 40, 20, 40, 40);
 
                                         doc.setFontSize(10);
-                                        doc.text('Reort Name',80,40);
+                                        doc.text('Reort Name Human',80,40);
                                         doc.setFontSize(10);
-                                        doc.text('Project Name',80,55);
+                                        doc.text(this.company.data[0].COMPANY+' '+this.company.data[0].DESCRIPTION,80,55);
                                         doc.text(' Page '+data.pageNumber,520,20)
 
                  } ,
@@ -184,8 +249,27 @@ export class HumansComponent implements OnInit {
           
       );
 
-
+//      doc.output('dataurlnewwindow');
+//      console.log(doc.output('dataurlstring'));
       doc.save('table.pdf');                
   }
 
 }
+
+
+
+/*
+doc.output('save', 'filename.pdf'); //Try to save PDF as a file (not works on ie before 10, and some mobile devices)
+
+doc.output('arraybuffer');
+doc.output('blob');
+doc.output('bloburi');
+doc.output('bloburl');
+doc.output('datauristring');        //returns the data uri string
+doc.output('dataurlstring');
+doc.output('datauri');              //opens the data uri in current window
+doc.output('dataurl');
+doc.output('dataurlnewwindow');     //opens the data uri in new window
+doc.output('pdfobjectnewwindow');
+doc.output('pdfjsnewwindow');
+*/

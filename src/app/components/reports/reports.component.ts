@@ -58,9 +58,9 @@ export class ReportsComponent implements OnInit  {
 
     const opt = {
         callback: function (jsPdf :any) {
-            doc.save("genPdf.pdf");
+          //  doc.save("genPdf.pdf");
             // to open the generated PDF in browser window
-            // window.open(jsPdf.output('bloburl'));
+             window.open(jsPdf.output('bloburl'));
         },
         margin: [20, 20, 20, 20],
         autoPaging: 'text',
@@ -115,6 +115,7 @@ export class ReportsComponent implements OnInit  {
         doc.addImage(canvasDataURL, 'PNG', 20, 40, (width*.62), (height*.62));      
 
             doc.save('canvas.pdf');
+         //   doc.output('dataurlnewwindow');
         })
 
   }    
@@ -166,7 +167,8 @@ export class ReportsComponent implements OnInit  {
       );
 
 
-      doc.save('table.pdf');
+     // doc.save('table.pdf');
+     doc.output('dataurlnewwindow');
   }
 
   onHtml(){
@@ -183,7 +185,8 @@ export class ReportsComponent implements OnInit  {
   // doc.html(document.documentElement.innerHTML , {
   // doc.html(document.getElementsByTagName('nametablId').innerHTML as HTMLElement , {
    callback: function (doc) {
-     doc.save();
+   //  doc.save();
+      doc.output('dataurlnewwindow');
    },
    x: 10,
    y: 10
@@ -203,7 +206,8 @@ export class ReportsComponent implements OnInit  {
                 //  doc.text('/n')
                 //  console.log(' '+this.companies[i].COMPANY);
              }
-             doc.save('A4.pdf');
+           doc.output('dataurlnewwindow');
+           //  doc.save('A4.pdf');
              doc.autoPrint();
 
 
@@ -213,7 +217,26 @@ export class ReportsComponent implements OnInit  {
             this.getCompany();
 
   }
+  onSubmit(){
+  }
 }
+
+
+/*
+doc.output('save', 'filename.pdf'); //Try to save PDF as a file (not works on ie before 10, and some mobile devices)
+
+doc.output('arraybuffer');
+doc.output('blob');
+doc.output('bloburi');
+doc.output('bloburl');
+doc.output('datauristring');        //returns the data uri string
+doc.output('dataurlstring');
+doc.output('datauri');              //opens the data uri in current window
+doc.output('dataurl');
+doc.output('dataurlnewwindow');     //opens the data uri in new window
+doc.output('pdfobjectnewwindow');
+doc.output('pdfjsnewwindow');
+*/
 
 
 
