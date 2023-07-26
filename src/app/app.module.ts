@@ -25,6 +25,8 @@ import { Base64Pipe } from './share/convert-base64-img.pipe';
 //import { CompanyComponent } from './components/company/companyComponent';
 //import { CompanyDetails } from './components/CompanyDetails/CompanyDetails';
 
+import {AdminModule} from './admin/admin.module';
+import {LoginModule} from './login/login.module';
 
 @NgModule({
   declarations: [
@@ -44,9 +46,12 @@ import { Base64Pipe } from './share/convert-base64-img.pipe';
     HttpClientModule,
     HomeComponent ,   
     HousingLocationComponent,
+    AdminModule,    
+    LoginModule,
     
   ],
-  providers: [],
+  providers: [         
+             ],
   bootstrap: [AppComponent]
 
 })

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { CompanyComponent } from './components/company/companyComponent';
+import { CompanyDetails } from './components/CompanyDetails/CompanyDetails';
 
 import {DashbordComponent} from './components/dashbord/dashbord.component';
 import {AboutComponent} from './components/about/about.component';
@@ -15,7 +16,15 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'report', component: ReportsComponent },
   { path: 'humans', component: HumansComponent },
-  { path: 'company', component: CompanyComponent,  title: 'company' },
+  { path: 'company', 
+           children : [
+                      { path: '', component: CompanyComponent},
+                      { path: 'add', component: CompanyDetails},    
+                   //   { path: 'delete/:id', },
+                   //   { path: 'edit/:id', },
+                   //   { path: 'view/:id', }, 
+                      ] },
+  { path: 'addCompany', component: CompanyDetails,  title: 'company details' },
 ];
 
 @NgModule({

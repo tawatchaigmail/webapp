@@ -1,4 +1,5 @@
 import {Component, Input, OnInit, Output}  from '@angular/core';
+import {Router} from '@angular/router';
 import {CommonModule} from '@angular/common';
 import {FormsModule,FormGroup,FormControl} from '@angular/forms';
 import jsPDF from 'jspdf';
@@ -45,7 +46,7 @@ export class CompanyComponent implements OnInit{
              logoContentType : 'image/jpeg',
              }
 
-  constructor( private companyService : CompanyService) {
+  constructor(private router : Router, private companyService : CompanyService) {
   
   } ;
 /*  
@@ -92,8 +93,9 @@ export class CompanyComponent implements OnInit{
 
   onAdd(){
     console.log(' onAdd ');
-    this.selectCompany = this.rowbank;
-    this.companies.push(this.rowbank);
+    this.router.navigate(['/company/add']);
+  //  this.selectCompany = this.rowbank;
+  //  this.companies.push(this.rowbank);
    // this.companyService.addCompany(comData)
   }  
   

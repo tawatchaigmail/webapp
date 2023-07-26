@@ -2,10 +2,11 @@
 </style>
             <div class="container">
                  <button type="button" (click)="goBack()">Back</button>
+                 
                  <form name="detailName" #detailForm="ngForm" (ngSubmit)="doSubmit(detailForm)">
-                      <div *ngIf="selectDet" class="form-group" >
+                      <div class="form-group">
                          <label for="seq-no">seqNo</label>     
-                         <input name="SEQ_NO" id="seq-no" required minlength=2 maxlength=4 [(ngModel)]="selectDet.SEQ_NO" #seqno="ngModel" placeholder="seqNo" />
+                         <input name="SEQ_NO" id="seq-no" required minlength=2 maxlength=4 [(ngModel)]="addCompany.SEQ_NO" #seqno="ngModel" placeholder="seqNo" />
                           <div *ngIf="seqno.invalid" >
                                <div [hidden]="companyCode.errors?.['required']">
                                  seqNo is required
@@ -16,7 +17,7 @@
                           </div>
 
                          <label for="company-code">companyCode</label>     
-                         <input name="COMPANY" id="company-code" required maxlength=2 [(ngModel)]="selectDet.COMPANY" #companyCode="ngModel" placeholder="companyCode" />
+                         <input name="COMPANY" id="company-code" required maxlength=2 [(ngModel)]="addCompany.COMPANY" #companyCode="ngModel" placeholder="companyCode" />
                           
                           <div *ngIf="companyCode.invalid">
                                <div [hidden]="companyCode.errors?.['required']">
@@ -28,13 +29,13 @@
                           </div>
                           
                          <label for="description">description</label>     
-                         <input name="DESCRIPTION" id="description" [(ngModel)]="selectDet.DESCRIPTION" placeholder="description" />
+                         <input name="DESCRIPTION" id="description" [(ngModel)]="addCompany.DESCRIPTION" placeholder="description" />
                        
                          <label for="company-address">Company Adress</label>     
-                         <input name="COMPANY_ADDRESS" id="company-address" [(ngModel)]="selectDet.COMPANY_ADDRESS" placeholder="companyADress" />
+                         <input name="COMPANY_ADDRESS" id="company-address" [(ngModel)]="addCompany.COMPANY_ADDRESS" placeholder="companyADress" />
 
                          <label for="texId">TAX ID</label>     
-                         <input name="TAX_ID" id="texId" [(ngModel)]="selectDet.TAX_ID" #taxId="ngModel" pattern="^\d{4}-\d{4}-\d{4}$" placeholder="0000-00000-000" />
+                         <input name="TAX_ID" id="texId" [(ngModel)]="addCompany.TAX_ID" #taxId="ngModel" pattern="^\d{4}-\d{4}-\d{4}$" placeholder="0000-00000-000" />
 
                           <div *ngIf="taxId.invalid">
                                <div [hidden]="taxId.errors?.['pattern']">
@@ -43,7 +44,7 @@
                           </div>
 
                          <label for="telePhone">Tele Phone</label>     
-                         <input name="TELEPHONE" id="telePhone" [(ngModel)]="selectDet.TELEPHONE" #telePhone="ngModel"  pattern="^\d{3}-\d{3}-\d{4}$" placeholder="000-0000-000" />
+                         <input name="TELEPHONE" id="telePhone" [(ngModel)]="addCompany.TELEPHONE" #telePhone="ngModel"  pattern="^\d{3}-\d{3}-\d{4}$" placeholder="000-0000-000" />
 
                           <div *ngIf="telePhone.invalid">
                                <div [hidden]="telePhone.errors?.['pattern']">
@@ -51,23 +52,23 @@
                                 </div>
                           </div>
 
-                         <label for="telePhone">Created On</label>     
-                         <input name="CREATED_ON" id="createdOn" [(ngModel)]="selectDet.CREATED_ON" #createdOn="ngModel"  pattern="^(([1-9]|1[012])[-/.]([1-9]|[12][0-9]|3[01])[-/.](19|20)\d\d)|((1[012]|0[1-9])(3[01]|2\d|1\d|0[1-9])(19|20)\d\d)|((1[012]|0[1-9])[-/.](3[01]|2\d|1\d|0[1-9])[-/.](19|20)\d\d)$
+                         <label for="createdOn">Created On</label>     
+                         <input name="CREATED_ON" id="createdOn" [(ngModel)]="addCompany.CREATED_ON" #createdOn="ngModel"  pattern="^(([1-9]|1[012])[-/.]([1-9]|[12][0-9]|3[01])[-/.](19|20)\d\d)|((1[012]|0[1-9])(3[01]|2\d|1\d|0[1-9])(19|20)\d\d)|((1[012]|0[1-9])[-/.](3[01]|2\d|1\d|0[1-9])[-/.](19|20)\d\d)$
 
 " placeholder="" />
 
                          <label for="created-by">createdBy</label>     
-                         <input name="CREATED_BY" id="created-by" [(ngModel)]="selectDet.CREATED_BY" placeholder="createdBy" />
+                         <input name="CREATED_BY" id="created-by" [(ngModel)]="addCompany.CREATED_BY" placeholder="createdBy" />
 
-                         <label for="created-by">Narration</label>     
-                         <input name="NARRATION" id="narration" [(ngModel)]="selectDet.NARRATION" placeholder="narration" />
+                         <label for="narration">Narration</label>     
+                         <input name="NARRATION" id="narration" [(ngModel)]="addCompany.NARRATION" placeholder="narration" />
 
-                         <input type="File">
-
-
+                         <input name="LOGO"  id = "logoId" type="File" [(ngModel)]="addCompany.LOGO" (change)="onChangePic($event)" accept="image/*"  >
+                         <img name="previewImgName" id="previewImgId" [src]="previewImg" class="previewImg">
+                         <span>{{choosefile}}</span> 
                           <button type="submit">submit</button>
+                          <button type="button" (click)="clearForm()">Reset</button>
                       </div>
-
 
                   </form>                  
              </div>
