@@ -17,9 +17,9 @@ export class AuthGuadService {
               
        canActivate(route: ActivatedRouteSnapshot,state : RouterStateSnapshot){
        
-             console.log('canActivate');
+             console.log('canActivate'+' '+state.url);
              let url = state.url ; 
-             console.log('url '+url);
+            // console.log('url '+url);
             return this.checkLogin(url);
        } 
        
@@ -29,7 +29,7 @@ export class AuthGuadService {
           
        }
        checkLogin(url : string){
-          console.log(' checklogin authService.isLoggedIn '+this.authService.isLoggedIn);
+          console.log('checklogin authService.isLoggedIn '+this.authService.isLoggedIn+' '+url);
           if (this.authService.isLoggedIn) {
                                             return true
                                            } 

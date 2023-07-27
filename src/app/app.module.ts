@@ -28,6 +28,8 @@ import { Base64Pipe } from './share/convert-base64-img.pipe';
 import {AdminModule} from './admin/admin.module';
 import {LoginModule} from './login/login.module';
 
+import {DialogService} from './service/auth/dialogService';
+
 @NgModule({
   declarations: [
       AppComponent,
@@ -50,7 +52,8 @@ import {LoginModule} from './login/login.module';
     LoginModule,
     
   ],
-  providers: [         
+  providers: [
+                       
              ],
   bootstrap: [AppComponent]
 

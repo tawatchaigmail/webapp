@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 import {Router, ActivatedRoute} from '@angular/router';
                 
 
-import {AuthService} from '../../services/authService'; 
+import {AuthService} from '../../../service/auth/authService'; 
 
 @Component({
  selector: 'admin-center',
@@ -25,8 +25,9 @@ export class AdminCenterComponent implements OnInit {
               private router : Router, 
             ) {}
   logout(){
-     console.log('logout admin center ');
+
      this.authService.logout();
+     console.log('logout admin center authService.isLoggedIn '+this.authService.isLoggedIn);
      this.router.navigate(['/login']);
   }
 

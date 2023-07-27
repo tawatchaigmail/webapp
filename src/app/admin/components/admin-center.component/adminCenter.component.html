@@ -3,6 +3,8 @@
   <button  [routerLink]="['/admin']" routerLinkActive="btn-info" [routerLinkActiveOptions]="{exact : true}" >Admin home </button>
   <button  [routerLink]="['/admin/users']">User</button>
   <button  [routerLink]="['/admin/product']">Produc</button>
+  <button  [routerLink]="[{ outlets : { popup : ['send'] }}]">Popup Send</button>
   <button  type button (click)="logout()" > Log Out </button>
 </div>
 <router-outlet></router-outlet>
+<router-outlet name="popup" ></router-outlet>

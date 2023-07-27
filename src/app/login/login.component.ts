@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-
 import {CommonModule} from '@angular/common';
-
 import {Router} from '@angular/router' ;
+import {Observable} from 'rxjs';
 
-import {AuthService} from '../admin/services/authService';
+
+import {AuthService} from '../service/auth/authService';
+import {DialogService} from '../service/auth/dialogService';
 
 @Component({
     selector : 'login-com',
@@ -18,18 +19,22 @@ import {AuthService} from '../admin/services/authService';
 })
 
 export class LoginComponent implements OnInit {
-
         
        constructor( private router : Router, 
-                    private authService : AuthService
+                    private authService : AuthService,
+                    private dialog : DialogService 
                   ) {}
 
         ngOnInit() :void {
-            }
-        login(){
-          //  console.log(' befor login '+this.authService.redirectUrl+' '+this.authService.isLoggedIn);
+        }
+
+        canDeactivate() : Observable<boolean> | boolean {
+           return this.dialog.confirm('cancel change');
+        }
+            
+        login(){          
             this.authService.login();
-            console.log(' after login '+this.authService.redirectUrl+' '+this.authService.isLoggedIn);
+            console.log('login '+this.authService.isLoggedIn+' '+this.authService.redirectUrl+' ');
             this.router.navigate([this.authService.redirectUrl]);
         }
 

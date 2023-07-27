@@ -9,6 +9,8 @@ import {AboutComponent} from './components/about/about.component';
 import {ReportsComponent} from './components/reports/reports.component';
 import {HumansComponent} from './components/humans/humans.component';
 
+import {CanDeactiveateGuardService} from './service/auth/canDeactivateGuardService';
+
 const routes: Routes = [
   { path: '', redirectTo: 'dashbord', pathMatch: 'full'},
   { path: 'about', component: AboutComponent },
@@ -29,6 +31,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers :[CanDeactiveateGuardService]
 })
 export class AppRoutingModule { }
