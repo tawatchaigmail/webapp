@@ -1,4 +1,6 @@
 <p>adminCenter</p>
+<p> Session ID {{sessionId | async }}</p>
+<a id="anchor" ></a>
 <div>
   <button  [routerLink]="['/admin']" routerLinkActive="btn-info" [routerLinkActiveOptions]="{exact : true}" >Admin home </button>
   <button  [routerLink]="['/admin/users']">User</button>

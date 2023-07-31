@@ -107,6 +107,13 @@ export class CompanyDetails implements OnInit {
   
  ngOnInit(): void {
   //  detailForm = 
+  //    let id : string = this.route.snapshot.paramMap.get('id') as string;
+  //    let id : string = this.route.snapshot.paramMap.get('id') ?? '';
+      let id : string = this.route.snapshot.paramMap.get('id') || '';
+      if (id !== null ) {
+         console.log('ngOnInit id '+id);
+         this.companyService.getCompanyById(id);
+      }
  }
 
   goBack(): void {

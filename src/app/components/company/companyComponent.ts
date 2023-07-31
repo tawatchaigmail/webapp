@@ -89,6 +89,13 @@ export class CompanyComponent implements OnInit{
 
   onSelect(company : CompanyInterface ) : void {
              this.selectCompany = company ;
+             this.router.navigate(['/company/view/'+this.selectCompany.COMPANY]);
+  } ;
+
+  onEdit(company : CompanyInterface ) : void {
+             this.selectCompany = company ;
+             console.log(' onEdit '); 
+             this.router.navigate(['/company/edit/'+this.selectCompany.COMPANY]);
   } ;
 
   onAdd(){
@@ -104,6 +111,8 @@ export class CompanyComponent implements OnInit{
 
       this.companyService.removeCompany(id)
   }
+
+
   onPrint(){
            var doc = new jsPDF('p', 'pt', 'a4');
            doc.addFont('../../../assets/fonts/micross72.ttf', 'Microsoft Sans Serif', 'normal');

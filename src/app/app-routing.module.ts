@@ -11,6 +11,8 @@ import {HumansComponent} from './components/humans/humans.component';
 
 import {CanDeactiveateGuardService} from './service/auth/canDeactivateGuardService';
 
+import {CompanyDetailResolveSevice} from './service/company-detail-resolve.service';
+
 const routes: Routes = [
   { path: '', redirectTo: 'dashbord', pathMatch: 'full'},
   { path: 'about', component: AboutComponent },
@@ -23,8 +25,8 @@ const routes: Routes = [
                       { path: '', component: CompanyComponent},
                       { path: 'add', component: CompanyDetails},    
                    //   { path: 'delete/:id', },
-                   //   { path: 'edit/:id', },
-                   //   { path: 'view/:id', }, 
+                      { path: 'edit/:id', component: CompanyDetails },
+                      { path: 'view/:id', resolve : { company : CompanyDetailResolveSevice} , component: CompanyDetails }, 
                       ] },
   { path: 'addCompany', component: CompanyDetails,  title: 'company details' },
 ];
@@ -32,6 +34,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers :[CanDeactiveateGuardService]
+  providers :[CanDeactiveateGuardService,CompanyDetailResolveSevice]
 })
 export class AppRoutingModule { }

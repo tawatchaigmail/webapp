@@ -3,6 +3,7 @@ import { CanActivate,Router ,
          ActivatedRouteSnapshot,
          RouterStateSnapshot,
          CanActivateChild,
+         NavigationExtras,
        } from '@angular/router';
 
 import {AuthService} from './authService';
@@ -34,8 +35,14 @@ export class AuthGuadService {
                                             return true
                                            } 
           this.authService.redirectUrl = url; 
+          let sessionId = 123456789 ;
+          
+          let navigationExtras : NavigationExtras = {
+              queryParams : {'session_id' : sessionId } ,
+              fragment : 'anchor'
+          }
 
-          this.router.navigate(['/login']);
+          this.router.navigate(['/login'],navigationExtras);
           return false ;
        }
 }

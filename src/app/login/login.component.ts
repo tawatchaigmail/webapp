@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {Router} from '@angular/router' ;
+import {Router,NavigationExtras} from '@angular/router' ;
 import {Observable} from 'rxjs';
 
 
@@ -35,7 +35,13 @@ export class LoginComponent implements OnInit {
         login(){          
             this.authService.login();
             console.log('login '+this.authService.isLoggedIn+' '+this.authService.redirectUrl+' ');
-            this.router.navigate([this.authService.redirectUrl]);
+
+            let navigationExtras : NavigationExtras = {
+                  queryParamsHandling : 'preserve',
+                  preserveFragment : true
+          
+            }
+            this.router.navigate([this.authService.redirectUrl],navigationExtras);
         }
 
         logout(){          
