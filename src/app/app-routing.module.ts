@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes,PreloadAllModules} from '@angular/router';
+
 import { HomeComponent } from './components/home/home.component';
 import { CompanyComponent } from './components/company/companyComponent';
 import { CompanyDetails } from './components/CompanyDetails/CompanyDetails';
@@ -9,12 +10,29 @@ import {AboutComponent} from './components/about/about.component';
 import {ReportsComponent} from './components/reports/reports.component';
 import {HumansComponent} from './components/humans/humans.component';
 
+import {AuthGuadService} from './service/auth/authGuadService';
 import {CanDeactiveateGuardService} from './service/auth/canDeactivateGuardService';
-
 import {CompanyDetailResolveSevice} from './service/company-detail-resolve.service';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'dashbord', pathMatch: 'full'},
+  { path: '', 
+    redirectTo: 'dashbord', 
+    pathMatch: 'full'
+  },
+
+  { 
+    path : 'admin', 
+    loadChildren : () =>  import ('./admin/admin.module').then(m => m.AdminModule ),
+    canLoad : [AuthGuadService] 
+
+  },
+
+  { 
+    path : 'product', 
+    loadChildren : () =>  import ('./product/product.module').then(m => m.ProductModule ),
+
+  },
+
   { path: 'about', component: AboutComponent },
   { path: 'dashbord', component: DashbordComponent }, 
   { path: 'home', component: HomeComponent },
@@ -26,14 +44,20 @@ const routes: Routes = [
                       { path: 'add', component: CompanyDetails},    
                    //   { path: 'delete/:id', },
                       { path: 'edit/:id', component: CompanyDetails },
-                      { path: 'view/:id', resolve : { company : CompanyDetailResolveSevice} , component: CompanyDetails }, 
+                      { path: 'view/:id', resolve :  { company : CompanyDetailResolveSevice} , component: CompanyDetails }, 
                       ] },
   { path: 'addCompany', component: CompanyDetails,  title: 'company details' },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,
+                                 {preloadingStrategy : PreloadAllModules}
+                                 )],
   exports: [RouterModule],
-  providers :[CanDeactiveateGuardService,CompanyDetailResolveSevice]
+  providers :[
+              AuthGuadService,
+              CanDeactiveateGuardService,
+              CompanyDetailResolveSevice
+             ]
 })
 export class AppRoutingModule { }

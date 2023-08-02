@@ -25,7 +25,7 @@ import { Base64Pipe } from './share/convert-base64-img.pipe';
 //import { CompanyComponent } from './components/company/companyComponent';
 //import { CompanyDetails } from './components/CompanyDetails/CompanyDetails';
 
-import {AdminModule} from './admin/admin.module';
+// import {AdminModule} from './admin/admin.module';
 import {LoginModule} from './login/login.module';
 
 import {DialogService} from './service/auth/dialogService';
@@ -48,7 +48,7 @@ import {DialogService} from './service/auth/dialogService';
     HttpClientModule,
     HomeComponent ,   
     HousingLocationComponent,
-    AdminModule,    
+ //   AdminModule,    
     LoginModule,
     
   ],

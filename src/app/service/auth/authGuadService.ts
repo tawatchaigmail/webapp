@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core'
-import { CanActivate,Router ,
+import { CanActivate, Router, CanLoad, UrlSegment,
          ActivatedRouteSnapshot,
          RouterStateSnapshot,
          CanActivateChild,
@@ -29,6 +29,25 @@ export class AuthGuadService {
          return this.canActivate(route, state);
           
        }
+      
+      canLoad(route : Router,segments : UrlSegment[] ) : boolean {
+       // let url =  '/${route.path}';         
+       if (segments.length = 1) {
+          let url = segments[0].path ;
+          console.log('canLoad '+url+' segments '+segments.length+' '+segments[0].path);        
+          return this.checkLogin(url);
+        } else {
+          return false ;
+        }
+      }
+      
+       /*
+       canLoad(route : ActivatedRouteSnapshot, state : RouterStateSnapshot) : boolean {
+        let url =  state.url;
+        console.log('canLoad '+url);
+        return this.checkLogin(url);
+       }
+       */
        checkLogin(url : string){
           console.log('checklogin authService.isLoggedIn '+this.authService.isLoggedIn+' '+url);
           if (this.authService.isLoggedIn) {

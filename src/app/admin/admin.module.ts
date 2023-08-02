@@ -8,7 +8,7 @@ import {AdminRouteModule} from './admin-routing.module';
 import {AdminComponent} from  './admin.component';
 import {AdminCenterComponent} from  './components/admin-center.component/adminCenter.component';
 import {AdminUsersComponent} from  './components/admin-users.component/adminUsers.component';
-import {AdminProductComponent} from  './components/admin-product.component/adminProduct.component';
+
 import {SendComponent} from './components/send.component/send';
 
 @NgModule ({
@@ -26,7 +26,7 @@ import {SendComponent} from './components/send.component/send';
                    AdminComponent,
                    AdminCenterComponent,
                    AdminUsersComponent,
-                   AdminProductComponent,
+
               SendComponent
                    ],
    

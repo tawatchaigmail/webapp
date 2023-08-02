@@ -9,8 +9,8 @@ import {CommonModule} from '@angular/common';
               CommonModule,
     ],
 */
-    templateUrl : './adminProduct.component.html' ,
-    styleUrls : ['./adminProduct.component.scss'],
+    templateUrl : './product.component.html' ,
+    styleUrls : ['./product.component.scss'],
 })
 
 export class AdminProductComponent implements OnInit{
