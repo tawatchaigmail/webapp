@@ -1,9 +1,14 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject ,OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {ActivatedRoute} from '@angular/router'
+import { Observable } from 'rxjs';
+
 
 import { HousingLocationComponent } from '../housing-location/housing-location.component';
 import { HousingLocation } from '../../models/housinglocation';
 import { HousingService } from '../../service/housing.service';
+
+import {SelectivePreloadingStrategyService} from '../../service/selective-preloading-strategy.service';
 
 import { CompanyComponent } from '../company/companyComponent';
 
@@ -37,6 +42,8 @@ import { CompanyComponent } from '../company/companyComponent';
 
 export class HomeComponent {
 
+public modules? : string[];
+
 housingLocationList: HousingLocation[] = [];
 housingService: HousingService = inject(HousingService);
 
@@ -57,7 +64,11 @@ constructor() {
 */
 
 
-constructor() {
+constructor(
+ private route: ActivatedRoute,
+ private preloadStrategy: SelectivePreloadingStrategyService
+
+ ) {
   console.log('home component');
   this.housingService.getAllHousingLocations().then((housingLocationList: HousingLocation[]) => {
     this.housingLocationList = housingLocationList;
@@ -75,4 +86,7 @@ filterResults(text: string) {
   );
   }
 
+//    ngOnInit() {
+//     this.modules = this.preloadStrategy.preloadedModules;
+//  }
 }

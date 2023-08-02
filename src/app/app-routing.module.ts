@@ -14,6 +14,8 @@ import {AuthGuadService} from './service/auth/authGuadService';
 import {CanDeactiveateGuardService} from './service/auth/canDeactivateGuardService';
 import {CompanyDetailResolveSevice} from './service/company-detail-resolve.service';
 
+import {SelectivePreloadingStrategyService} from './service/selective-preloading-strategy.service';
+
 const routes: Routes = [
   { path: '', 
     redirectTo: 'dashbord', 
@@ -30,7 +32,7 @@ const routes: Routes = [
   { 
     path : 'product', 
     loadChildren : () =>  import ('./product/product.module').then(m => m.ProductModule ),
-
+    data: { preload: true }
   },
 
   { path: 'about', component: AboutComponent },
@@ -51,13 +53,15 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes,
-                                 {preloadingStrategy : PreloadAllModules}
+                               //  {preloadingStrategy : PreloadAllModules}
+                                 {preloadingStrategy : SelectivePreloadingStrategyService}
                                  )],
   exports: [RouterModule],
   providers :[
               AuthGuadService,
               CanDeactiveateGuardService,
-              CompanyDetailResolveSevice
+              CompanyDetailResolveSevice,
+              SelectivePreloadingStrategyService,
              ]
 })
 export class AppRoutingModule { }
