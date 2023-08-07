@@ -8,7 +8,6 @@ import autoTable from 'jspdf-autotable'
 import {CompanyInterface} from '../../models/companyInterface';
  //import {CompanyModels} from '../../models/companyModels';
 import {CompanyService} from '../../service/company.service';
-
 import { CompanyDetails } from '../../components/CompanyDetails/CompanyDetails';
 
 @Component({
@@ -46,7 +45,10 @@ export class CompanyComponent implements OnInit{
              logoContentType : 'image/jpeg',
              }
 
-  constructor(private router : Router, private companyService : CompanyService) {
+  constructor(
+              private router : Router, 
+              private companyService : CompanyService,
+             ) {
   
   } ;
 /*  

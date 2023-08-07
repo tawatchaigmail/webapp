@@ -10,21 +10,19 @@ import {AuthService} from './authService';
 
 @Injectable()
 
+//export class AuthGuadService implements CanActivate {
 export class AuthGuadService {
        constructor( private router : Router, 
                     private authService : AuthService
                   ) {}
-       
-              
-       canActivate(route: ActivatedRouteSnapshot,state : RouterStateSnapshot){
-       
-             console.log('canActivate'+' '+state.url);
+                     
+       canActivate(route: ActivatedRouteSnapshot, state : RouterStateSnapshot) : boolean {       
+             console.log('canActivate authService.isLoggedIn '+this.authService.isLoggedIn+' '+state.url);
              let url = state.url ; 
-            // console.log('url '+url);
             return this.checkLogin(url);
        } 
        
-       canActivateChild(route : ActivatedRouteSnapshot, state : RouterStateSnapshot ){
+       canActivateChild(route : ActivatedRouteSnapshot, state : RouterStateSnapshot ) : boolean {
           console.log('canActivateChild');
          return this.canActivate(route, state);
           
@@ -32,9 +30,10 @@ export class AuthGuadService {
       
       canLoad(route : Router,segments : UrlSegment[] ) : boolean {
        // let url =  '/${route.path}';         
+        console.log('canLode authService '+this.authService.isLoggedIn+' segments '+segments.length);
        if (segments.length = 1) {
           let url = segments[0].path ;
-          console.log('canLoad '+url+' segments '+segments.length+' '+segments[0].path);        
+          console.log('canLoad authService.isLoggedIn '+this.authService.isLoggedIn+' '+url+' segments '+segments.length+' '+segments[0].path);        
           return this.checkLogin(url);
         } else {
           return false ;

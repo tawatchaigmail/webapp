@@ -16,6 +16,7 @@ const adminRoutes : Routes =  [
      path : '' , 
      component : AdminComponent ,
      canActivate : [AuthGuadService] ,
+ 
      children : [
                  {  path : '' , component : AdminCenterComponent ,
                     canActivateChild : [AuthGuadService],

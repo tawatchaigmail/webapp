@@ -3,17 +3,11 @@ import {CommonModule} from '@angular/common';
 import {Router,NavigationExtras} from '@angular/router' ;
 import {Observable} from 'rxjs';
 
-
 import {AuthService} from '../service/auth/authService';
 import {DialogService} from '../service/auth/dialogService';
 
 @Component({
     selector : 'login-com',
-    /*
-    imports : [
-              CommonModule,
-             ],
-    */
     templateUrl : './login.component.html',                     
     styleUrls : ['./login.component.scss']
 })
@@ -29,12 +23,14 @@ export class LoginComponent implements OnInit {
         }
 
         canDeactivate() : Observable<boolean> | boolean {
-           return this.dialog.confirm('cancel change');
+           let dialog = this.dialog.confirm('cancel change') 
+           console.log('dialog '+dialog);
+           return dialog;
         }
             
         login(){          
-            this.authService.login();
-            console.log('login '+this.authService.isLoggedIn+' '+this.authService.redirectUrl+' ');
+            this.authService.login().subscribe(val => console.log(val));
+            console.log('login authService.isLoggedIn '+this.authService.isLoggedIn+' authService.redirectUrl '+this.authService.redirectUrl+' ');
 
             let navigationExtras : NavigationExtras = {
                   queryParamsHandling : 'preserve',

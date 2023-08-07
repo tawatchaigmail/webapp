@@ -29,6 +29,13 @@ import { Base64Pipe } from './share/convert-base64-img.pipe';
 import {LoginModule} from './login/login.module';
 
 import {DialogService} from './service/auth/dialogService';
+import {AuthGuadService} from './service/auth/authGuadService'; 
+import {AuthService} from './service/auth/authService'; 
+
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {HttpInterceptorService} from './service/interceptor/interceptor.service'
+
+
 
 @NgModule({
   declarations: [
@@ -53,7 +60,21 @@ import {DialogService} from './service/auth/dialogService';
     
   ],
   providers: [
-                       
+               AuthGuadService,
+               AuthService,
+               {
+                provide : HTTP_INTERCEPTORS,
+                useClass : HttpInterceptorService ,        
+                multi : true,
+               }
+/*
+    { provide: APP_BASE_HREF, useValue: '/' },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: 'AUTH_URL', useValue: 'http://localhost:8080/auth' },
+    { provide: 'API_URL', useValue: 'http://localhost:8080/api' },
+    { provide: 'HEADERS', useValue: new HttpHeaders({'Content-Type': 'application/json'}) },
+
+*/
              ],
   bootstrap: [AppComponent]
 

@@ -11,7 +11,7 @@ import {Router,Resolve,
 
 export AuthRosolveService {
        constructor(
-                   private router:Router,
+                   private router: Router,
                //    private service  
        ){}
 
