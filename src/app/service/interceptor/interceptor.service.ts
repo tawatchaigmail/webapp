@@ -13,9 +13,15 @@ export class HttpInterceptorService implements HttpInterceptor {
   constructor(){}
 
   intercept(req : HttpRequest<any>, next : HttpHandler) : Observable<HttpEvent<any>> {
-     console.log('Interceptor ran...');
+     console.log('Interceptor run...');
    //  const secureReq = req.clone({url: req.url.replace('http://', 'https://')});
-     return next.handle(req);
+     const secureReq = req.clone(
+                             { 
+                            // withCredentials: true,
+                             headers: req.headers.set('X-Custom-Header', 'x-header-value')
+                             }
+     );      
+     return next.handle(secureReq);
   }
 /*
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {

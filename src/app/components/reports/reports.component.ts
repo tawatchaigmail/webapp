@@ -1,4 +1,4 @@
-import { Component ,OnInit , Pipe, PipeTransform } from '@angular/core';
+import { Component ,OnInit,OnDestroy , Pipe, PipeTransform } from '@angular/core';
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
 import autoTable from 'jspdf-autotable';
@@ -17,7 +17,7 @@ import {CompanyService} from '../../service/company.service';
 })
 
 
-export class ReportsComponent implements OnInit  {
+export class ReportsComponent implements OnInit,OnDestroy  {
 
     companies : CompanyInterface[] = [] ;
     logoContentType : string = 'image/jpeg';
@@ -216,6 +216,9 @@ export class ReportsComponent implements OnInit  {
   ngOnInit(){
             this.getCompany();
 
+  }
+  ngOnDestroy(){
+    console.log('onDestroy');
   }
   onSubmit(){
   }

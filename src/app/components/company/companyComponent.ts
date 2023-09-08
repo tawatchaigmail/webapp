@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, Output}  from '@angular/core';
+import {Component, Input, OnInit, OnDestroy, Output}  from '@angular/core';
 import {Router} from '@angular/router';
 import {CommonModule} from '@angular/common';
 import {FormsModule,FormGroup,FormControl} from '@angular/forms';
@@ -23,7 +23,7 @@ import { CompanyDetails } from '../../components/CompanyDetails/CompanyDetails';
     styleUrls : ['./companyComponent.scss']
 })
 
-export class CompanyComponent implements OnInit{
+export class CompanyComponent implements OnInit,OnDestroy{
 
   selectCompany? : CompanyInterface ;  
   companyById? : CompanyInterface ;
@@ -88,6 +88,11 @@ export class CompanyComponent implements OnInit{
   ngOnInit() : void{
     this.getCompany();
   }
+
+  ngOnDestroy(){
+    console.log('onDestroy');
+  }
+
 
   onSelect(company : CompanyInterface ) : void {
              this.selectCompany = company ;

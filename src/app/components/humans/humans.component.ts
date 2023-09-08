@@ -1,6 +1,13 @@
-import { Component,OnInit } from '@angular/core';
+import { Component,OnInit,OnDestroy } from '@angular/core';
 import { ReactiveFormsModule,FormBuilder,FormsModule,FormGroup,FormControl,NgForm} from '@angular/forms';
 import {CommonModule,Location} from '@angular/common';
+import {Router,
+        ActivatedRoute,
+        ParamMap,
+        RouterModule,
+        RouterLink,
+        Routes} from '@angular/router';
+import {Observable} from 'rxjs';
 import { Buffer } from "buffer";
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable'
@@ -15,6 +22,7 @@ import { CompanyService} from '../../service/company.service';
   standalone: true,   
   imports: [
               CommonModule,
+              RouterModule,
               ReactiveFormsModule,
               FormsModule,
 
@@ -23,7 +31,7 @@ import { CompanyService} from '../../service/company.service';
   styleUrls: ['./humans.component.scss']
 }) 
 
-export class HumansComponent implements OnInit {
+export class HumansComponent implements OnInit ,OnDestroy {
   companyForm :FormGroup = new FormGroup({
                                           companySelectName : new FormControl(),
                                           nameInput : new FormControl(),
@@ -38,7 +46,31 @@ export class HumansComponent implements OnInit {
 //  base64Img? : string | HTMLImageElement | HTMLCanvasElement | Uint8Array | RGBADat ; 
   logoImg? : string  ; 
 
-  constructor(private fb :FormBuilder, private humansService : HumansService, private companyService : CompanyService) {
+  
+  public totalPage: number = 1 ;
+  public activePage: number = 1 ;
+
+  public prevPage: number = 1 ;
+  public nextPage: number =  1 ;
+
+  public totalItem: number = 500 ;
+  public iPageStart: number = 1 ;
+  public iPage: number[] = [] ;
+
+  public perPage: number = 25
+  public maxShowPage: number = 10 ;
+  public useShowPage: number = 5 ;
+  public pointStart: number = 0;
+  public pointEnd: number = 0 ;
+
+
+  constructor(
+              private fb :FormBuilder, 
+              private humansService : HumansService, 
+              private companyService : CompanyService,
+              private route : ActivatedRoute,
+              private router :Router
+              ) {
      this.createForm();
   };
   getCompany() : void {
@@ -123,8 +155,49 @@ export class HumansComponent implements OnInit {
   ngOnInit() : void{
     this.getCompany();
     this.getHumans();
+   
+    this.totalItem = this.humans.length;    
+
+    this.activePage = 1 ;
+    this.nextPage = 2;    
+    this.pointEnd = this.perPage*this.activePage ;
+    this.totalPage = Math.ceil(this.totalItem/this.perPage);
+   
+   if (this.totalPage > this.useShowPage){
+      this.useShowPage = 5 ;
+   }else {
+      this.useShowPage = this.totalPage;
+   } 
+   console.log('useShowPage :'+this.useShowPage);
+   console.log('iPageStart :'+this.iPageStart);
+      
+   for (let i = this.iPageStart; i<=this.useShowPage;i++){
+       console.log('iPage '+i); 
+    this.iPage.push(i);
+   }
+   
+    this.route
+        .queryParams
+        .subscribe((data : any ) => {
+
+                  console.log('data :'+JSON.stringify(data));
+                  
+                  if (data!=null && data.page!=null){
+                      console.log('page :'+data.page);
+                      this.activePage = data.page ; 
+                      this.prevPage = this.activePage - 1;
+                      this.nextPage = this.activePage +1;
+                      this.pointStart = (this.activePage-1)*this.perPage;
+                      this.pointEnd = this.perPage*this.activePage;
+                      this.pagination();
+                  }
+               });
+    
   }
 
+  ngOnDestroy(){
+    console.log('onDestroy');
+  }
   onGeneratePdfHtml2Canvas() {
     var doc : any = new jsPDF('p', 'pt', 'a4');
     var htmlElement = document.getElementById('tableId');
@@ -254,6 +327,38 @@ export class HumansComponent implements OnInit {
       doc.save('table.pdf');                
   }
 
+
+  changePage(value : any){
+      this.activePage = value;
+      this.router.navigate(['/humans/'], {queryParams : {page: value}});
+  };  
+
+  pagination(){
+     if(this.activePage > this.useShowPage){
+       if(this.activePage + 2 <= this.totalPage ){
+         this.iPageStart = this.activePage - 2 ;
+         this.maxShowPage = this.activePage + 2 ;
+       } else {
+            if (this.activePage <= this.totalPage) {
+                this.iPageStart = (this.totalPage+1) - this.useShowPage ;   
+                this.maxShowPage = (this.iPageStart -1) + this.useShowPage ; 
+            }
+       }
+        this.iPageStart = 1;
+        this.iPage = [];
+        for (let i = this.iPageStart; i <= this.maxShowPage; i++){
+            this.iPage.push(i);
+        }
+      
+     }else{
+        this.iPageStart = 1;
+        this.iPage = []  ;
+        for (let i = this.iPageStart; i <= this.useShowPage; i++){
+            this.iPage.push(i);
+        }
+     }
+  }
+
 }
 
 
@@ -273,3 +378,5 @@ doc.output('dataurlnewwindow');     //opens the data uri in new window
 doc.output('pdfobjectnewwindow');
 doc.output('pdfjsnewwindow');
 */
+
+

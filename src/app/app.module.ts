@@ -33,7 +33,9 @@ import {AuthGuadService} from './service/auth/authGuadService';
 import {AuthService} from './service/auth/authService'; 
 
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
-import {HttpInterceptorService} from './service/interceptor/interceptor.service'
+import {HttpInterceptorService} from './service/interceptor/interceptor.service';
+
+import {InfoService} from './service/info/info.service';
 
 
 
@@ -62,6 +64,7 @@ import {HttpInterceptorService} from './service/interceptor/interceptor.service'
   providers: [
                AuthGuadService,
                AuthService,
+               InfoService,
                {
                 provide : HTTP_INTERCEPTORS,
                 useClass : HttpInterceptorService ,        

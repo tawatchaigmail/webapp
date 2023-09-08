@@ -1,4 +1,4 @@
-import { Component, inject ,OnInit } from '@angular/core';
+import { Component, inject ,OnInit,OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {ActivatedRoute} from '@angular/router'
 import { Observable } from 'rxjs';
@@ -40,7 +40,7 @@ import { CompanyComponent } from '../company/companyComponent';
   styleUrls: ['./home.component.scss']
 })
 
-export class HomeComponent {
+export class HomeComponent implements OnInit , OnDestroy {
 
 public modules? : string[];
 
@@ -85,8 +85,13 @@ filterResults(text: string) {
     housingLocation => housingLocation?.city.toLowerCase().includes(text.toLowerCase())
   );
   }
+//   
 
-//    ngOnInit() {
-//     this.modules = this.preloadStrategy.preloadedModules;
-//  }
+  ngOnInit(){
+ //     this.modules = this.preloadStrategy.preloadedModules;
+}
+
+    ngOnDestroy(){
+      console.log('onDestroy');
+    }
 }
