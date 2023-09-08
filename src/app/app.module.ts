@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
@@ -25,27 +25,60 @@ import { Base64Pipe } from './share/convert-base64-img.pipe';
 //import { CompanyComponent } from './components/company/companyComponent';
 //import { CompanyDetails } from './components/CompanyDetails/CompanyDetails';
 
+// import {AdminModule} from './admin/admin.module';
+import {LoginModule} from './login/login.module';
+
+import {DialogService} from './service/auth/dialogService';
+import {AuthGuadService} from './service/auth/authGuadService'; 
+import {AuthService} from './service/auth/authService'; 
+
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {HttpInterceptorService} from './service/interceptor/interceptor.service';
+
+import {InfoService} from './service/info/info.service';
+
+
 
 @NgModule({
   declarations: [
       AppComponent,
       DashbordComponent,
       ReportsComponent,
-      HumansComponent,
+   //   HumansComponent,
       HumansDetailsComponent,
       Base64Pipe,
   ],
   imports: [
     BrowserModule,
-    FormsModule,
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
     HomeComponent ,   
     HousingLocationComponent,
+ //   AdminModule,    
+    LoginModule,
     
   ],
-  providers: [],
+  providers: [
+               AuthGuadService,
+               AuthService,
+               InfoService,
+               {
+                provide : HTTP_INTERCEPTORS,
+                useClass : HttpInterceptorService ,        
+                multi : true,
+               }
+/*
+    { provide: APP_BASE_HREF, useValue: '/' },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: 'AUTH_URL', useValue: 'http://localhost:8080/auth' },
+    { provide: 'API_URL', useValue: 'http://localhost:8080/api' },
+    { provide: 'HEADERS', useValue: new HttpHeaders({'Content-Type': 'application/json'}) },
+
+*/
+             ],
   bootstrap: [AppComponent]
 
 })

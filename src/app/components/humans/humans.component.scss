@@ -18,3 +18,15 @@ tfoot {
   background-color: #f3f3f3; 
 
 }
+
+.pagination {
+             heigth : 50px;
+             width : 100%;  
+             display : flex;
+             flex-wrap : wrap;
+}
+
+.page-item {
+           heigth : 40px;
+           width : 40px;
+}

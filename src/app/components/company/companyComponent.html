@@ -36,7 +36,7 @@
                            <td>{{company.NARRATION}}</td>
                            <td>{{company.STATUS}}</td>
                            <td><button class="btn btn-sm" type="button" (click)="onSelect(company)"> Select </button> </td>
-                           <td><button class="btn btn-sm" type="button" > Edit </button> </td>                         
+                           <td><button class="btn btn-sm" type="button" (click)="onEdit(company)" > Edit </button> </td>                         
                            <td><button class="btn btn-sm" type="button" (click)="onDelete(company.COMPANY)" > Delete </button> </td>
 
                      </tr>
@@ -46,6 +46,6 @@
                           <td><button class="btn btn-sm" type="button" (click)="onAdd()" > Add </button> </td>
                      </div>
                      <!-- property  --> 
-                     <com-details [selectDet]="selectCompany"></com-details>
+                     <!--com-details [selectDet]="company"></com-details-->
                     
                 </div>

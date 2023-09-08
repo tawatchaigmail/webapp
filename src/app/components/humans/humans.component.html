@@ -5,44 +5,100 @@
                           <td><button class="btn btn-sm" type="button" (click)="onPrintAuto()" > autoTable </button> </td>
                           <td><button class="btn btn-sm" type="button" (click)="onGeneratePdfHtml2Canvas()" > html2Canvas </button> </td>
                           </tr>
+                          <tr>
+                              <!--td> <div>
+                                     <ol>
+                                             <li>PE</li>
+                                             <li>ME</li>
+                                             <li>MR</li>
+                                             <li>RG</li>
+                                     </ol>
+                               </div>
+                               </td-->
+                               <td>
+                      
+                               <form [formGroup]="companyForm" (ngSubmit)="submit()" >
+                               <div>
+                                   <label for="nameInputId" name="name"  > name :
+                                       <input id="nameInputId" name="nameInputName"  formControlName="nameInput" >
+                                   </label>
+                                   
+                               </div>
+                               <div>
+                                   <label for="companyId">Choose a Company:</label>
+                                      <select id="companyId" name="companyName" formControlName="companySelectName" >
+                                         <!--option *ngFor = " let com of companies"  value={{com.COMPANY}}>{{com.DESCRIPTION}}</option-->
+                                         <option [ngValue]= "null"> Select Company </option>
+                                         <option *ngFor = " let com of companies"  [ngValue]="com.COMPANY">{{com.DESCRIPTION}}</option>
+                                      </select> 
+                               </div>
+
+                               <button type="submit">Submit</button>
+                               </form>
+                               </td>
+                               <!--td>
+                                   <input list="browsers">
+                                    <datalist id="browsers">
+                                      <option value="Internet Explorer">
+                                      <option value="Firefox">
+                                      <option value="Chrome">
+                                      <option value="Opera">
+                                      <option value="Safari">
+                                    </datalist>
+                               </td-->
+                          </tr>
+                          <tr>
+                              <p>{{companyForm.value | json}} </p>
+                              <p>{{companyForm.status | json}} </p>
+                          </tr>
                      </div>
 
                  <table name="humanTableName" id="humanTableId">
                   <thead>
                   <tr>
-                   
+                   <td>Seq</td>
+                   <td>Link<td>
                    <td>Com</td>
                    <td>Human</td>
                    <td>Name1</td>
                    <td>Name2</td>
-                   <!--td>TAX ID</td-->
-                   <!--td>Department</td-->
+                   <td>TAX ID</td>
+                   <td>Department</td>
                    <td>EndEffective</td>
-                   <!--td>CreateOn</td-->
-                   <!--td>LastUpd On</td-->
-                   <!--td>RefreshToken</td-->
-                   <!--td>status</td-->
+                   <td>CreateOn</td>
+                   <td>LastUpd On</td>
+                   <td>RefreshToken</td>
+                   <td>status</td>
                   </tr>  
                   </thead>
                     <tbody>
-                     <tr *ngFor = "let human of humans ">
-                           
+                     <tr *ngFor = "let human of humans | slice :pointStart:pointEnd; let i=index">
+                          <th>{{(activePage - 1)*perPage + (i+1)}}<th> 
+                           <td>
+                              <a routeLink="['/humans',human.HUMAN_CODE]" queryParams="{page : activePage}" ></a>
+                           </td>
+
                            <td>{{human.COMPANY}}</td>                                
                            <td>{{human.HUMAN_CODE}}</td>  
                            <td>{{human.NAME_1}}</td>  
                            <td>{{human.NAME_2}}</td>
-                           <!--td>{{human.TAX_ID}}</td-->
-                           <!--td>{{human.DEPARTMENT_CODE}}</td-->
+
+                           <td>{{human.TAX_ID}}</td>
+                           <td>{{human.DEPARTMENT_CODE}}</td>
                            <td>{{human.END_EFFECTIVE_DATE | date :'dd-MM-yyyy' }}</td>
-                           <!--td>{{human.CREATED_ON | date :'dd-MM-yyyy'}}</td-->
-                           <!--td>{{human.LAST_UPD_ON | date :'dd-MMM-yyyy'}}</td-->
-                           <!--td>{{human.REFRESH_TOKEN}}</td-->
-                           <!--td>{{human.STATUS}}</td-->
-                           <!--td><button class="btn btn-sm" type="button" (click)="onSelect(human)"> Select </button> </td-->
-                           <!--td><button class="btn btn-sm" type="button" > Edit </button> </td-->                         
-                           <!--td><button class="btn btn-sm" type="button" (click)="onDelete(human.COMPANY)" > Delete </button> </td-->
+
+                           <td>{{human.CREATED_ON | date :'dd-MM-yyyy'}}</td>
+                           <td>{{human.LAST_UPD_ON | date :'dd-MMM-yyyy'}}</td>
+                           <td>{{human.REFRESH_TOKEN}}</td>
+                           <td>{{human.STATUS}}</td>
+                           <td><button class="btn btn-sm" type="button" (click)="onSelect(human)"> Select </button> </td>
+                           <td><button class="btn btn-sm" type="button" > Edit </button> </td>                         
+                           <td><button class="btn btn-sm" type="button" (click)="onDelete(human.COMPANY)" > Delete </button> </td>
 
                      </tr>
+                     
+                     
+                     
                     </tbody> 
                     <tfoot>
                       <tr>
@@ -58,5 +114,26 @@
                      </div>
                      <!-- property  --> 
                      <!--com-details [selectDet]="selectCompany"></com-details-->
-                    
+
+
                 </div>
+
+                  <nav class="container-nav">  
+                     <ul class="pagination">
+                          <li class="page-item"> <a class="page-link" [routerLink]="['/humans']" [queryParams]="{page : 1}" >First</a> </li>
+                          <li class="page-item"> <a class="page-link" [routerLink]="['/humans']" [queryParams]="{page : prevPage}" >Previes</a> </li>
+
+                          <li class="page-item" *ngFor="let i of iPage" [class.activate]="activePage==1" > 
+                               <a class="page-link" [routerLink]="['/humans']" [queryParams]="{page : i}" >{{i}}</a> 
+                          </li>
+
+                          <li> 
+                               <input #pageInput type ="number" min ="1"  max="{{totalPage}}" value="{{activePage}}"
+                                style="width:80px" (input)="changePage(pageInput.value)"  /> 
+                          </li>
+                          <li class="page-item" [class.activate]="activePage==totalPage"> 
+                              <a class="page-lnik" [routerLink]="['/humans']" [queryParams]="{page : nextPage}">Next</a> 
+                          </li>
+                          <li class="page-item"> <a class="page-link" [routerLink]="['/humans']" [queryParams]="{page : totalPage}" >Last</a> </li>
+                     </ul>
+                 </nav>

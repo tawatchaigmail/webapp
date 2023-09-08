@@ -127,7 +127,7 @@ private log(message: string) {
      
     return this.http.get<CompanyInterface[]>(this.companyUrl+'/readall')
       .pipe(
-        tap(_ => this.log('fetched companies')),
+        tap(val => this.log('fetched companies')),
         catchError(this.handleError<CompanyInterface[]>('getCompanyUrl(',[]))
      );  
  }
@@ -136,7 +136,7 @@ private log(message: string) {
       const url = `${this.companyUrl}/read/${id}`; 
     return this.http.get<CompanyInterface>(url)
         .pipe(
-          tap(_ => this.log('fetched companie ${id} ')),
+          tap(val => this.log('fetched companie ${id} ')),
           catchError(this.handleError<CompanyInterface>('getCompanyById id=${id}'))
      );  
  }

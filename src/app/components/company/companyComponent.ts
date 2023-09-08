@@ -1,4 +1,5 @@
-import {Component, Input, OnInit, Output}  from '@angular/core';
+import {Component, Input, OnInit, OnDestroy, Output}  from '@angular/core';
+import {Router} from '@angular/router';
 import {CommonModule} from '@angular/common';
 import {FormsModule,FormGroup,FormControl} from '@angular/forms';
 import jsPDF from 'jspdf';
@@ -7,7 +8,6 @@ import autoTable from 'jspdf-autotable'
 import {CompanyInterface} from '../../models/companyInterface';
  //import {CompanyModels} from '../../models/companyModels';
 import {CompanyService} from '../../service/company.service';
-
 import { CompanyDetails } from '../../components/CompanyDetails/CompanyDetails';
 
 @Component({
@@ -23,7 +23,7 @@ import { CompanyDetails } from '../../components/CompanyDetails/CompanyDetails';
     styleUrls : ['./companyComponent.scss']
 })
 
-export class CompanyComponent implements OnInit{
+export class CompanyComponent implements OnInit,OnDestroy{
 
   selectCompany? : CompanyInterface ;  
   companyById? : CompanyInterface ;
@@ -45,7 +45,10 @@ export class CompanyComponent implements OnInit{
              logoContentType : 'image/jpeg',
              }
 
-  constructor( private companyService : CompanyService) {
+  constructor(
+              private router : Router, 
+              private companyService : CompanyService,
+             ) {
   
   } ;
 /*  
@@ -86,14 +89,27 @@ export class CompanyComponent implements OnInit{
     this.getCompany();
   }
 
+  ngOnDestroy(){
+    console.log('onDestroy');
+  }
+
+
   onSelect(company : CompanyInterface ) : void {
              this.selectCompany = company ;
+             this.router.navigate(['/company/view/'+this.selectCompany.COMPANY]);
+  } ;
+
+  onEdit(company : CompanyInterface ) : void {
+             this.selectCompany = company ;
+             console.log(' onEdit '); 
+             this.router.navigate(['/company/edit/'+this.selectCompany.COMPANY]);
   } ;
 
   onAdd(){
     console.log(' onAdd ');
-    this.selectCompany = this.rowbank;
-    this.companies.push(this.rowbank);
+    this.router.navigate(['/company/add']);
+  //  this.selectCompany = this.rowbank;
+  //  this.companies.push(this.rowbank);
    // this.companyService.addCompany(comData)
   }  
   
@@ -102,6 +118,8 @@ export class CompanyComponent implements OnInit{
 
       this.companyService.removeCompany(id)
   }
+
+
   onPrint(){
            var doc = new jsPDF('p', 'pt', 'a4');
            doc.addFont('../../../assets/fonts/micross72.ttf', 'Microsoft Sans Serif', 'normal');
@@ -109,7 +127,8 @@ export class CompanyComponent implements OnInit{
            doc.setFontSize(12);
            doc.html(document.getElementById("companyTableId") as HTMLElement , {     // HTMLElement
                                                                               callback: function (doc) {
-                                                                                                       doc.save();
+                                                                                                      doc.output('dataurlnewwindow');   
+                                                                                                     //  doc.save();
                                                                                                        },
                                                                             x: 10,
                                                                             y: 10
@@ -124,9 +143,10 @@ export class CompanyComponent implements OnInit{
 
     const opt = {
         callback: function (jsPdf :any) {
-            doc.save("genPdf.pdf");
+            // doc.save("genPdf.pdf");
             // to open the generated PDF in browser window
             // window.open(jsPdf.output('bloburl'));
+            doc.output('dataurlnewwindow');
         },
         margin: [20, 20, 20, 20],
         autoPaging: 'text',
@@ -212,10 +232,29 @@ export class CompanyComponent implements OnInit{
           
       );
 
-
-      doc.save('table.pdf');                
+        doc.output('dataurlnewwindow');
+    //  doc.save('table.pdf');                
   }
 
   
 } 
+
+/*
+doc.output('save', 'filename.pdf'); //Try to save PDF as a file (not works on ie before 10, and some mobile devices)
+
+doc.output('arraybuffer');
+doc.output('blob');
+doc.output('bloburi');
+doc.output('bloburl');
+doc.output('datauristring');        //returns the data uri string
+doc.output('dataurlstring');
+doc.output('datauri');              //opens the data uri in current window
+doc.output('dataurl');
+doc.output('dataurlnewwindow');     //opens the data uri in new window
+doc.output('pdfobjectnewwindow');
+doc.output('pdfjsnewwindow');
+*/
+
+
+
 

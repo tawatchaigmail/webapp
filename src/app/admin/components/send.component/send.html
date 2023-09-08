@@ -1,0 +1,22 @@
+<form class="form">
+<div class="text-center">{{ details }}</div>
+<div>
+    <div>
+        <label>Title: </label>
+      </div>
+      <div>
+        <input type="text" class="form-control" />
+      </div>  
+  <div>
+    <label>Message: </label>
+  </div>
+  <div>
+    <textarea class="form-control" rows="4"></textarea>
+  </div>
+</div>
+<br>
+<p>
+  <button type="button" class="btn btn-sm btn-default" (click)="send()">Send</button>
+  <button type="button" class="btn btn-sm btn-danger" (click)="cancel()">Cancel</button>
+</p>
+</form>
