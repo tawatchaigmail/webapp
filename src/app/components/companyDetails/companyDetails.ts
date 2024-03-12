@@ -1,5 +1,6 @@
 import {Component,ViewChild,ElementRef,Input,OnInit,OnDestroy} from '@angular/core';
-import {FormsModule,Validators,ControlContainer,FormGroup,FormControl,NgForm} from '@angular/forms';
+import {FormsModule,ReactiveFormsModule ,Validators,ControlContainer,FormGroup,FormControl,NgForm} from '@angular/forms';
+
 import {CommonModule,Location} from '@angular/common';
 import {ActivatedRoute} from '@angular/router';
 

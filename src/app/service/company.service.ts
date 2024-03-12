@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable,of} from 'rxjs';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { catchError, map, tap } from 'rxjs/operators';
 
@@ -37,8 +37,8 @@ export class CompanyService{
   };  
   private companies? : CompanyInterface[] ;
  
-  constructor(private http: HttpClient) {
- }
+  constructor(private http: HttpClient) {  
+  }
 
 /** Log a message with the MessageService */
 private log(message: string) {

@@ -37,16 +37,14 @@ import {HttpInterceptorService} from './service/interceptor/interceptor.service'
 
 import {InfoService} from './service/info/info.service';
 
-
-
 @NgModule({
-  declarations: [
+  declarations: [      
       AppComponent,
-      DashbordComponent,
-      ReportsComponent,
+      DashbordComponent,           
    //   HumansComponent,
       HumansDetailsComponent,
-      Base64Pipe,
+   //   Base64Pipe,
+      
   ],
   imports: [
     BrowserModule,
@@ -57,10 +55,13 @@ import {InfoService} from './service/info/info.service';
     HttpClientModule,
     HomeComponent ,   
     HousingLocationComponent,
+    ReportsComponent,
+    
  //   AdminModule,    
     LoginModule,
     
   ],
+  exports:[],
   providers: [
                AuthGuadService,
                AuthService,
@@ -69,7 +70,8 @@ import {InfoService} from './service/info/info.service';
                 provide : HTTP_INTERCEPTORS,
                 useClass : HttpInterceptorService ,        
                 multi : true,
-               }
+               },
+
 /*
     { provide: APP_BASE_HREF, useValue: '/' },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

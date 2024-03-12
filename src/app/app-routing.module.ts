@@ -30,6 +30,13 @@ const routes: Routes = [
   },
 
   { 
+    path : 'nglogin', 
+    loadChildren : () =>  import ('./ngstate/loginstate.module').then(m => m.LoginstateModule ),
+  //  canLoad : [AuthGuadService] 
+
+  },
+
+  { 
     path : 'product', 
     loadChildren : () =>  import ('./product/product.module').then(m => m.ProductModule ),
     data: { preload: true }

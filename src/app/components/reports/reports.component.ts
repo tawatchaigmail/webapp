@@ -2,16 +2,24 @@ import { Component ,OnInit,OnDestroy , Pipe, PipeTransform } from '@angular/core
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
 import autoTable from 'jspdf-autotable';
-
-//import { DomSanitizer } from '@angular/platform-browser';
-import { DomSanitizer } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule,FormsModule } from '@angular/forms';
+import { DomSanitizer ,BrowserModule } from '@angular/platform-browser';
 
 import font from '../../fonts/micross72Es-normal';
-import {CompanyInterface} from '../../models/companyInterface';
-import {CompanyService} from '../../service/company.service';
+import { CompanyInterface} from '../../models/companyInterface';
+import { CompanyService} from '../../service/company.service';
+import { Base64Pipe } from '../../share/convert-base64-img.pipe';
 
 @Component({
-  selector: 'app-reports',
+  standalone: true,
+  selector: 'app-reports',  
+  imports: [ 
+              CommonModule,
+              FormsModule,              
+              Base64Pipe,
+           ],
+  
   templateUrl: './reports.component.html',
   styleUrls: ['./reports.component.scss']
 })

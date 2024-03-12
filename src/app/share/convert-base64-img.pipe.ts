@@ -3,6 +3,7 @@ import { Buffer } from "buffer";
 
 @Pipe({
   name: 'base64',
+  standalone: true,
 })
 export class Base64Pipe implements PipeTransform {
   constructor() {}
