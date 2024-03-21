@@ -37,6 +37,13 @@ const routes: Routes = [
   },
 
   { 
+    path : 'ngbook', 
+    loadChildren : () =>  import ('./ngbook/book.module').then(m => m.BookModule ),
+  //  canLoad : [AuthGuadService] 
+
+  },
+
+  { 
     path : 'product', 
     loadChildren : () =>  import ('./product/product.module').then(m => m.ProductModule ),
     data: { preload: true }
