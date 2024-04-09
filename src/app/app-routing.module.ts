@@ -31,14 +31,27 @@ const routes: Routes = [
 
   { 
     path : 'nglogin', 
-    loadChildren : () =>  import ('./ngstate/loginstate.module').then(m => m.LoginstateModule ),
+    loadChildren : () =>  import ('./reactive/ngstate/loginstate.module').then(m => m.LoginstateModule ),
   //  canLoad : [AuthGuadService] 
 
   },
 
   { 
     path : 'ngbook', 
-    loadChildren : () =>  import ('./ngbook/book.module').then(m => m.BookModule ),
+    loadChildren : () =>  import ('./reactive/ngbook/book.module').then(m => m.BookModule ),
+  //  canLoad : [AuthGuadService] 
+
+  },
+  { 
+    path : 'ngscoreboard', 
+    loadChildren : () =>  import ('./reactive/ngscoreboard/scoreboard.module').then(m => m.ScoreBoardModule ),
+  //  canLoad : [AuthGuadService] 
+
+  },
+
+  { 
+    path : 'ngmovices', 
+    loadChildren : () =>  import ('./reactive/ngmovies/movies.module').then(m => m.MoviesModule ),
   //  canLoad : [AuthGuadService] 
 
   },
