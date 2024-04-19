@@ -7,18 +7,25 @@ import {ScoreBoardComponent} from './components/scoreboard.component';
 
 import {scoreboardFeatureKey, scoreboardReducer} from '../../store/reducers/scoreboard.reducer';
 
+import {StoreRouterConnectingModule, routerReducer} from '@ngrx/router-store'; 
+
 @NgModule({
  imports : [
             CommonModule,
             BoardStateRouterModule,
-            StoreModule.forRoot({}),
-            StoreModule.forRoot({ game : scoreboardReducer}), 
-            StoreModule.forFeature(scoreboardFeatureKey, scoreboardReducer)
+        //    StoreModule.forRoot({}),
+            
+            StoreModule.forRoot(
+                                {game : scoreboardReducer, router : routerReducer}
+                               ), 
+
+            StoreModule.forFeature(scoreboardFeatureKey, scoreboardReducer),
+            StoreRouterConnectingModule.forRoot(),
            ],
  exports : [],
  providers : [
-              provideStore({ game : scoreboardReducer}),
-              provideState({name: 'game', reducer : scoreboardReducer})
+  //            provideStore({ game : scoreboardReducer}),
+  //            provideState({name: 'game', reducer : scoreboardReducer})
             ],
  declarations : [ScoreBoardComponent]
 })

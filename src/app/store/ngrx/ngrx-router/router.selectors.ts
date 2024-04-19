@@ -2,7 +2,7 @@ import {getRouterSelectors, RouterReducerState} from '@ngrx/router-store';
 
 export const {
     selectCurrentRoute , // select the current route
-    selectFrament ,  // select the current route fragment
+    selectFragment ,  // select the current route fragment
     selectQueryParams , // select the current route query params
     selectQueryParam , // factory function to select a query param
     selectRouteParams , // select the current route params

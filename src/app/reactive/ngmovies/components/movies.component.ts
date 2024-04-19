@@ -10,12 +10,12 @@ import {Movie} from '../../../models/moviceInterface';
 })
 
 export class MoviesComponent implements OnInit {
+
 //     movies : Movie[] ;
      movies : any ;
      constructor(private moviesService : MoviesService){}
     
      ngOnInit(){
-
        this.movies = this.moviesService.getAll().subscribe( movies  => this.movies = movies ) ;
      }
 }

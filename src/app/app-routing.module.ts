@@ -57,6 +57,13 @@ const routes: Routes = [
   },
 
   { 
+    path : 'ngcars', 
+    loadChildren : () =>  import ('./reactive/ngcars/cars-route.module').then(m => m.CarsModule ),
+  //  canLoad : [AuthGuadService] 
+
+  },
+
+  { 
     path : 'product', 
     loadChildren : () =>  import ('./product/product.module').then(m => m.ProductModule ),
     data: { preload: true }

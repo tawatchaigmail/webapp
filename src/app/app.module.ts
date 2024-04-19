@@ -36,6 +36,8 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {HttpInterceptorService} from './service/interceptor/interceptor.service';
 
 import {InfoService} from './service/info/info.service';
+//import {StoreModule, provideState, provideStore} from '@ngrx/store' ;
+//import {StoreRouterConnectingModule, routerReducer} from '@ngrx/router-store'; 
 
 @NgModule({
   declarations: [      
@@ -47,18 +49,22 @@ import {InfoService} from './service/info/info.service';
       
   ],
   imports: [
-    BrowserModule,
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    AppRoutingModule,
-    HttpClientModule,
-    HomeComponent ,   
-    HousingLocationComponent,
-    ReportsComponent,
-    
- //   AdminModule,    
-    LoginModule,
+           BrowserModule,
+           CommonModule,
+           FormsModule,
+           ReactiveFormsModule,
+           /*
+           StoreModule.forRoot(
+                       {router : routerReducer}
+                       ), 
+           */
+           AppRoutingModule,
+           HttpClientModule,
+           HomeComponent,   
+           HousingLocationComponent,
+           ReportsComponent,
+       //   AdminModule,    
+           LoginModule,
     
   ],
   exports:[],
@@ -80,7 +86,7 @@ import {InfoService} from './service/info/info.service';
     { provide: 'HEADERS', useValue: new HttpHeaders({'Content-Type': 'application/json'}) },
 
 */
-             ],
+  ],
   bootstrap: [AppComponent]
 
 })

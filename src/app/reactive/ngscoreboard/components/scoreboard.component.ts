@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {Store} from '@ngrx/store' ;
 
 @Component({
          selector : 'scroll-board',
@@ -7,10 +8,10 @@ import {Component, OnInit} from '@angular/core';
          })
 
 export class ScoreBoardComponent implements OnInit {
-
-     //  constructor()
+                                 
+       constructor(private store : Store) {}    
        
-       ngOnInit() : void {
+       ngOnInit(){
           console.log('ngOnInit ScoreBordComponent');
         }
 }

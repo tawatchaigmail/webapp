@@ -16,8 +16,20 @@ const bordStateRoute : Routes = [{
           imports : [
                      RouterModule.forChild(bordStateRoute),
                     ],
+
           exports : [RouterModule],
-          providers : [provideState({name : scoreboardFeatureKey , reducer : scoreboardReducer })]
+        //  providers : [provideState({name : scoreboardFeatureKey , reducer : scoreboardReducer })]
+         providers : []
 })
 
 export class BoardStateRouterModule {}
+
+
+
+/*
+    RouterModule.forRoot([
+      { path: '', pathMatch: 'full', redirectTo: 'home' },
+      { path: 'home', component: HomeComponent },
+      { path: 'event', loadChildren: './event/event.module#EventModule' }
+    ])
+*/
