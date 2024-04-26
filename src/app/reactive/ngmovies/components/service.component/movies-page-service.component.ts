@@ -1,4 +1,4 @@
-import {Coponent , Init} from '@angular/core';
+import {Coponent , OnInit} from '@angular/core';
 import {MovicesService} from '../../../services/movices.service';
 
 @Component({
@@ -7,7 +7,7 @@ import {MovicesService} from '../../../services/movices.service';
  styleUrls:['./movies-page.companent.scss']
 })
 
-export class MoviePageCompanent implemsnts Init {
+export class MoviePageServiceCompanent implemsnts OnInit {
      movies : Movies[];
      constructor(private moviceService : MovicesService){}
     

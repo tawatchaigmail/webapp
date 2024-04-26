@@ -15,7 +15,7 @@ export const selectCount = () =>
 
 
 
- exoirt cibst sekectCiybt = () => createSelector(
+ export const selectCountmulti = () => createSelector(
                (state ,prop) => state.counter[prop.id],
-                (counter, props) => counter*props.mu.tiply
+                (counter, props) => counter*props.multiply
  );

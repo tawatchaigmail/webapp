@@ -4,7 +4,7 @@ import {provideState, provideStore} from '@ngrx/store';
 
 import {ScoreBoardComponent} from './components/scoreboard.component';
 
-import {scoreboardFeatureKey, scoreboardReducer} from '../../store/reducers/scoreboard.reducer';
+import {scoreboardFeatureKey, scoreboardReducer} from '../../store/ngrx/reducers/scoreboard.reducer';
 
 
 const bordStateRoute : Routes = [{

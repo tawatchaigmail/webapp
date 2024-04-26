@@ -1,23 +1,37 @@
-import {Componsent, Inint} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Store} from  '@ngrx/store';
-import {Observeble} from 'nxjs';
+import {Observable,of} from 'rxjs';
 
-import {Movice} from '../../../model/moiceInterface'; 
+import {Movie} from '../../../../models/ngrx/movieInterface'; 
+import {movieSelector} from '../../../../store/ngrx/selector/movie.selector';
+import {MoviesApiActions} from '../../../../store/ngrx/actions/movies-api.actions';
 
-@Componsent ({
+@Component ({
       selector : 'movice-effect',
       templateUrl : './movies-page-effects.component.html',
       styleUrls : ['./movies-page-effects.component.scss']
 })
 
 
-export class MovicesPageEfectCompanent implemsnts Inint {
-  movices$ : Observeble<Movice[]> = this.store.select(state => state.movices); 
-  constructor(private store : Store<{ movies : Movice[] }>){}
-  ngOnInint(){
-     this.store.dispatch({ type : '[Movies Page] Load Movies' });
-  }
-}
+export class MovicesPageEfectCompanent implements OnInit {
 
+//  movies$ : Observable<Movie[]> = this.store.select(state => state.movies); 
+  movies$ : Observable<Movie[]> = this.store.select(movieSelector); 
+
+  constructor(private store : Store<{ movies : Movie[] }>){}
+
+  ngOnInit(){
+    // this.store.dispatch({ type : '[Movies Page] Load Movies' });
+    this.store.dispatch( 
+      MoviesApiActions.movieLosdSuccess({ movies: [
+                                                   {name: "name50", content:"content0"},
+                                                   {name: "name51", content:"content1"},
+                                                   {name: "name52", content:"content2"}
+                                                  ]
+                                       })
+    );
+  }
+
+}
 
 

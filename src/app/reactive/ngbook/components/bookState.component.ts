@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store' ;
-import {bookAction, bookApiAction} from '../../../store/actions/book.action';
-import {bookSelects, bookCollectionSelect} from '../../../store/selectors/book.selector';
+import {bookAction, bookApiAction} from '../../../store/ngrx/actions/book.action';
+import {bookSelects, bookCollectionSelect} from '../../../store/ngrx/selector/book.selector';
 import {BookListComponent} from './book-list/book-list.component';
 import {CollectionBookComponent} from './book-collection/book-collection.component'; 
-import {BookService} from '../../../service/book.service'
+import {BookService} from '../../../service/ngrx/book.service'
 
 @Component({
      selector : 'ngx-book',

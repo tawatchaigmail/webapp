@@ -4,5 +4,5 @@ export const ActorsPageActions = createActionGroup({
     source : 'actor',
     events  :  {
                 opened : props<{actorId : string}>()
-              }   
+               }   
 });

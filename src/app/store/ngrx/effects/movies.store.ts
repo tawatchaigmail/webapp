@@ -1,23 +1,37 @@
-import {Innectable} from '@angular/core' ;
+import {Injectable} from '@angular/core' ;
 
+import {ComponentStore} from '@ngrx/component-store';
+import {Observable, of} from 'rxjs';
+
+import {map,tap,exhaustMap,catchError} from 'rxjs/operators'; 
+
+
+import {MoviesService} from '../../../service/ngrx/movies.service';
+
+import {Movie} from '../../../models/ngrx/movieInterface'; 
+import {MovieState} from '../../../models/ngrx/movieStateInterface';
+
+/*
 export interface MoviesState{
   movies: Movie[];
-  userPreferMoiesIds: string;
+  userPreferMoviesIds: string;
 }
+*/
 
 @Injectable()
-export class MoviesStore extends ComponentStore<MoiesStore>{
+export class MoviesStore extends ComponentStore<MovieState>{
 constructor(
-             private mocieService: MovieServide
+             private mocieService: MoviesService
  ) {
-  supper({movies: [], userPreferMoviesIds : []});
+  super({movies: [], userPreferMoviesIds : []});
+                     
   //  effect is triggered whenever debounced data is changed
    this.fetchMovies(this.fetchMoviesData$);
 }
 
   // Updates how many movies per page should be displayed
  
-  readinly updateMoviesPerPage = this.updater((state,moviePerPage : number) => ({
+  readonly updateMoviesPerPage = this.updater((state,moviePerPage : number) => ({
   ...state,
   moviesPerPage, // updates with new value
   })
@@ -36,15 +50,20 @@ constructor(
    moviePerPage : this.moviePerPage$,
    currentPageIndex: this.currentPageIndex$
   },{ debounce : true});
-
+ 
+  /*
   private readonly VM$ = this.select({
     movies : this.movies$ ,
-    userPreferredMovieIds : this.userPreferredMovieIds$,
-    userPreferredMovies: this.userPreFerredMovie$
+    userPreferredMovieIds : this.userPreferredMoviesIds$,
+                                 
+    userPreferredMovies: this.userPreferredMovie$
+                              
   })
-
+   
+  
   private readonly fetchMovies = this.effect(
-   (moviePageData$: Observavable<{moviesPerPage: number; currentPageIndex : number}>) => {
+   (moviePageData$: Observable<{moviesPerPage: number; currentPageIndex : number}>) => {
+                    
          return moviePageData.pipe(
            concatMap(({moviesPerPage, currentPageIndex }) => { 
                     return this.movieService
@@ -55,13 +74,17 @@ constructor(
     },
    
   );
+ 
 
  readonly movies$: Observable<Movie[]> = this.select(state => state.movies);
- readonly userPreferMoviesIds$ : this.select(state = > state.userProferMovieIds);
+ readonly userPreferredMoviesIds$ : this.select(state = > state.userPreferMoviesIds);
+
+                                                             
  readonly usrPreferMovie = this.select(
            movies$ ,
            userPreferMoviesIds$ ,
-           (mocies. Ids ) => movies.filter(mocies => Ids.include(movie.id))
+           (movies. Ids ) => movies.filter(movies => Ids.include(movie.id))
  );
  
+
 }

@@ -7,8 +7,8 @@ import {BookListComponent} from './components/book-list/book-list.component';
 import {CollectionBookComponent} from './components/book-collection/book-collection.component'; 
 
 import {BookStateRouterModule} from './book-routing.module';
-import {bookReducer}       from '../../store/reducers/book.reducer';
-import {collectionReducer} from '../../store/reducers/collection.book.reducer';
+import {bookReducer}       from '../../store/ngrx/reducers/book.reducer';
+import {collectionReducer} from '../../store/ngrx/reducers/collection.book.reducer';
 
 @NgModule({
   imports : [

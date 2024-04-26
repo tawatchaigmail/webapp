@@ -14,7 +14,7 @@ export const reducers : ActionReducerMap<State> = {
   user : fromUsr.reducer,
 };
 
-export const selectusrState = createFreaturSelect<fromUser.State>('users');
+export const selectusrState = createFeatureSelector<fromUser.State>('users');
 
 export const selectusrIds = crateSelector(
   selectUserstate,

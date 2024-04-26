@@ -5,7 +5,7 @@ import {StoreModule, provideState, provideStore} from '@ngrx/store' ;
 import {BoardStateRouterModule} from './scoreboard-routing.module';
 import {ScoreBoardComponent} from './components/scoreboard.component';
 
-import {scoreboardFeatureKey, scoreboardReducer} from '../../store/reducers/scoreboard.reducer';
+import {scoreboardFeatureKey, scoreboardReducer} from '../../store/ngrx/reducers/scoreboard.reducer';
 
 import {StoreRouterConnectingModule, routerReducer} from '@ngrx/router-store'; 
 

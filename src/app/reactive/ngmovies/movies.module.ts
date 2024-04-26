@@ -1,41 +1,68 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
+
+import { ReactiveFormsModule } from '@angular/forms';
+
 import {StoreModule} from '@ngrx/store';
+import {provideStore} from '@ngrx/store';
 import {EffectsModule, provideEffects} from '@ngrx/effects';
 
 import {StoreRouterConnectingModule, routerReducer} from '@ngrx/router-store';
 
 import {MoviceRoutingModule} from './movies-routing.module';
-import {MoviesEffects} from '../../store/effects/movies.effects';                                      
-// import {loadActors} from '../../store/effects/actors.effects';
-import * as actorsEffects from '../../store/effects/actors.effects';
+import {MoviesEffects} from '../../store/ngrx/effects/movies.effects';                                      
+// import {loadActors} from '../../store/ngrx/effects/actors.effects';
+import * as actorsEffects from '../../store/ngrx/effects/actors.effects';
+
+import {moviesReducer} from '../../store/ngrx/reducers/movie.reducer';
+import {moviesFeatureKey} from '../../models/ngrx/movieStateInterface';
+import {actorsReducer } from '../../store/ngrx/reducers/actor.reducer';
+                                                       
 
 import {MoviesComponent} from './components/movies.component';
+//import {MoviePageServiceCompanent} from '.components//service.component/movies-page-service.component';
+import {MoviesPageComponent} from './components/page.component/moivce-page.component';
+import {MovicesPageEfectCompanent} from './components/effect.componsent/movies-page-effects.component';
+
           
                                               
 @NgModule({
            imports : [
                      CommonModule,
                      MoviceRoutingModule,
-                     StoreModule.forRoot({
-                         route : routerReducer
-                     }),
-                     // Connects RouterModule with StoreModule, uses MinimalRouterStateSerializer by default
-                     StoreRouterConnectingModule.forRoot(),
+                     StoreModule.forRoot(),
 
-                    // EffectsModule.forRoot(MoviesEffects, actorsEffects)
-                     EffectsModule.forRoot(MoviesEffects)
-                    //  EffectsModule.forFeature(MoviesEffects, actorsEffects)
+                     StoreModule.forRoot({
+                     //    route : routerReducer,
+                         movies : moviesReducer,
+                         actors : actorsReducer
+                     }),
+
+                 //    StoreModule.forFeature(moviesFeatureKey, moviesReducer),
+
+                     // Connects RouterModule with StoreModule, uses MinimalRouterStateSerializer by default
+                 //    StoreRouterConnectingModule.forRoot(),
+                     EffectsModule.forRoot(),   
+                     EffectsModule.forRoot(MoviesEffects,  actorsEffects ),
+                     
+                 //    EffectsModule.forFeature(MoviesEffects, actorsEffects)
                     
                      ],
            exports : [],
-           /*
+           
            providers : [
-                       provideEffects(MoviesEffects, actorsEffects) 
-                       ]
-           */
-
-           declarations : [MoviesComponent]
+                       provideStore(),
+                 //      provideEffects(MoviesEffects, actorsEffects) 
+                       provideEffects(MoviesEffects, ) 
+                       ],
+           
+           
+           declarations : [
+                           MoviesComponent, 
+                      //     MoviePageServiceCompanent,
+                           MoviesPageComponent, 
+                           MovicesPageEfectCompanent
+                          ]
 
 })
 

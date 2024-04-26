@@ -1,6 +1,6 @@
 import {Component,EventEmitter,Input,Output,  OnInit} from '@angular/core';
 
-import {Book} from '../../../../models/bookInterface';
+import {Book} from '../../../../models/ngrx/bookInterface';
 
 @Component({
             selector : 'app-list-book',

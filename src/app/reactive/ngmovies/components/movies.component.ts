@@ -1,7 +1,7 @@
 import {Component , OnInit} from '@angular/core';
-import {MoviesService} from '../../../service/movies.service';
+import {MoviesService} from '../../../service/ngrx/movies.service';
 
-import {Movie} from '../../../models/moviceInterface'; 
+import {Movie} from '../../../models/ngrx/movieInterface'; 
 
 @Component({
            selector : 'ngx-movies',
@@ -12,10 +12,10 @@ import {Movie} from '../../../models/moviceInterface';
 export class MoviesComponent implements OnInit {
 
 //     movies : Movie[] ;
-     movies : any ;
+     movies$ : any ;
      constructor(private moviesService : MoviesService){}
     
      ngOnInit(){
-       this.movies = this.moviesService.getAll().subscribe( movies  => this.movies = movies ) ;
+       this.movies$ = this.moviesService.getAll().subscribe( movies  => this.movies$ = movies ) ;
      }
 }
