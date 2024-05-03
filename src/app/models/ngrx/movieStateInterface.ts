@@ -5,6 +5,9 @@ export const moviesFeatureKey = 'movies';
 
 export interface MovieState {
 
-  movies: Movie[];
-  userPreferMoiesIds: string;
+  movies : Movie[];
+  userPreferredMoviesIds : string[];
+  moviesPerPage : number;
+  currentPageIndex : number;
+  userPreferMoiesIds : string;
 }

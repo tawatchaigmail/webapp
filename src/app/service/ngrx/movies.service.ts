@@ -42,5 +42,8 @@ url = '/assets/data_movies.json';
     getAllList(): Movie[] {
      return this.moviesList;
     }
+    
+    loadMovies(moviesPerPage : number, currentPageIndex : number) {
+    }
 }
 

@@ -3,8 +3,7 @@ import {Injectable} from '@angular/core' ;
 import {ComponentStore} from '@ngrx/component-store';
 import {Observable, of} from 'rxjs';
 
-import {map,tap,exhaustMap,catchError} from 'rxjs/operators'; 
-
+import {map,tap,exhaustMap,catchError,concatMap} from 'rxjs/operators'; 
 
 import {MoviesService} from '../../../service/ngrx/movies.service';
 
@@ -13,61 +12,63 @@ import {MovieState} from '../../../models/ngrx/movieStateInterface';
 
 /*
 export interface MoviesState{
-  movies: Movie[];
-  userPreferMoviesIds: string;
+  movies: Movie[];   
+  userPreferredMoviesIds : string[];
 }
 */
 
 @Injectable()
 export class MoviesStore extends ComponentStore<MovieState>{
-constructor(
-             private mocieService: MoviesService
- ) {
-  super({movies: [], userPreferMoviesIds : []});
+         constructor(
+                      private movieService: MoviesService
+                    ) {
+                      super({movies : [], userPreferredMoviesIds : [], moviesPerPage : 0, currentPageIndex : 0, userPreferMoiesIds : '0'});
                      
   //  effect is triggered whenever debounced data is changed
-   this.fetchMovies(this.fetchMoviesData$);
-}
+  //                  this.fetchMovies(this.fetchMoviesData$);
+         }
 
   // Updates how many movies per page should be displayed
  
-  readonly updateMoviesPerPage = this.updater((state,moviePerPage : number) => ({
-  ...state,
-  moviesPerPage, // updates with new value
-  })
+/*
+  readonly updateMoviesPerPage = this.updater((state, moviesPerPage : number) => ({
+                                                                                   ...state,
+                                                                                   moviesPerPage, // updates with new value
+  }))
+*/
 
   // Updates which page of movies that the user is currently on
+/*
   
-  readonly updateCurrentPageIndes = this.updater((state, currentPageIndex: number) = > ({
-   ...state,
-  curetnrPageIndex, // updates with new page index
-  })
+  readonly updateCurrentPageIndex = this.updater((state, currentPageIndex: number) => ({
+                                                                                        ...state,
+                                                                                        currentPageIndex, // updates with new page index
+  }))
+*/
 
-  readonly moviesPerpage$ = this.select(state => state.moviesPerPage);
-  readonly currentPageIndex =  this.select(state => state.currentPageIndex);
+  readonly moviesPerPage$ = this.select(state => state.moviesPerPage);
 
-  private readonly fetchMoviesData = this.select({
-   moviePerPage : this.moviePerPage$,
-   currentPageIndex: this.currentPageIndex$
+  readonly currentPageIndex$ =  this.select(state => state.currentPageIndex);
+/*
+  private readonly fetchMoviesData$ = this.select({
+                                                   moviesPerPage : this.moviesPerPage$,
+                                                   currentPageIndex : this.currentPageIndex$
   },{ debounce : true});
- 
-  /*
+*/ 
+/*  
   private readonly VM$ = this.select({
-    movies : this.movies$ ,
-    userPreferredMovieIds : this.userPreferredMoviesIds$,
-                                 
-    userPreferredMovies: this.userPreferredMovie$
-                              
+                                      movies : this.movies$ ,
+                                      userPreferredMovieIds : this.userPreferredMovieIds$,
+                                      userPreferredMovies : this.userPreferredMovies$
   })
-   
-  
-  private readonly fetchMovies = this.effect(
-   (moviePageData$: Observable<{moviesPerPage: number; currentPageIndex : number}>) => {
-                    
-         return moviePageData.pipe(
+*/   
+ /* 
+  private readonly fetchMovies = this.effect(                   
+   (moviePageData$: Observable<{moviesPerPage: number; currentPageIndex : number}>) => {                    
+         return moviePageData$.pipe(
            concatMap(({moviesPerPage, currentPageIndex }) => { 
-                    return this.movieService
-                      .loadMovies(moviesPerpage, cuttentPageIndex)
+                 return this.movieService
+                      .loadMovies(moviesPerPage, currentPageIndex)
                       .pipe(tap((results) => this.updateMovieResults(results)));
                  }),
          );
@@ -75,16 +76,25 @@ constructor(
    
   );
  
-
+*/
  readonly movies$: Observable<Movie[]> = this.select(state => state.movies);
- readonly userPreferredMoviesIds$ : this.select(state = > state.userPreferMoviesIds);
 
-                                                             
+// readonly movies$ = this.select(state => state.movies);
+/*
+ readonly userPreferredMovieIds$ : this.select(state => state.userPreferredMoviesIds);
+/*
+ readonly userPreferredMovies$ = this.select(
+        this.movies$,
+        this.userPreferredMovieIds$,
+        (movies, ids) => movies.filter(movie => ids.includes(movie.id))
+  );
+*/
+/*
  readonly usrPreferMovie = this.select(
-           movies$ ,
-           userPreferMoviesIds$ ,
-           (movies. Ids ) => movies.filter(movies => Ids.include(movie.id))
+           this.movies$ ,
+           this.userPreferredMovieIds$ ,                
+           (movies, Ids) => movies.filter(movie => Ids.includes(movie.id))
  );
- 
+*/ 
 
 }

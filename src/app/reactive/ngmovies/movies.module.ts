@@ -21,7 +21,7 @@ import {actorsReducer } from '../../store/ngrx/reducers/actor.reducer';
 
 import {MoviesComponent} from './components/movies.component';
 //import {MoviePageServiceCompanent} from '.components//service.component/movies-page-service.component';
-import {MoviesPageComponent} from './components/page.component/moivce-page.component';
+import {MoviesPageComponent} from './components/page.component/movie-page.component';
 import {MovicesPageEfectCompanent} from './components/effect.componsent/movies-page-effects.component';
 
           

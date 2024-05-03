@@ -7,7 +7,7 @@ import {MoviesEffects} from '../../store/ngrx/effects/movies.effects';
 import * as actorsEffects from '../../store/ngrx/effects/actors.effects';
 
 import {MoviesComponent} from './components/movies.component';
-import {MoviesPageComponent} from './components/page.component/moivce-page.component';
+import {MoviesPageComponent} from './components/page.component/movie-page.component';
 import {MovicesPageEfectCompanent} from './components/effect.componsent/movies-page-effects.component';
 
 export const moviesRoutes : Routes = [

@@ -7,6 +7,7 @@ import {Movie} from '../../../models/ngrx/movieInterface';
            selector : 'ngx-movies',
            templateUrl : './movies.companent.html',
            styleUrls:['./movies.companent.scss']
+       //    providers: [ComponentStore],
 })
 
 export class MoviesComponent implements OnInit {

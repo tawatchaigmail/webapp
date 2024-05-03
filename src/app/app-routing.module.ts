@@ -64,6 +64,13 @@ const routes: Routes = [
   },
 
   { 
+    path : 'ngtoggle', 
+    loadChildren : () =>  import ('./reactive/ngtoggle/toggle.module').then(m => m.ToggleModule ),
+  //  canLoad : [AuthGuadService] 
+
+  },
+
+  { 
     path : 'product', 
     loadChildren : () =>  import ('./product/product.module').then(m => m.ProductModule ),
     data: { preload: true }

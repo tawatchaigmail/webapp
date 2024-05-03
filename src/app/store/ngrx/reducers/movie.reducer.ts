@@ -9,8 +9,13 @@ import {MovieState} from '../../../models/ngrx/movieStateInterface'
 
 
 export const initialState : MovieState = {
-      movies : [],
-      userPreferMoiesIds : '0'       
+                   
+                                      movies: [],
+                                      userPreferredMoviesIds : [],
+                                      moviesPerPage : 10,
+                                      currentPageIndex : 5,
+                                      userPreferMoiesIds : '0',
+
  } ;
 
 export const moviesReducer = createReducer<MovieState, Action>(
