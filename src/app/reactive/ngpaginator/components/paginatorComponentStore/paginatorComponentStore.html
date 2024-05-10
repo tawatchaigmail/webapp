@@ -1,0 +1,24 @@
+
+<h2>COmponentStore</h2>
+
+<div *ngIf="vm$ | async as vm">
+
+  <div>Items per page</div>
+  <div>{{vm.pageSizeOptions.length}}</div>
+
+  <div>Items pageSize</div>
+  <div>{{vm.pageSize}}</div>
+
+  <div>Items pageIndex</div>
+  <div>{{vm.pageIndex}}</div>
+
+  <div>Items hasPreviousPage</div>
+  <div>{{vm.hasPreviousPage}}</div>
+  
+  <div>Items hasNextPage</div>
+  <div>{{vm.hasNextPage}}</div>
+
+  <div>Items rangeLabel</div>
+  <div>{{vm.rangeLabel}}</div>
+  
+</div>

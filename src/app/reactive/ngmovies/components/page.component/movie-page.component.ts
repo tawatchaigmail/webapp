@@ -1,7 +1,7 @@
 
 import {Component, OnInit} from '@angular/core';
 import {ComponentStore} from '@ngrx/component-store';
-import {MoviesStore} from '../../../../store/ngrx/effects/movies.store';
+import {MoviesStore} from '../../../../store/ngrx/movies.store';
 
 import {Movie}      from '../../../../models/ngrx/movieInterface'; 
 import {MovieState} from '../../../../models/ngrx/movieStateInterface';
@@ -11,7 +11,8 @@ import {movieSelector} from '../../../../store/ngrx/selector/movie.selector';
      selector : 'movie-com',
      templateUrl : './movie-page.component.html',
      styleUrls : ['./movie-page.component.scss'],
-     providers : [ComponentStore, MoviesStore],
+   //  providers : [ComponentStore],
+     providers : [MoviesStore],
 })
 
 export class MoviesPageComponent implements OnInit {

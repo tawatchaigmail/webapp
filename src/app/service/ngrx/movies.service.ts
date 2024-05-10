@@ -14,10 +14,12 @@ url = '/assets/data_movies.json';
 
       moviesList : Movie[] = [
                                   {
-                                   name : "redmoon" ,
+                                   id : "0",
+                                   name : "redmoon", 
                                    content : "scsic fiction"       
                                   },
                                   {
+                                   id : "0",
                                    name : "Avanture" ,
                                    content : "action" ,   
 

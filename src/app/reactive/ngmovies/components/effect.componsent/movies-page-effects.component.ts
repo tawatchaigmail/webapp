@@ -24,9 +24,9 @@ export class MovicesPageEfectCompanent implements OnInit {
     // this.store.dispatch({ type : '[Movies Page] Load Movies' });
     this.store.dispatch( 
       MoviesApiActions.movieLosdSuccess({ movies: [
-                                                   {name: "name50", content:"content0"},
-                                                   {name: "name51", content:"content1"},
-                                                   {name: "name52", content:"content2"}
+                                                   {id : "0",name: "name50", content:"content0"},
+                                                   {id : "1",name: "name51", content:"content1"},
+                                                   {id : "2",name: "name52", content:"content2"}
                                                   ]
                                        })
     );

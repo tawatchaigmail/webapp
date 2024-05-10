@@ -71,6 +71,13 @@ const routes: Routes = [
   },
 
   { 
+    path : 'ngpaginator', 
+    loadChildren : () =>  import ('./reactive/ngpaginator/paginator.module').then(m => m.PaginatorModule ),
+  //  canLoad : [AuthGuadService] 
+
+  },
+
+  { 
     path : 'product', 
     loadChildren : () =>  import ('./product/product.module').then(m => m.ProductModule ),
     data: { preload: true }
