@@ -7,7 +7,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 import {CompanyInterface} from '../models/companyInterface';
 import {CompanyModels} from '../models/companyModels';
 
-import {environment} from '../environments/environment';
+import {environment} from '../environments/environments';
 
   var baseUrl = environment.apiUrl;
   var apiurl = {

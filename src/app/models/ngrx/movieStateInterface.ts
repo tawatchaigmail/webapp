@@ -1,7 +1,7 @@
 
 import {Movie} from './movieInterface';
 
-export const moviesFeatureKey = 'movies';
+//export const moviesFeatureKey = 'movies';
 
 export interface MovieState {
 

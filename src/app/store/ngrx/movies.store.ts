@@ -25,45 +25,63 @@ export class MoviesStore extends ComponentStore<MovieState>{
                       super({movies : [], userPreferredMoviesIds : [], moviesPerPage : 0, currentPageIndex : 0, userPreferMoiesIds : '0'});
                      
   //  effect is triggered whenever debounced data is changed
-  //                  this.fetchMovies(this.fetchMoviesData$);
+                    this.fetchMovies(this.fetchMoviesData$);
          }
 
   // Updates how many movies per page should be displayed
  
- /*
+ 
   readonly updateMoviesPerPage = this.updater((state, moviesPerPage : number) => ({
                                                                                    ...state,
                                                                                    moviesPerPage, // updates with new value
-  }))
+  })) ;
 
-*/
+
   // Updates which page of movies that the user is currently on
 
-  /*
+  
   readonly updateCurrentPageIndex = this.updater((state, currentPageIndex: number) => ({
                                                                                         ...state,
                                                                                         currentPageIndex, // updates with new page index
-  }))
-  */
+  })) ;
+
+  readonly updateMovieResults = this.updater((state, movies : Movie[]) => ({ 
+                                                                        // movies : [...state.movies , movies ],
+                                                                         ...state,
+                                                                          movies ,
+         })) ;
+
+
+// readonly movies$: Observable<Movie[]> = this.select(state => state.movies);  
+
+  readonly movies$ = this.select(state => state.movies);
+  readonly userPreferredMovieIds$ = this.select(state => state.userPreferredMoviesIds);
 
   readonly moviesPerPage$ = this.select(state => state.moviesPerPage);
 
   readonly currentPageIndex$ =  this.select(state => state.currentPageIndex);
-/*
+
   private readonly fetchMoviesData$ = this.select({
-                                                //   movies : this.movies$ ,
+                                                   movies : this.movies$ ,
                                                    moviesPerPage : this.moviesPerPage$,
                                                    currentPageIndex : this.currentPageIndex$
   },{ debounce : true});
- */
- /* 
-  private readonly VM$ = this.select({
+
+  
+ readonly userPreferredMovies$ = this.select(
+        this.movies$,
+        this.userPreferredMovieIds$,
+        (movies, ids) => movies.filter(movie => ids.includes(movie.id))
+  );
+
+//   private readonly VM$ = this.select({
+   readonly VM$ = this.select({
                                       movies : this.movies$ ,
                                       userPreferredMovieIds : this.userPreferredMovieIds$,
                                       userPreferredMovies : this.userPreferredMovies$
   })
-*/   
- /* 
+   
+  
   private readonly fetchMovies = this.effect(                   
    (moviePageData$: Observable<{moviesPerPage: number; currentPageIndex : number}>) => {                    
          return moviePageData$.pipe(
@@ -76,27 +94,13 @@ export class MoviesStore extends ComponentStore<MovieState>{
     },
    
   );
-*/ 
-
- readonly movies$: Observable<Movie[]> = this.select(state => state.movies);
-
-// readonly movies$ = this.select(state => state.movies);
-
-/*
- readonly userPreferredMovieIds$ : this.select(state => state.userPreferredMoviesIds);
-
- readonly userPreferredMovies$ = this.select(
-        this.movies$,
-        this.userPreferredMovieIds$,
-        (movies, ids) => movies.filter(movie => ids.includes(movie.id))
-  );
-*/  
- /*
+ 
+ 
  readonly usrPreferMovie = this.select(
            this.movies$ ,
            this.userPreferredMovieIds$ ,                
            (movies, Ids) => movies.filter(movie => Ids.includes(movie.id))
  );
- */ 
+  
 
 }

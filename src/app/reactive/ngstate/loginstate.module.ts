@@ -3,19 +3,23 @@ import {CommonModule} from '@angular/common';
 import {StoreModule} from '@ngrx/store';
 
 import {LoginStateComponent} from './components/loginstate.component';
-import {LoginStateRouterModule} from './loginstate-routing.module'
-import {reducer } from '../../store/reducers/reducer';
+import {LoginStateRouting} from './loginstate.routing'
+import {countStateReducer } from '../../store/reducers/state.reducer';
 import {countReducer} from '../../store/reducers/count.reducer';
 import {authFeatureKey} from '../../models/authFeature';
+import {countFeatureKey} from '../../models/appFeature';
 
+import {enviromentdevtools} from '../../environments/environments';
 
 @NgModule({
   imports : [
              CommonModule,
-             LoginStateRouterModule,
-             StoreModule.forRoot({}), 
-             StoreModule.forRoot({count : countReducer}),
-             StoreModule.forFeature(authFeatureKey,reducer)
+             LoginStateRouting,
+           
+           //  StoreModule.forRoot({count : countReducer}),
+             StoreModule.forFeature(countFeatureKey , countReducer),
+             StoreModule.forFeature(authFeatureKey, countStateReducer),
+           //  enviromentdevtools.imports,
             ],
   exports : [],
   providers : [],            

@@ -1,11 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule,FormsModule } from '@angular/forms';
-
 import { CommonModule } from '@angular/common';
+
+import {StoreModule, provideState, provideStore} from '@ngrx/store' ;
+import {StoreRouterConnectingModule, routerReducer} from '@ngrx/router-store'; 
+import {EffectsModule, provideEffects} from '@ngrx/effects';
+
 import { HttpClientModule } from '@angular/common/http';
 
-import { AppRoutingModule } from './app-routing.module';
+import { AppRouting } from './app.routing';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -16,6 +20,7 @@ import { DashbordComponent} from './components/dashbord/dashbord.component';
 import { ReportsComponent } from './components/reports/reports.component';
 
 import { HumansComponent } from './components/humans/humans.component';
+
 import { HumansDetailsComponent } from './components/humans-details/humans-details.component';
 
 import { Base64Pipe } from './share/convert-base64-img.pipe';
@@ -36,8 +41,9 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {HttpInterceptorService} from './service/interceptor/interceptor.service';
 
 import {InfoService} from './service/info/info.service';
-//import {StoreModule, provideState, provideStore} from '@ngrx/store' ;
-//import {StoreRouterConnectingModule, routerReducer} from '@ngrx/router-store'; 
+
+
+import {enviromentdevtools} from './environments/environments';
 
 @NgModule({
   declarations: [      
@@ -53,22 +59,24 @@ import {InfoService} from './service/info/info.service';
            CommonModule,
            FormsModule,
            ReactiveFormsModule,
-           /*
-           StoreModule.forRoot(
-                       {router : routerReducer}
-                       ), 
-           */
-           AppRoutingModule,
+           
+           StoreModule.forRoot({}), 
+           
+           EffectsModule.forRoot(),
+           
+           AppRouting,
            HttpClientModule,
            HomeComponent,   
            HousingLocationComponent,
            ReportsComponent,
        //   AdminModule,    
            LoginModule,
-    
+           enviromentdevtools.imports,
+           StoreRouterConnectingModule.forRoot(),
   ],
   exports:[],
   providers: [
+             //  provideStore(),
                AuthGuadService,
                AuthService,
                InfoService,

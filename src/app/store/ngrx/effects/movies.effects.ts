@@ -4,11 +4,11 @@ import {Actions,
         createEffect, ofType} from '@ngrx/effects';
 import {of} from 'rxjs';
 import {EMPTY} from 'rxjs';
-import {map,exhaustMap,catchError} from 'rxjs/operators'; 
+import {map,exhaustMap, catchError} from 'rxjs/operators'; 
 
 import {MoviesService} from '../../../service/ngrx/movies.service';
- import {MoviesPageActions, } from '../actions/movies-page.actions' ;
- import {MoviesApiActions, } from '../actions/movies-api.actions' ;
+import {MoviesPageActions, } from '../actions/movies-page.actions' ;
+import {MoviesApiActions, } from '../actions/movies-api.actions' ;
                                            
 @Injectable()
 

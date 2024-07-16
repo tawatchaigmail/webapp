@@ -22,31 +22,31 @@ export const userReducer = createReducer(
       on(UserActions.addUSer, (state, {user}) => {
         return adapter.addOne(user, state);
       }),
-       on(UserAction.setUser, (state, {user}) =>{
+      on(UserAction.setUser, (state, {user}) =>{
          return adapter.setOne(user, state);
        }),
 
-       on(User.Action.upSertUser, (state, {user})=>{
+      on(User.Action.upSertUser, (state, {user})=>{
          return adapter.upsertOne(user, state);
        }),
-       on(User.Action.addUsers, (state, {users}) => {
+      on(User.Action.addUsers, (state, {users}) => {
          return adapter.addMany(user, state);
        }),
   
-       on(UserAction.upsertUser, (state, {users}) =>{
+      on(UserAction.upsertUser, (state, {users}) =>{
             retrun adapter.upSertMany(users, state);
        }),
-       on(UserActin.updateUser, (state, {update}) => {
+      on(UserActin.updateUser, (state, {update}) => {
             return adapter.updateOne(update, state);
        }),
 
-       on(UserActin.updateUsers, (state, {updates}) => {
+      on(UserActin.updateUsers, (state, {updates}) => {
             return adapter.updateMany(updates, state);
        }),
 
 
 
-       on(UserActin.mapUser, (state, {entityMap}) => {
+      on(UserActin.mapUser, (state, {entityMap}) => {
             return adapter.mapOne(entityMap, state);
        }),
 

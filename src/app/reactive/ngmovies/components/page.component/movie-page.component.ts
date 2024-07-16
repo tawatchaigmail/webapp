@@ -11,7 +11,7 @@ import {movieSelector} from '../../../../store/ngrx/selector/movie.selector';
      selector : 'movie-com',
      templateUrl : './movie-page.component.html',
      styleUrls : ['./movie-page.component.scss'],
-   //  providers : [ComponentStore],
+
      providers : [MoviesStore],
 })
 
@@ -24,15 +24,25 @@ export class MoviesPageComponent implements OnInit {
               private readonly moviesStore : MoviesStore
 
               ) {}
+   readonly vm$ = this.moviesStore.VM$ ;
 
    ngOnInit(){
      //  this.movieComponentStore.setState({movies: []});
+     console.log(' init page movies component');
+     
        this.moviesStore.setState({
-                                      movies: [],
+                    //                  movies: [],
+                                    movies :  [
+                                        {id : "0",  name : "wareee",  content : "action", },
+                                        {id : "1",  name : "madmax",  content : "action", }
+  
+                                      ],
+
                                       userPreferredMoviesIds : [],
                                       moviesPerPage : 10,
                                       currentPageIndex : 5,
                                       userPreferMoiesIds : '0'
                                      });
+    
    }
 }

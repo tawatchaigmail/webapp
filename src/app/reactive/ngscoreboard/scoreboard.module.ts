@@ -2,25 +2,31 @@ import {NgModule} from '@angular/core' ;
 import {CommonModule} from '@angular/common' ;
 import {StoreModule, provideState, provideStore} from '@ngrx/store' ;
 
-import {BoardStateRouterModule} from './scoreboard-routing.module';
+import {BoardStateRouting} from './scoreboard.routing';
 import {ScoreBoardComponent} from './components/scoreboard.component';
 
 import {scoreboardFeatureKey, scoreboardReducer} from '../../store/ngrx/reducers/scoreboard.reducer';
-
 import {StoreRouterConnectingModule, routerReducer} from '@ngrx/router-store'; 
+
+import {enviromentdevtools} from '../../environments/environments';
 
 @NgModule({
  imports : [
             CommonModule,
-            BoardStateRouterModule,
-        //    StoreModule.forRoot({}),
-            
+            BoardStateRouting,
+           
+            /*
             StoreModule.forRoot(
-                                {game : scoreboardReducer, router : routerReducer}
+                                {
+                                 game : scoreboardReducer,
+                                 router : routerReducer
+                                }
                                ), 
-
+            */
             StoreModule.forFeature(scoreboardFeatureKey, scoreboardReducer),
-            StoreRouterConnectingModule.forRoot(),
+       //     StoreModule.forFeature( 'router' , routerReducer ),
+       
+       //     enviromentdevtools.imports,
            ],
  exports : [],
  providers : [

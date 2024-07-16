@@ -9,20 +9,20 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatRippleModule } from '@angular/material/core';
 
-
 import {AppToggleComponent} from './components/app-toggle.component';
 import {SlideToggleComponent} from './components/slide.component/slide-toggle';
 
-import {ToggleRoutingModule} from './toggle-routing.module'; 
+import {ToggleRouting} from './toggle.routing'; 
+import {enviromentdevtools} from '../../environments/environments';
 
 @NgModule({
            imports : [
                      CommonModule,
-                     ToggleRoutingModule,
-                     StoreModule.forRoot(),
+                     ToggleRouting,
                      MatSelectModule,
                //      MatSlideToggleModule,
                      MatRippleModule,
+               //      enviromentdevtools.imports,
                      ],
            exports : [],
            providers : [],

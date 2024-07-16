@@ -1,8 +1,10 @@
 import {createFeatureSelector, createSelector} from '@ngrx/store';
 import {selectRouteParams} from '../ngrx-router/router.selectors';
-import {carAdapter, CarState} from '../reducers/cars.reducer';
 
-export const carFeatureSelector = createFeatureSelector<CarState>('cars');
+import {carAdapter, CarState} from '../reducers/cars.reducer';
+import {carsFeatureKey} from '../../../models/appFeature';
+
+export const carFeatureSelector = createFeatureSelector<CarState>(carsFeatureKey);
 
 const {
         selectEntities, 
@@ -26,5 +28,8 @@ export const selectCars = createSelector(
 export const selectCar = createSelector(
        selectCarEntities,
        selectRouteParams,
-       (cars, {carId}) => cars[carId]       
+       (cars, {carId}) => {
+                          console.log('carId : '+carId);
+                          return cars[carId] 
+                          }      
  );

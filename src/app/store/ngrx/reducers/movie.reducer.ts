@@ -7,7 +7,6 @@ import {Movie} from '../../../models/ngrx/movieInterface'
 import {MovieState} from '../../../models/ngrx/movieStateInterface'
 
 
-
 export const initialState : MovieState = {
                    
                                       movies: [],

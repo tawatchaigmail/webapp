@@ -45,7 +45,8 @@ url = '/assets/data_movies.json';
      return this.moviesList;
     }
     
-    loadMovies(moviesPerPage : number, currentPageIndex : number) {
+    loadMovies(moviesPerPage : number, currentPageIndex : number) : Observable<Movie[]> {
+      return this.http.get<Movie[]>('/movices') ;
     }
 }
 

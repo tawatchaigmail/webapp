@@ -6,6 +6,8 @@ import {
 
 import * as forUsr from './reducer/user.reducer' ;
 
+import {usersFeatureKey} from '../../../models/appFeature';
+
 export interface Stte {
   users: fromUser.State;
 }
@@ -14,7 +16,7 @@ export const reducers : ActionReducerMap<State> = {
   user : fromUsr.reducer,
 };
 
-export const selectusrState = createFeatureSelector<fromUser.State>('users');
+export const selectusrState = createFeatureSelector<fromUser.State>(usersFeatureKey);
 
 export const selectusrIds = crateSelector(
   selectUserstate,

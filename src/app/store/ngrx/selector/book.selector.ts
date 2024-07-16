@@ -1,8 +1,13 @@
 import {createSelector, createFeatureSelector} from '@ngrx/store';
 import {Book} from '../../../models/ngrx/bookInterface';
 
-export const bookSelects = createFeatureSelector<ReadonlyArray<Book>>('books') ;
-export const collectionFeatureSelect = createFeatureSelector<ReadonlyArray<string>>('collection')
+import {booksFeatureKey, collectionFeatureKey} from '../../../models/appFeature';
+
+//import {bookFeature} from '../reducers/book.reducer';
+
+
+export const bookSelects = createFeatureSelector<ReadonlyArray<Book>>(booksFeatureKey) ;
+export const collectionFeatureSelect = createFeatureSelector<ReadonlyArray<string>>(collectionFeatureKey)
 
 export const bookCollectionSelect  = createSelector(
                                              bookSelects,
@@ -12,3 +17,10 @@ export const bookCollectionSelect  = createSelector(
                                                      }
                               
                                            );
+/*
+export const selectBookListPageViewModel = createSelector(
+     bookFeature.selectBooks,
+     bookFeature.selectLoading,
+     (books,loading) => ({book,loading})
+);
+*/

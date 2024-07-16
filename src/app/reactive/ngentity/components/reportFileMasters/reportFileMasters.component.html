@@ -1,0 +1,24 @@
+<div>bicycle </div>
+
+
+<div>{{bicycle$}}</div>
+
+<ol *ngIf="bicycle$ | async as bicycle " >
+
+
+<!--a *ngFor = "let bicycle of ( bicycle$ | async ) " [routerLink]="bicycle.id"  [fragment]="'bicycle$falgmet'" >
+
+
+  <li> {{bicycle.id}} | 
+       {{bicycle.name}} |
+       {{bicycle.brand}} |
+       {{bicycle.model}} 
+  </li>
+
+
+
+</a-->
+
+</ol>
+
+<router-outlet></router-outlet>

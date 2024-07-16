@@ -16,7 +16,9 @@ export class BookStateComponent implements OnInit {
    books$      = this.store.select(bookSelects) ;
    collection$ = this.store.select(bookCollectionSelect) ;
   
-   constructor(private bookSevice : BookService, private store : Store) {}
+   constructor(private bookSevice : BookService, private store : Store) {
+          console.log(this.store);
+   }
 
    ngOnInit() {
      console.log('bookStateComponsnt');
