@@ -1,23 +1,23 @@
-<div>bicycle </div>
+<div>ReportFileMasters </div>
+
+<div>{{reportFileMasters$}}</div>
+
+<button type="button" (action)="onAddData()" >add</button>
+
+<ol *ngIf="reportFileMasters$ | async as reportFileMasters " >
+
+<a *ngFor = "let reportFileMaster of ( reportFileMasters$ | async ) " [routerLink]="reportFileMaster.reportId"  [fragment]="'reportFileMasters$falgmet'" >
 
 
-<div>{{bicycle$}}</div>
-
-<ol *ngIf="bicycle$ | async as bicycle " >
-
-
-<!--a *ngFor = "let bicycle of ( bicycle$ | async ) " [routerLink]="bicycle.id"  [fragment]="'bicycle$falgmet'" >
-
-
-  <li> {{bicycle.id}} | 
-       {{bicycle.name}} |
-       {{bicycle.brand}} |
-       {{bicycle.model}} 
+  <li> {{reportFileMaster.reportId}} | 
+       {{reportFileMaster.parameterName}} |
+       {{reportFileMaster.description}} |
+       {{reportFileMaster.rgText}} 
   </li>
 
 
 
-</a-->
+</a>
 
 </ol>
 

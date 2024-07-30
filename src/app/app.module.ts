@@ -45,6 +45,8 @@ import {InfoService} from './service/info/info.service';
 
 import {enviromentdevtools} from './environments/environments';
 
+import {ReportFileMastersEffect} from './store/ngrx/effects/reportFileMasters.effects';
+
 @NgModule({
   declarations: [      
       AppComponent,
@@ -62,7 +64,9 @@ import {enviromentdevtools} from './environments/environments';
            
            StoreModule.forRoot({}), 
            
-           EffectsModule.forRoot(),
+           EffectsModule.forRoot(
+                              //   ReportFileMastersEffect
+           ),
            
            AppRouting,
            HttpClientModule,

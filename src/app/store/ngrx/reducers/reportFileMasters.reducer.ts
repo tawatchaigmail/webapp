@@ -1,43 +1,63 @@
 import {createReducer,on} from '@ngrx/store';
-// import {getAll,ad,getById,updateById,deleteById} from '../actions/bicycle.action';
+
 import {reportFileMastersAction} from '../actions/reportFileMasters.action';
 import {ReportFileMasters} from '../../../models/ngrx/reportFileMastersInterface';
-
+import {ReportFileMastersStore} from '../states/reportFileMasters.state';
 // import {ReportFileMastersService} from '../../../service/ngrx/reportFileMasters.service';
 
+//undefined
 
-export const initialState : ReportFileMasters = 
-                                         {
-                                          reportId       : '0' ,
-                                          parameterName  : '' ,
-                                          description    : '' ,
-                                          rgText         : '' ,
-                                         }
-         
+export const initialState : ReportFileMastersStore = {
+                                                   
+                                                                         reportFiles : [], 
+                                                                         reportFileSelect : {
+                                                                                              reportId       : '0' ,
+                                                                                              parameterName  : '' ,
+                                                                                              description    : '' ,
+                                                                                              rgText         : '' ,
+                                               
+                                                                                             } ,
+                                                                          showDetail : false
+                                                                         }
+                                                    
                                       ;
 
-export const reportFileMastersReducer = createReducer<ReportFileMasters>(
+export const reportFileMastersReducer = createReducer(
       initialState ,
-      on(reportFileMastersAction.getAll, (state) => {
-                                 
-               return state 
-      }),
+      on(reportFileMastersAction.reportFileMastersLoaded, (state, {datas}) => ({
+        ...state,                         
+        reportFiles : datas 
+      })),
       
-      on(reportFileMastersAction.add, (state, {data}) => {
-              return  state ;
-      }),
+      on(reportFileMastersAction.showReportFileMasters, (state, {data}) => ({
+         ...state,
+         reportFileSelect :  data, 
+         showDetail : true   
+      })),
 
-      on(reportFileMastersAction.getById, (state,{id}) => {
-              return state ;
-      }),
-
-      on(reportFileMastersAction.updateById, (state,{id, data}) => {
-              return state ;
-      }),
-
-      on(reportFileMastersAction.deleteById, (state,{id}) => {
-       return state ;
-      }),
+      on(reportFileMastersAction.newReportFileMasters, (state) => ({
+         ...state ,
+         reportFoleSelect  : undefined,
+         shoeDetail : true
+      })),
       
+      on(reportFileMastersAction.reportFileMastersSave, (state, {data}) => ({
+         ...state ,
+         reportselect : undefined ,
+         showDetail : false
+      })),
+       
+      on(reportFileMastersAction.reportFileMastersDeleted, (state, {data}) => ({
+        ...state ,
+         reportselect : undefined,
+         showDetail : false
+      })),
+      
+      on(reportFileMastersAction.reportFileMastersDeleted, (state => ({
+        ...state ,
+         reportselect : undefined,
+         showDetail : false
+      }))),
+
 
 );

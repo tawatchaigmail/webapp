@@ -1,28 +1,37 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {StoreModule} from '@ngrx/store'
+import {StoreModule, provideStore} from '@ngrx/store'
+import {EffectsModule} from '@ngrx/effects';
 import {enviromentdevtools} from '../../environments/environments';
 
 import {EntityRouting} from './entity.routing';
 
 import {reportFileMastersReducer} from '../../store/ngrx/reducers/reportFileMasters.reducer'; 
+import {ReportFileMastersEffect} from '../../store/ngrx/effects/reportFileMasters.effects';
         
 import {EntityComponent} from './components/entity.component';
 import {ReportFileMastersComponent} from './components/reportFileMasters/reportFileMasters.component';
 
 import {reportFileMastersFeatureKey} from '../../models/appFeature';
-        
+
 
 @NgModule({
            imports : [
                       CommonModule,
-                      EntityRouting,                      
+                      EntityComponent,
+                      EntityRouting,
+                      
                       StoreModule.forFeature( reportFileMastersFeatureKey , reportFileMastersReducer ),
+
+                      EffectsModule.forFeature(ReportFileMastersEffect),
+                      
                                               
                      ],
            exports : [],
-           providers : [], 
-           declarations : [EntityComponent, ReportFileMastersComponent]
+           providers : [                   
+                   //    provideStore( {[reportFileMastersFeatureKey] : reportFileMastersReducer } )
+                       ], 
+           declarations : []
 
 })
 

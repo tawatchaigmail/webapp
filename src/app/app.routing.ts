@@ -1,16 +1,16 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes,PreloadAllModules} from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes,PreloadAllModules} from '@angular/router';
 
-import { HomeComponent } from './components/home/home.component';
-import { CompanyComponent } from './components/company/companyComponent';
-import { CompanyDetails } from './components/CompanyDetails/CompanyDetails';
+import {HomeComponent}    from './components/home/home.component';
+import {CompanyComponent} from './components/company/companyComponent';
+import {CompanyDetails}   from './components/CompanyDetails/CompanyDetails';
 
 import {DashbordComponent} from './components/dashbord/dashbord.component';
-import {AboutComponent} from './components/about/about.component';
-import {ReportsComponent} from './components/reports/reports.component';
-import {HumansComponent} from './components/humans/humans.component';
+import {AboutComponent}    from './components/about/about.component';
+import {ReportsComponent}  from './components/reports/reports.component';
+import {HumansComponent}   from './components/humans/humans.component';
 
-import {AuthGuadService} from './service/auth/authGuadService';
+import {AuthGuadService}            from './service/auth/authGuadService';
 import {CanDeactiveateGuardService} from './service/auth/canDeactivateGuardService';
 import {CompanyDetailResolveSevice} from './service/company-detail-resolve.service';
 

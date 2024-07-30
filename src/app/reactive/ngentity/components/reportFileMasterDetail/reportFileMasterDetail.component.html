@@ -1,0 +1,21 @@
+<div>ReportFileMasters </div>
+
+<form name="formNdame" action="submit" #valueData="ngForm" (ngSubmit)="onSubmit(valueData)" >
+        <label for="reportId">reportId</label>
+        <input type="text" id="reportId" value="reportId">
+        <br>
+        <label for="parameterName">parameterName</label>
+        <input type="text" id="parameterName" value="parameterName">
+        <br>
+        <label for="description">description</label>
+        <input type="text" id="description" value="description">
+        <br>
+        <label for="rgText">rgText</label>
+        <input type="text" id="rgText" value="rgText">
+        <br>
+        <button type="submit" >submit</button>
+        <button type="button" (click)="onClearForm()">Reset</button>
+</form>
+
+
+

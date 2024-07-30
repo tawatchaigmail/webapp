@@ -52,6 +52,8 @@ private log(message: string) {
                  return of (result as T);
               };
  }
+/*
+*/
 
  addCompany(body : any){
   const headers = { 'content-type': 'application/json'}  
