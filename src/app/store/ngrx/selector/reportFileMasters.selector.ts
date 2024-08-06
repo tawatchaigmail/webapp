@@ -9,38 +9,38 @@ import {ReportFileMastersStore} from '../states/reportFileMasters.state';
  const reportFileMasterstFeature = createFeatureSelector<ReportFileMastersStore>(reportFileMastersFeatureKey);
 
  const reportFileMastersSelector = createSelector(
-                                            reportFileMasterstFeature,
-                                            (state) => {
-                                                  return  state ;
-                                            }
+                                                  reportFileMasterstFeature,
+                                                  (state) => {
+                                                              return  state ;
+                                                  }
  );
  
  const reportFileMasters = createSelector(
-                                            reportFileMasterstFeature,
-                                            (state) => {
-                                                  return  state.reportFiles ;
-                                            }
+                                          reportFileMasterstFeature,
+                                          (state) => {
+                                                      return  state.reportFiles ;
+                                          }
  );
  
  const reportFileMastersSelect = createSelector(
-                                            reportFileMasterstFeature,
-                                            (state) => {
-                                                  return  state.reportFileSelect ;
-                                            }
+                                               reportFileMasterstFeature,
+                                               (state) => {
+                                                          return  state.reportFileSelect ;
+                                               }
  );
  
  const reportFileMastersShowDetail = createSelector(
-                                            reportFileMasterstFeature,
-                                            (state) => {
-                                                  return  state.showDetail ;
-                                            }
-  );
+                                                   reportFileMasterstFeature,
+                                                   (state) => {
+                                                               return  state.showDetail ;
+                                                   }
+ );
  
 
  export const reportFileSelector = {
-                                           reportFileMasterstFeature,
-                                           reportFileMasters,
-                                           reportFileMastersSelect,
-                                           reportFileMastersShowDetail,
+                                    reportFileMasterstFeature,
+                                    reportFileMasters,
+                                    reportFileMastersSelect,
+                                    reportFileMastersShowDetail,
                                            
  }

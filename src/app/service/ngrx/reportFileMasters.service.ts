@@ -33,20 +33,35 @@ private repfilmasUrl = environment.apiUrl+'/api/repfilmas';  // URL to web api
   constructor(private http : HttpClient) {}
 
   reportFileMastersList : ReportFileMasters[] = [
-                           {
-                              reportId       : '2',
-                              parameterName : 'tcdrs',
-                              description    : 'la',
-                              rgText         : 'AC01',
-                           },
-                           {
-                              reportId       : '2',
-                              parameterName : 'tcdrs',
-                              description    : 'la',
-                              rgText         : 'AC001',
-                           }
+     {
+      REPORT_ID   :  '0' ,
+      REPORT_NAME : '0' ,
+      FILENAME    :  '0' ,
+      REPORT_GROUP  : '0' ,
+      DESCRIPTION   : '0' ,
+      FLAG_LOG_FILE :  '0' ,
+      ORIENTATION   :  '0' ,
+      PAPER_SIZE   : '0' ,
+      SHOW_FOOTER  : '0' ,
+      FORM_FOOTER  : '0' ,
+      CTRL_DOC_NUMBER  : '0' ,
+     },
 
+     {
+      REPORT_ID   :  '1' ,
+      REPORT_NAME : '1' ,
+      FILENAME    :  '1' ,
+      REPORT_GROUP  : '1' ,
+      DESCRIPTION   : '1' ,
+      FLAG_LOG_FILE :  '1' ,
+      ORIENTATION   :  '1' ,
+      PAPER_SIZE   : '1' ,
+      SHOW_FOOTER  : '1' ,
+      FORM_FOOTER  : '1' ,
+      CTRL_DOC_NUMBER  : '1' ,
+     }
      ]
+
    // ReadonlyArray<ReportFileMasters>
    getApiAll() : Observable<ReportFileMasters[]> {
  //  getApiAll() : Observable<ReadonlyArray<ReportFileMasters>> {
@@ -77,11 +92,12 @@ private repfilmasUrl = environment.apiUrl+'/api/repfilmas';  // URL to web api
          return this.reportFileMastersList;
      }
 
-   addData(body: any) {
+   addData(body: any) : Observable<any> {
   //  const headers = { 'content-type': 'application/json'}  
      const data = JSON.stringify(body);
 
         return this.http.post(this.repfilmasUrl+'/create', data, this.httpOptions)
+               /*
                .subscribe( (datares) => { 
                                         console.log('POST completed sucessfully. The response received'+datares) 
                           },
@@ -91,14 +107,19 @@ private repfilmasUrl = environment.apiUrl+'/api/repfilmas';  // URL to web api
                          () => {
                                 console.log('Post completed')
                          }
-                );
+                )
+                */ 
+                ;
 
    }
      
-   upDatadata(id : string,body : any){
+   updateData(id : string, body : ReportFileMasters) : Observable<any>{
+
        const data = JSON.stringify(body);
+       console.log(' id : '+id);
        
        return this.http.put(this.repfilmasUrl+'/update/'+id, data, this.httpOptions)
+            /*
             .subscribe( (respon) => {
                                     console.log('put completed sucessfully')
                         },
@@ -108,11 +129,14 @@ private repfilmasUrl = environment.apiUrl+'/api/repfilmas';  // URL to web api
                          () => {
                                 console.log('put completed');
                          }
-                );
+                )
+            */
+                ;
    }
 
-   removeData(id : string) {
+   removeData(id : string) : Observable<any> {
          return this.http.delete(this.repfilmasUrl+'/delete/'+id, this.httpOptions)
+            /*
             .subscribe( (respon) => {
                                     console.log('delete completed sucessfully')
                         },
@@ -122,7 +146,9 @@ private repfilmasUrl = environment.apiUrl+'/api/repfilmas';  // URL to web api
                          () => {
                                 console.log('delete completed');
                          }
-                );
+                )
+             */
+              ;  
    }
      
    getDataById(id : string) : Observable<ReportFileMasters> {

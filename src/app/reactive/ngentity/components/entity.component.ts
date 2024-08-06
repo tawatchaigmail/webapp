@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {FormsModule,ReactiveFormsModule ,Validators,ControlContainer,FormGroup,FormControl,NgForm} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule ,Validators,ControlContainer,FormGroup,FormControl,NgForm} from '@angular/forms';
 //import {RouterLink, RouterOutlet} from '@angular/router';
 import {Store} from '@ngrx/store';
 
 import {ReportFileMastersComponent} from './reportFileMasters/reportFileMasters.component';
+//import {ReportFileMasterDetailsComponent} from './components/reportFileMasterDetail/reportFileMasterDetail.component';
 
 @Component({
            selector : 'ngx-app-entity',
@@ -13,7 +14,7 @@ import {ReportFileMastersComponent} from './reportFileMasters/reportFileMasters.
            imports : [
            //           RouterLink, 
            //           RouterOutlet,
-                      ReportFileMastersComponent
+                      ReportFileMastersComponent,
                      ],
 })
 

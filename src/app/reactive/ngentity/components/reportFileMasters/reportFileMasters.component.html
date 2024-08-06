@@ -2,23 +2,73 @@
 
 <div>{{reportFileMasters$}}</div>
 
-<button type="button" (action)="onAddData()" >add</button>
+<button type="button" (click)="onAddData()" >add</button>
 
-<ol *ngIf="reportFileMasters$ | async as reportFileMasters " >
+<ngx-repfilmas-item [reportFileMaster]="selectReportFileMaster" ></ngx-repfilmas-item>
 
-<a *ngFor = "let reportFileMaster of ( reportFileMasters$ | async ) " [routerLink]="reportFileMaster.reportId"  [fragment]="'reportFileMasters$falgmet'" >
+<!--ol *ngIf="reportFileMasters$ | async as reportFileMasters " >
 
+<a *ngFor = "let reportFileMaster of ( reportFileMasters$ | async ) " [routerLink]="reportFileMaster.REPORT_ID"  [fragment]="'reportFileMasters$falgmet'" >
 
-  <li> {{reportFileMaster.reportId}} | 
-       {{reportFileMaster.parameterName}} |
-       {{reportFileMaster.description}} |
-       {{reportFileMaster.rgText}} 
+  
+
+  <li> {{reportFileMaster.REPORT_ID}} | 
+       {{reportFileMaster.REPORT_NAME}} |
+       {{reportFileMaster.FILENAME}} |
+       {{reportFileMaster.REPORT_GROUP}} | 
+       {{reportFileMaster.DESCRIPTION}} |
+       {{reportFileMaster.FLAG_LOG_FILE}} |
+       {{reportFileMaster.ORIENTATION}} |
+       {{reportFileMaster.PAPER_SIZE}} |
+       {{reportFileMaster.SHOW_FOOTER}} |
+       {{reportFileMaster.FORM_FOOTER}} |
+       {{reportFileMaster.CTRL_DOC_NUMBER}} 
   </li>
 
 
 
 </a>
 
-</ol>
+</ol-->
+
+
+
+<div>
+      <table>
+       <thead>
+        <tr>
+          <td>ReportId</td>
+          <td>ReportName</td>
+          <td>FileName</td>
+          <td>ReportGroup</td>
+          <td>Description</td>
+          <td>FlagLogFile</td>
+          <td>Orantation</td>
+          <td>PaperSize</td>
+          <td>ShowFooter</td>
+          <td>FormFooter</td>
+          <td>CrtDocNumber</td>
+        </tr>
+       </thead>
+       <tbody>
+        <tr *ngFor = "let reportFileMaster of ( reportFileMasters$ ) " (click)="onShowData(reportFileMaster)" >
+         <td>{{reportFileMaster.REPORT_ID}}</td>
+         <td>{{reportFileMaster.REPORT_NAME}}</td>
+         <td>{{reportFileMaster.FILENAME}}</td>
+         <td>{{reportFileMaster.REPORT_GROUP}}</td>
+         <td>{{reportFileMaster.DESCRIPTION}}</td>
+         <td>{{reportFileMaster.FLAG_LOG_FILE}}</td>
+         <td>{{reportFileMaster.ORIENTATION}}</td>
+         <td>{{reportFileMaster.PAPER_SIZE}}</td>
+         <td>{{reportFileMaster.SHOW_FOOTER}}</td>
+         <td>{{reportFileMaster.FORM_FOOTER}}</td>
+         <td>{{reportFileMaster.CTRL_DOC_NUMBER}}</td>
+        </tr>
+       </tbody>
+      </table>
+
+</div>
+
 
 <router-outlet></router-outlet>
+

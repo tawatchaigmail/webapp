@@ -8,16 +8,21 @@ import {ReportFileMastersStore} from '../states/reportFileMasters.state';
 //undefined
 
 export const initialState : ReportFileMastersStore = {
-                                                   
-                                                                         reportFiles : [], 
-                                                                         reportFileSelect : {
-                                                                                              reportId       : '0' ,
-                                                                                              parameterName  : '' ,
-                                                                                              description    : '' ,
-                                                                                              rgText         : '' ,
-                                               
-                                                                                             } ,
-                                                                          showDetail : false
+                                                      reportFiles : [], 
+                                                      reportFileSelect : {
+                                                                          REPORT_ID  : '0' ,
+                                                                          REPORT_NAME  : 'reportName' ,
+                                                                          FILENAME  : 'filename' ,
+                                                                          REPORT_GROUP  : '0' ,
+                                                                          DESCRIPTION  : 'description' ,
+                                                                          FLAG_LOG_FILE  : '' ,
+                                                                          ORIENTATION  : '' ,
+                                                                          PAPER_SIZE  : '' ,
+                                                                          SHOW_FOOTER  : '' ,
+                                                                          FORM_FOOTER  : '' ,
+                                                                          CTRL_DOC_NUMBER  : '' ,
+                                                                        } ,
+                                                      showDetail : false
                                                                          }
                                                     
                                       ;
@@ -46,18 +51,24 @@ export const reportFileMastersReducer = createReducer(
          reportselect : undefined ,
          showDetail : false
       })),
-       
+      /* 
+      on(reportFileMastersAction.reportFileMastersUpdated, (state, {data}) => ({
+         ...state ,
+         reportselect : data ,
+         showDetail : true
+      })),
+      */ 
       on(reportFileMastersAction.reportFileMastersDeleted, (state, {data}) => ({
         ...state ,
          reportselect : undefined,
          showDetail : false
       })),
       
-      on(reportFileMastersAction.reportFileMastersDeleted, (state => ({
+ 
+      on(reportFileMastersAction.deleteReportFileMasters, (state) => ({
         ...state ,
          reportselect : undefined,
          showDetail : false
-      }))),
-
-
+      })),
+ 
 );

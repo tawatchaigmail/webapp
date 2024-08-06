@@ -9,13 +9,19 @@ export const reportFileMastersAction = createActionGroup({
    //         reportFileMastersLoaded : props<{datas : ReadonlyArray<ReportFileMasters>}> (),
             reportFileMastersLoaded : props<{datas : ReportFileMasters[]}> (),
 
-            showReportFileMasters : props<{data : ReportFileMasters}> (),
+            showReportFileMasters : props<{data : ReportFileMasters }> (),
             newReportFileMasters  : emptyProps(),
 
-            saveReportFileMasters : props<{data : ReportFileMasters}> (),
-            reportFileMastersSave : props<{data : ReportFileMasters}> (),
+   //         updateReportFileMasters : props<{id : string, data : Partial<ReportFileMasters>}> (),
+            updateReportFileMasters : props<{id : string, data : ReportFileMasters}> (),
 
-            deleteReportFileMasters  : props<{id : string}> () ,
+   //         reportFileMastersUpdated : props<{id : string, data : Partial<ReportFileMasters>}> (),
+            reportFileMastersUpdated : props<{ data : ReportFileMasters | JSON}> (),
+
+            saveReportFileMasters : props<{data : ReportFileMasters | JSON}> (),
+            reportFileMastersSave : props<{data : ReportFileMasters | JSON}> (),
+
+            deleteReportFileMasters  : props<{id : string }> () ,
             reportFileMastersDeleted : props<{data : ReportFileMasters}> (),
             
             dismiss : emptyProps() 
