@@ -1,0 +1,12 @@
+{ "results" : [
+          {
+           "name" : "jame",
+           "gender" : "female"
+          },
+          {
+           "name" : "jarame",
+           "gender" : "male"
+
+          }
+         ]
+}

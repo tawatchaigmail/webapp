@@ -1,0 +1,24 @@
+
+<div>{{cars$}}</div>
+
+<ol *ngIf="cars$ | async as cars " >
+
+
+<a *ngFor = "let car of ( cars$ | async ) " [routerLink]="car.id"  [fragment]="'carfalgmet'" >
+
+
+  <li> {{car.id}} | 
+       {{car.year}} |
+       {{car.make}} |
+       {{car.model}} 
+  </li>
+
+
+
+</a>
+
+</ol>
+
+<router-outlet></router-outlet>
+
+

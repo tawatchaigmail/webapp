@@ -1,0 +1,40 @@
+<div>message nglogin </div>
+<div>
+   <form>
+     <div stype="width 50%;">
+       <div>
+          <label>Ngx </label>
+       </div>
+       <div>
+          <input type="text" name="userName" value="">
+       </div>
+
+       <div>
+          <label>Ngx </label>
+       </div>
+       <div>
+          <input type="password" name="userName" value="">
+          
+       </div>
+
+       <p>
+        <button (click)="increment()" type="button">Increate</button>
+
+       </p>
+       <div>
+                     Current Count:  {{ count$ | async }}
+       </div>
+
+       <p>
+
+        <button (click)="decrement()" type="button">Decreate</button>
+       </p>
+
+       <p>
+
+        <button (click)="resetment()" type="button">Reset</button>
+       </p>
+
+     </div>
+   </form>
+</div>

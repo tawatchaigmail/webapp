@@ -3,6 +3,7 @@ import { Buffer } from "buffer";
 
 @Pipe({
   name: 'base64',
+  standalone: true,
 })
 export class Base64Pipe implements PipeTransform {
   constructor() {}
@@ -16,7 +17,8 @@ export class Base64Pipe implements PipeTransform {
            base64Content = `data:`+contentType+`;base64,`+value; 
        } else {
            base64Content = `data:`+contentType+`;base64,`+this.encoded64(value.data);     
-         //  console.log(value.data);
+          // console.log(value.data);
+          // console.log(base64Content);
        }
 
     

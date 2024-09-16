@@ -1,5 +1,16 @@
+.previewImg{
+    margin-bottom: 10px;
+    height:60px;
+    width:60px;
 
-.ng-valid[required], .ng-valid.required  {
+}
+/*
+img{
+    height:60px;
+    width:60px;
+}
+*/
+.ng-valid[required], .ng-valid.required, {
   border-left: 5px solid #42A948; /* green */
 }
 

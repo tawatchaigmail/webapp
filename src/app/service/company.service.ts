@@ -1,13 +1,13 @@
 import {Injectable} from '@angular/core';
 import {Observable,of} from 'rxjs';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { catchError, map, tap } from 'rxjs/operators';
 
 import {CompanyInterface} from '../models/companyInterface';
 import {CompanyModels} from '../models/companyModels';
 
-import {environment} from '../environments/environment';
+import {environment} from '../environments/environments';
 
   var baseUrl = environment.apiUrl;
   var apiurl = {
@@ -37,8 +37,8 @@ export class CompanyService{
   };  
   private companies? : CompanyInterface[] ;
  
-  constructor(private http: HttpClient) {
- }
+  constructor(private http: HttpClient) {  
+  }
 
 /** Log a message with the MessageService */
 private log(message: string) {
@@ -52,6 +52,8 @@ private log(message: string) {
                  return of (result as T);
               };
  }
+/*
+*/
 
  addCompany(body : any){
   const headers = { 'content-type': 'application/json'}  
@@ -127,7 +129,7 @@ private log(message: string) {
      
     return this.http.get<CompanyInterface[]>(this.companyUrl+'/readall')
       .pipe(
-        tap(_ => this.log('fetched companies')),
+        tap(val => this.log('fetched companies')),
         catchError(this.handleError<CompanyInterface[]>('getCompanyUrl(',[]))
      );  
  }
@@ -136,7 +138,7 @@ private log(message: string) {
       const url = `${this.companyUrl}/read/${id}`; 
     return this.http.get<CompanyInterface>(url)
         .pipe(
-          tap(_ => this.log('fetched companie ${id} ')),
+          tap(val => this.log('fetched companie ${id} ')),
           catchError(this.handleError<CompanyInterface>('getCompanyById id=${id}'))
      );  
  }

@@ -1,0 +1,52 @@
+<div>ReportFileMasters </div>
+
+<form  [formGroup]="detailForm" >
+                        
+        <label for="REPORT_ID">ReportId</label>
+        <input type="text" id="REPORT_ID" formControlName="REPORT_ID" value="reportId">
+        <br>
+
+        <label for="REPORT_NAME">ReportName</label>
+        <input type="text" id="REPORT_NAME" formControlName="REPORT_NAME" value="Name">
+        <br>
+
+        <label for="FILENAME">FileName</label>
+        <input type="text" id="FILENAME" formControlName="FILENAME" value="FILENAME">
+        <br>
+
+        <label for="REPORT_GROUP">ReportGroup</label>
+        <input type="text" id="REPORT_GROUP" formControlName="REPORT_GROUP" value="">
+        <br>
+
+        <label for="DESCRIPTION">Description</label>
+        <input type="text" id="DESCRIPTION" formControlName="DESCRIPTION" value="DESCRIPTION">
+        <br>
+
+        <label for="FLAG_LOG_FILE">FlagLogFile</label>
+        <input type="text" id="FLAG_LOG_FILE" formControlName="FLAG_LOG_FILE" value="FLAG_LOG_FILE">
+        <br>
+
+        <label for="ORIENTATION">Orientation</label>
+        <input type="text" id="ORIENTATION" formControlName="ORIENTATION" value="ORIENTATION">
+        <br>
+
+        <label for="PAPER_SIZE">PaperSize</label>
+        <input type="text" id="PAPER_SIZE" formControlName="PAPER_SIZE" value="PAPER_SIZE">
+        <br>
+
+        <label for="SHOW_FOOTER">ShowFooter</label>
+        <input type="text" id="SHOW_FOOTER" formControlName="SHOW_FOOTER" value="SHOW_FOOTER">
+        <br>
+
+        <label for="FORM_FOOTER">FormFooter</label>
+        <input type="text" id="FORM_FOOTER" formControlName="FORM_FOOTER" value="FORM_FOOTER">
+        <br>
+
+        <label for="CTRL_DOC_NUMBER">CtrlDocNumber</label>
+        <input type="text" id="CTRL_DOC_NUMBER" formControlName="CTRL_DOC_NUMBER" value="CTRL_DOC_NUMBER">
+        <br>
+
+        <button type="submit" [disabled]="!detailForm.valid" (click)="addClicked()">Insert</button>
+        <button type="submit" [disabled]="!detailForm.valid" (click)="saveClicked()">Save</button>
+        <button type="submit" [disabled]="!detailForm.valid || detailForm.controls['REPORT_ID'].value == undefined" (click)="deleteClicked()">Delete</button>
+</form>
