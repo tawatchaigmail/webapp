@@ -1,5 +1,5 @@
-// import {ChangeDetectionStategy,inject, }
-import {Component, OnInit} from '@angular/core'
+// import {ChangeDetectionStategy,inject, } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
     selector : 'ngrx-sg-sv',
