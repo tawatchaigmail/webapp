@@ -1,6 +1,6 @@
 import {Component, Input, OnInit,SimpleChanges} from '@angular/core';
 import {CommonModule,Location} from '@angular/common';
-import {FormsModule, ReactiveFormsModule, FormBuilder ,Validators, ControlContainer,FormGroup,FormControl,NgForm} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule, FormBuilder ,Validators, ControlContainer, FormGroup, FormControl, NgForm} from '@angular/forms';
 import {Store} from '@ngrx/store';
 
 import { Observable } from 'rxjs';

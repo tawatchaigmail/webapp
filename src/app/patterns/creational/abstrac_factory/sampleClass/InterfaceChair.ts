@@ -1,0 +1,3 @@
+interfaceChair
++haslegs()
++sitOn()

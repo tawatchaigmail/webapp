@@ -1,0 +1,29 @@
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { signalState, patchState } from '@ngrx/signals';
+
+@Component({
+  selector: 'ngrx-counter',
+  template: `
+    <p>Count: {{ state.count() }}</p>
+
+    <button (click)="increment()">Increment</button>
+    <button (click)="decrement()">Decrement</button>
+    <button (click)="reset()">Reset</button>
+  `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class Counter {
+  readonly state = signalState({ count: 0 });
+
+  increment(): void {
+    patchState(this.state, (state) => ({ count: state.count + 1 }));
+  }
+
+  decrement(): void {
+    patchState(this.state, (state) => ({ count: state.count - 1 }));
+  }
+
+  reset(): void {
+    patchState(this.state, { count: 0 });
+  }
+}

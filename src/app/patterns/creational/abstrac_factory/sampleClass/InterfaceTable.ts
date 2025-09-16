@@ -1,0 +1,3 @@
+interfaceTable
++haslegic
++sitn()

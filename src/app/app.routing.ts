@@ -63,7 +63,6 @@ const appRoutes: Routes = [
 
   },
 
-
   { 
     path : 'ngtoggle', 
     loadChildren : () =>  import ('./reactive/ngtoggle/toggle.module').then(m => m.ToggleModule ),
@@ -91,14 +90,33 @@ const appRoutes: Routes = [
   //  canLoad : [AuthGuadService] 
   },
 
+  { 
+    path : 'ngsecurity', 
+    loadChildren : () =>  import ('./reactive/ngsecurityentity/app.security.entity.module').then(m => m.AppSecurityEntiryModule ),
+  //  canLoad : [AuthGuadService] 
+  },
+
+  {
+   path : 'ngmaster', 
+   loadChildren : () =>  import ('./reactive/ngmaster/app.master.module').then(m => m.AppMasterModule ),
+  },
+
+
+  {
+   path : 'ngsignal', 
+   loadChildren : () =>  import ('./reactive/ngsignal/app.signal.module').then(m => m.AppSignalModule ),
+  },
+
+  {
+   path : 'ngsignalService', 
+   loadChildren : () =>  import ('./reactive/ngsignslService/app.signal.service.module').then(m => m.AppSIgnamServiceModuel ),
+  },
 
   { 
     path : 'product', 
     loadChildren : () =>  import ('./product/product.module').then(m => m.ProductModule ),
     data: { preload: true }
   },
-
-
 
   { path: 'about', component: AboutComponent },
   { path: 'dashbord', component: DashbordComponent }, 

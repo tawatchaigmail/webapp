@@ -1,0 +1,1 @@
+modernTable extend intrfaceTable

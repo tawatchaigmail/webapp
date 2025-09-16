@@ -1,0 +1,3 @@
+interfaceSofar
++haslegic
++sitn()

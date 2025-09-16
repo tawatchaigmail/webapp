@@ -1,0 +1,1 @@
+ArtChair extend intrfaceChair

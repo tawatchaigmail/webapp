@@ -4,6 +4,7 @@ import {FormsModule, ReactiveFormsModule ,Validators,ControlContainer,FormGroup,
 import {Store} from '@ngrx/store';
 
 import {ReportFileMastersComponent} from './reportFileMasters/reportFileMasters.component';
+import {ReportFileParametersComponent} from './reportFileParameters/reportFileParameters.component';
 //import {ReportFileMasterDetailsComponent} from './components/reportFileMasterDetail/reportFileMasterDetail.component';
 
 @Component({
@@ -15,6 +16,8 @@ import {ReportFileMastersComponent} from './reportFileMasters/reportFileMasters.
            //           RouterLink, 
            //           RouterOutlet,
                       ReportFileMastersComponent,
+           //         ReportFileMasterDetailsComponent
+           //           ReportFileParametersComponent,
                      ],
 })
 

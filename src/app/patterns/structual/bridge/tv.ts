@@ -1,0 +1,1 @@
+class TV implement Device

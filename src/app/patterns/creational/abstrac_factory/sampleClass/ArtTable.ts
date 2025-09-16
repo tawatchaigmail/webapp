@@ -1,0 +1,1 @@
+artTable extend intrfaceTable

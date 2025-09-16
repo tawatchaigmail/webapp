@@ -1,0 +1,11 @@
+<h2>ngsevice<h2>
+
+@if (store.isLoading()) {
+   <p>Loading...</p>
+}@else {
+   <ul>
+      @for (book of store.books(); track book.id) {
+           <li> {{book.title}} </li>
+      }
+   </ul>
+}

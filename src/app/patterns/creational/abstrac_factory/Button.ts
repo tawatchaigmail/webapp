@@ -1,0 +1,2 @@
+Button interface
++pain()

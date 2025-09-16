@@ -12,7 +12,7 @@ import {reportFileMastersAction} from '../../../../store/ngrx/actions/reportFile
 import {reportFileSelector} from '../../../../store/ngrx/selector/reportFileMasters.selector';
 
 import {ReportFileMasterDetailsComponent} from '../reportFileMasterDetail/reportFileMasterDetail.component';
-        
+import {ReportFileParametersComponent} from    '../reportFileParameters/reportFileParameters.component';        
 
 @Component({
            selector : 'ngx-repfilmas',
@@ -24,7 +24,8 @@ import {ReportFileMasterDetailsComponent} from '../reportFileMasterDetail/report
                       FormsModule,
                       RouterLink, 
                       RouterOutlet,
-                      ReportFileMasterDetailsComponent
+                      ReportFileMasterDetailsComponent,
+                      ReportFileParametersComponent
                      ],
 })
 

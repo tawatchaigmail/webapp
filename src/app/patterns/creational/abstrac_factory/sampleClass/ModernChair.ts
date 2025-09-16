@@ -1,0 +1,1 @@
+modernChair extend intrfaceChair

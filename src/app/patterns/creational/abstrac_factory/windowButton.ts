@@ -1,0 +1,2 @@
+windiwButton implement Button
++pain()

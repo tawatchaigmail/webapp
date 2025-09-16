@@ -1,0 +1,1 @@
+MOdernFuniture extend InterfaceFunitureFactory

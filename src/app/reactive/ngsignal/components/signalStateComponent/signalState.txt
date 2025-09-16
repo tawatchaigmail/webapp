@@ -1,0 +1,19 @@
+import { signalState } from '@ngrx/signals';
+import { User } from './user';
+
+type UserState = { user: User; isAdmin: boolean };
+
+const userState = signalState<UserState>({
+  user: { firstName: 'Eric', lastName: 'Clapton' },
+  isAdmin: false,
+});
+
+
+
+import { computed, effect } from '@angular/core';
+
+// Creating computed signals.
+const userStateStr = computed(() => JSON.stringify(userState()));
+
+// Performing side effects.
+effect(() => console.log('userState', userState()));
