@@ -19,6 +19,6 @@ export const enviromentdevtools = {
                                     lock : true,
                                     persist : true
                              }
-               }),
+               , connectInZone: true}),
                ]
 } 
