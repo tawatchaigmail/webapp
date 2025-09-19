@@ -8,6 +8,7 @@ import {BookListStore} from './book-list-store';
     styleUrls : ['./book-list-service.component.scss'],
     providers : [BookListStore],
     changeDetection : ChangeDetectionStrategy.OnPush,
+    standalone : true,
 })
 
 export class BookListComponent implements OnInit {

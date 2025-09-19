@@ -2,7 +2,7 @@ import {inject, Injectable} from '@angular/core'
 import {exhaustMap, pipe, tap} from 'rxjs'
 import {rxMethod} from '@ngrx/signals/rxjs-interop'
 import {tapResponse} from '@ngrx/operators'
-import {signalState, patchState} from '@/ngrx/signals'
+import {signalState, patchState} from '@ngrx/signals'
 
 import {Book} from '../../../../models/ngrx/bookInterface';
 import {BookService} from '../../../../service/ngrx/book.service';
@@ -11,20 +11,21 @@ type BookListState = {books: Book[]; isLoading: boolean};
 
 const initialState: BookListState = {
                       books: [],
-                      isLoading: false
+                      isLoading: false,
 };
 
 @Injectable()
 export class BookListStore {
- readonly #bookService = inject(BookService);
- readonly #state = signalState(initialState);
+   readonly #bookService = inject(BookService);
+   readonly #state = signalState(initialState);
  
- readonly books = this.#state.books;
- readonly isLoading = this.#state.isLoading;
+   readonly books = this.#state.books;
+   readonly isLoading = this.#state.isLoading;
 
-  readonly loadBooks = rxMethod<void> (
-     pipe(
-         tap(() => patchState(this.#state,{ isLosding: true})),
+   readonly loadBooks = rxMethod<void>(
+
+       pipe(
+         tap(() => patchState(this.#state,{ isLoading: true})),
          exhaustMap(() => {
                   //         return this.#bookService.getAll().pipe(
                            return this.#bookService.getBook().pipe(
@@ -36,5 +37,5 @@ export class BookListStore {
                                                                );  // pipe 2
                           }  )  // exhasusMap
      )  // pipe 1
-  );
+   );
 } 

@@ -8,7 +8,7 @@ import autoTable from 'jspdf-autotable'
 import {CompanyInterface} from '../../models/companyInterface';
  //import {CompanyModels} from '../../models/companyModels';
 import {CompanyService} from '../../service/company.service';
-import { CompanyDetails } from '../../components/CompanyDetails/CompanyDetails';
+import { CompanyDetails } from '../../components/companyDetails/companyDetails';
 
 @Component({
     selector : 'com-company',

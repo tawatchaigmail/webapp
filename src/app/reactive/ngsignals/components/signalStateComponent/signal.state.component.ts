@@ -1,16 +1,17 @@
-import {ChangeDetectionStrategy,Component, OnInit} from '@angular/core'
-import {initiStore, signalState , patchState} from '@ngrx/signals'
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core'
+import {signalState , patchState} from '@ngrx/signals'
 
 @Component({
               selector : 'ngx-state-count',
               templateUrl : './signal.state.component.html',
               styleUrls : ['./signal.state.component.scss'],
               changeDetection : ChangeDetectionStrategy.OnPush  ,
+              standalone : true,
 })
 
 export class SignalStateCountComponent implements OnInit {
    readonly state =  signalState({count : 0})
-  // const bookStore : StoreSignal = initialStore() 
+ //  const bookStore : StoreSignal = initialStore() 
    
 
   ngOnInit(){

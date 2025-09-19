@@ -1,7 +1,8 @@
 
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Actions, ofType, createEffect, concatLatestFrom } from '@ngrx/effects';
+import { Actions, ofType, createEffect } from '@ngrx/effects';import { concatLatestFrom } from '@ngrx/operators';
+
 import { tap } from 'rxjs/operators';
 import { CollectionApiActions } from '../actions';
 import * as fromBooks from '../reducers';

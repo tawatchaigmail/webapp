@@ -4,7 +4,7 @@ import {Component, OnInit} from '@angular/core';
 @Component({
     selector : 'ngrx-sg-sv',
     templateUrl : './signal.service.component.html',
-    styleUrls : ['./signal.service.component'],
+    styleUrls : ['./signal.service.component.scss'],
     standalone : true,
     imports : []
 })

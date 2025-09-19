@@ -3,7 +3,7 @@ import {RouterModule, Routes,PreloadAllModules} from '@angular/router';
 
 import {HomeComponent}    from './components/home/home.component';
 import {CompanyComponent} from './components/company/companyComponent';
-import {CompanyDetails}   from './components/CompanyDetails/CompanyDetails';
+import {CompanyDetails}   from './components/companyDetails/companyDetails';
 
 import {DashbordComponent} from './components/dashbord/dashbord.component';
 import {AboutComponent}    from './components/about/about.component';
@@ -104,7 +104,7 @@ const appRoutes: Routes = [
 
   {
    path : 'ngsignal', 
-   loadChildren : () =>  import ('./reactive/ngsignal/app.signal.module').then(m => m.AppSignalModule ),
+   loadChildren : () =>  import ('./reactive/ngsignals/app.signal.module').then(m => m.AppSignalModule ),
   },
 
   {
