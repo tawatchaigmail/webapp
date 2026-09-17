@@ -8,7 +8,7 @@ import {AuthService} from '../../../service/auth/authService';
 
 @Component({
  selector: 'admin-center',
-// standalone: true,
+ standalone: false,
 /*
  imports : [
             CommonModule

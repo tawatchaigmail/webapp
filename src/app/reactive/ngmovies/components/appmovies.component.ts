@@ -6,8 +6,8 @@ import {Movie} from '../../../models/ngrx/movieInterface';
 @Component({
            selector : 'ngx-movies',
            templateUrl : './appmovies.companent.html',
-           styleUrls:['./appmovies.companent.scss']
-       
+           styleUrls:['./appmovies.companent.scss'],
+           standalone: false,
 })
 
 export class AppMoviesComponent implements OnInit {

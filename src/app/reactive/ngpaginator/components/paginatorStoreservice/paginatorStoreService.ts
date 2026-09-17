@@ -16,6 +16,7 @@ import {PaginatorStore} from '../../../../store/ngrx/paginator.store';
                       'class' : 'mat-paginator',
                   },
              styleUrls : ['./paginatorStoreService.scss'],
+             standalone: false,
              encapsulation : ViewEncapsulation.None,
                             
              changeDetection : ChangeDetectionStrategy.OnPush,

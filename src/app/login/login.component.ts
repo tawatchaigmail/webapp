@@ -9,7 +9,8 @@ import {DialogService} from '../service/auth/dialogService';
 @Component({
     selector : 'login-com',
     templateUrl : './login.component.html',                     
-    styleUrls : ['./login.component.scss']
+    styleUrls : ['./login.component.scss'],
+    standalone: false,
 })
 
 export class LoginComponent implements OnInit {

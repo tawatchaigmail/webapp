@@ -28,7 +28,7 @@ import {reportFileMastersAction} from '../../../../store/ngrx/actions/reportFile
 export class ReportFileMasterDetailsComponent implements OnInit {
  
 
-//  reportFileMasters$ :   Observable<ReportFileMasters[]> = this.store.select(reportFileSelector) ;
+/*  reportFileMasters$ :   Observable<ReportFileMasters[]> = this.store.select(reportFileSelector) ;    */
 
   detailForm = this.formbuilder.group({
 

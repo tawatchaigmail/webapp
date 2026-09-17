@@ -5,7 +5,8 @@ import {Book} from '../../../../models/ngrx/bookInterface';
 @Component({
          selector : 'app-collection-book',
          templateUrl : './book-collection.component.html',
-         styleUrls : ['./book-collection.component.scss']
+         styleUrls : ['./book-collection.component.scss'],
+         standalone: false,
 })
 
 export class CollectionBookComponent implements OnInit {

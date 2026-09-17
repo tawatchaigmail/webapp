@@ -4,7 +4,8 @@ import {Store} from '@ngrx/store' ;
 @Component({
          selector : 'scroll-board',
          templateUrl : './scoreboard.component.html',
-         styleUrls : ['./scoreboard.component.scss']
+         styleUrls : ['./scoreboard.component.scss'],
+         standalone: false,
          })
 
 export class ScoreBoardComponent implements OnInit {

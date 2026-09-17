@@ -9,7 +9,8 @@ import {MoviesApiActions} from '../../../../store/ngrx/actions/movies-api.action
 @Component ({
       selector : 'movice-effect',
       templateUrl : './movies-page-effects.component.html',
-      styleUrls : ['./movies-page-effects.component.scss']
+      styleUrls : ['./movies-page-effects.component.scss'],
+      standalone: false,
 })
 
 

@@ -3,6 +3,7 @@ import {Component,OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
  
 @Component({
+      standalone : false, 
       selector : 'semd-com', 
       templateUrl : './send.html',
       styleUrls : ['send.scss']

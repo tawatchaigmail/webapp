@@ -17,8 +17,8 @@ import { CompanyComponent } from '../company/companyComponent';
   standalone: true,  
   imports: [
     CommonModule,
-    HousingLocationComponent,
-    CompanyComponent,
+  //  HousingLocationComponent,
+  //  CompanyComponent,
   ],
   templateUrl: './home.component.html',
 

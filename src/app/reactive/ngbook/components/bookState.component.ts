@@ -10,6 +10,7 @@ import {BookService} from '../../../service/ngrx/book.service'
      selector : 'ngx-book',
      templateUrl : './bookState.component.html',
      styleUrls : ['./bookState.component.scss'],
+     standalone: false,
 })
 
 export class BookStateComponent implements OnInit {

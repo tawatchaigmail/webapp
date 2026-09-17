@@ -12,7 +12,7 @@ import {movieSelector} from '../../../../store/ngrx/selector/movie.selector';
      selector : 'movie-combining',
      templateUrl : './movie-page-combining.component.html',
      styleUrls : ['./movie-page-combining.component.scss'],
-
+     standalone: false,
      providers : [MoviesCombiningStore],
 })
 

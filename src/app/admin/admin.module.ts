@@ -12,6 +12,7 @@ import {SendComponent} from './components/send.component/send';
     imports : [
               CommonModule,
               AdminRouting,
+              
               ],
     exports : [
               ],
@@ -21,8 +22,7 @@ import {SendComponent} from './components/send.component/send';
                    AdminComponent,
                    AdminCenterComponent,
                    AdminUsersComponent,
-
-              SendComponent
+                   SendComponent
                    ],
    
  })

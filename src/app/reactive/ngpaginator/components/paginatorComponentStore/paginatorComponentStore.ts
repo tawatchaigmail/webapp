@@ -17,6 +17,7 @@ import {PageEvent} from '../../../../models/ngrx/pageEventInterface';
 @Component({
   selector: 'com-paginator',
   templateUrl: 'paginatorComponentStore.html',
+  standalone: false,
   host: {
     'class': 'mat-paginator',
   },

@@ -8,7 +8,7 @@ import {Router, ActivatedRoute ,ParamMap} from '@angular/router';
  selector : 'admin-com',
  templateUrl : './admin.component.html',
  styleUrls : ['./admin.component.scss'],
- 
+ standalone: false,
 }) 
 
 export class AdminComponent implements OnInit {

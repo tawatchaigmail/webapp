@@ -17,6 +17,7 @@ export interface MatSlideToggleChange {
 @Component({
   selector : 'mat-toggle',
   templateUrl :  './slide-toggle.html',
+  standalone: false,
   encapsulation : ViewEncapsulation.None,                  
   changeDetection : ChangeDetectionStrategy.OnPush,
   

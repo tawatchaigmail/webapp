@@ -16,7 +16,7 @@ import { CompanyDetails } from '../../components/companyDetails/companyDetails';
     imports: [
               CommonModule,
               FormsModule,
-              CompanyDetails
+         //     CompanyDetails
     ],
 
     templateUrl : './companyComponent.html' ,

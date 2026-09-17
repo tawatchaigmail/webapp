@@ -22,7 +22,7 @@ import {ReportFileParametersComponent} from    '../reportFileParameters/reportFi
            imports : [
                       CommonModule,
                       FormsModule,
-                      RouterLink, 
+                //      RouterLink, 
                       RouterOutlet,
                       ReportFileMasterDetailsComponent,
                       ReportFileParametersComponent

@@ -20,7 +20,8 @@ import {
 @Component({
      selector : 'ngx-app-route',
      templateUrl : './app.route.component.html' ,
-     styleUrls : ['./app.route.component.scss']
+     styleUrls : ['./app.route.component.scss'],
+     standalone: false,
 })
 
 export class AppRouteComponent implements OnInit {     

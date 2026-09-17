@@ -12,7 +12,8 @@ import {User} from '../../../models/userInterface' ;
 @Component({
    selector : 'ngx-login',
    templateUrl : './loginstate.component.html',
-   styleUrls : ['./loginstate.component.scss']   
+   styleUrls : ['./loginstate.component.scss'],
+   standalone: false,   
 })
 
 export class LoginStateComponent implements OnInit {

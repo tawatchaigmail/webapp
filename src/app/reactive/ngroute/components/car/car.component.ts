@@ -16,7 +16,8 @@ import {
 @Component({
      selector : 'com-car',
      templateUrl : './car.component.html' ,
-     styleUrls : ['./car.component.scss']
+     styleUrls : ['./car.component.scss'],
+     standalone: false,
 })
 
  export class CarComponent implements OnInit {

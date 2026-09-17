@@ -1,6 +1,7 @@
 import { Component ,OnInit,OnDestroy } from '@angular/core';
 
 @Component({
+  standalone : false,
   selector: 'app-humans-details',
   templateUrl: './humans-details.component.html',
   styleUrls: ['./humans-details.component.scss']

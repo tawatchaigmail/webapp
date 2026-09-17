@@ -13,7 +13,7 @@ import {BookStoreSerchComponent} from './signalStoreComponent/signal.store.book.
      imports : [
                 SignalStateCountComponent, 
                 BookListComponent,
-                BookStoreSerchComponent
+           //     BookStoreSerchComponent
                ]
 })
 

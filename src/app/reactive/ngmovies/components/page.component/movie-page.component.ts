@@ -11,7 +11,7 @@ import {movieSelector} from '../../../../store/ngrx/selector/movie.selector';
      selector : 'movie-com',
      templateUrl : './movie-page.component.html',
      styleUrls : ['./movie-page.component.scss'],
-
+     standalone: false,
      providers : [MoviesStore],
 })
 

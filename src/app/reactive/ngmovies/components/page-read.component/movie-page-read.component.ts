@@ -12,7 +12,7 @@ import {movieSelector} from '../../../../store/ngrx/selector/movie.selector';
      selector : 'movie-comread',
      templateUrl : './movie-page-read.component.html',
      styleUrls : ['./movie-page-read.component.scss'],
-
+     standalone: false,
      providers : [MoviesReadStore],
 })
 

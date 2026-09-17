@@ -4,7 +4,8 @@ import {MovicesService} from '../../../services/movices.service';
 @Component({
  selector : 'movie',
  templateUrl : './movies-page.companent.html',
- styleUrls:['./movies-page.companent.scss']
+ styleUrls:['./movies-page.companent.scss'],
+ standalone: false,
 })
 
 export class MoviePageServiceCompanent implemsnts OnInit {

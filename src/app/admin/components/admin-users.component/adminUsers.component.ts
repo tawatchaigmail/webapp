@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 
 @Component({
  selector : 'admin-users',
-// standalone: true,
+ standalone : false,
 /*
  imports : [
             CommonModule

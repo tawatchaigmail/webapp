@@ -8,7 +8,7 @@ import {ComponentStore} from '@ngrx/component-store';
   templateUrl :  './app-toggle.component.html',
 
  // styleUrls : ['./app-toggle.component.scss'],
-  
+  standalone: false,
 })
 
 export class AppToggleComponent implements OnInit {
