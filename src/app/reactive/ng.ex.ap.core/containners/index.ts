@@ -1,0 +1,1 @@
+export * From './core.app.component'

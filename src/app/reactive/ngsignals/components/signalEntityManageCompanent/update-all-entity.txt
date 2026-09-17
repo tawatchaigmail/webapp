@@ -1,0 +1,6 @@
+patchState(store, updateAllEntities({ text: '' }));
+
+patchState(
+  store,
+  updateAllEntities((todo) => ({ text: `${todo.text} ${todo.id}` }))
+);

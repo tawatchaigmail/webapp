@@ -1,0 +1,37 @@
+describe('MoviesStore', () => {
+  // ... setup omitted
+
+  it('should test two sequential loads with a Signal', fakeAsync(() => {
+    const store = setup();
+    const studio = signal('Warner Bros');
+    store.load(studio);
+
+    tick(100);
+    expect(store.movies()).toEqual([{ id: 1, name: 'Harry Potter' }]);
+
+    studio.set('Universal');
+    tick(100);
+    expect(store.movies()).toEqual([{ id: 2, name: 'Jurassic Park' }]);
+  }));
+
+  it('should cancel a running request when a new one is made via a Signal', fakeAsync(() => {
+    const store = setup();
+    const studio = signal('Warner Bros');
+
+    effect(() => {
+      console.log(studio());
+    });
+    store.load(studio);
+
+    tick(50);
+
+    studio.set('Universal');
+    tick(50);
+    expect(store.movies()).toEqual([]);
+    expect(store.loading()).toBe(true);
+
+    tick(50);
+    expect(store.movies()).toEqual([{ id: 2, name: 'Jurassic Park' }]);
+    expect(store.loading()).toBe(false);
+  }));
+});

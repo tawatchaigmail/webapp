@@ -1,0 +1,9 @@
+import { signalStore } from '@ngrx/signals';
+import { withSelectedEntity } from './with-selected-entity';
+import { Book } from './book';
+
+export const BooksStore = signalStore(
+  withState({ books: [] as Book[], isLoading: false }),
+  // Error: `EntityState` properties (`entityMap` and `ids`) are missing in the `BooksStore`.
+  withSelectedEntity()
+);

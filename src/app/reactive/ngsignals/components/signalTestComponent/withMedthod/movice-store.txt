@@ -1,0 +1,22 @@
+import { signalStore, withState } from '@ngrx/signals';
+
+type State = { studio: string; movies: Movie[]; loading: boolean };
+
+export const MoviesStore = signalStore(
+  withState<State>({
+    studio: '',
+    movies: [],
+    loading: false,
+  }),
+  withMethods((store) => {
+    const moviesService = store.inject(MoviesService);
+
+    return {
+      async load(studio: string) {
+        this.patchState({ loading: true });
+        const movies = await moviesService.loadMovies(studio);
+        this.patchState(store, { studio, movies, loading: false });
+      },
+    };
+  })
+);

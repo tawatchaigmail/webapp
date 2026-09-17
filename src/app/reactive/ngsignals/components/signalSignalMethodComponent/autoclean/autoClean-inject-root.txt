@@ -1,0 +1,18 @@
+@Injectable({ providedIn: 'root' })
+export class NumbersService {
+  readonly logDoubledNumber = signalMethod<number>((num) => {
+    const double = num * 2;
+    console.log(double);
+  });
+}
+
+@Component({ /* ... */ })
+export class Numbers implements OnInit {
+  readonly numbersService = inject(NumbersService);
+
+  ngOnInit(): void {
+    const value = signal(2);
+    //  Uses the injection context of the `NumbersService`, which is root.
+    this.numbersService.logDoubledNumber(value);
+  }
+}

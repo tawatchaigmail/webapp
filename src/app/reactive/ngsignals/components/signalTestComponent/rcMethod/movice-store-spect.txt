@@ -1,0 +1,60 @@
+describe('MoviesStore', () => {
+  // ... beforeEach and afterEach omitted
+
+  const setup = () => {
+    const moviesService = {
+      load: jest.fn((studio: string) =>
+        of([
+          studio === 'Warner Bros'
+            ? { id: 1, name: 'Harry Potter' }
+            : { id: 2, name: 'Jurassic Park' }
+        ]).pipe(delay(100))
+      ),
+    };
+
+    TestBed.configureTestingModule({
+      providers: [
+        {
+          provide: MoviesService,
+          useValue: moviesService,
+        },
+      ],
+    });
+
+    return TestBed.inject(MoviesStore);
+  };
+
+  it('should load two times', fakeAsync(() => {
+    const store = setup();
+
+    const studio$ = new Subject<string>();
+    store.load(studio$);
+    studio$.next('Warner Bros');
+
+    tick(100);
+    expect(store.movies()).toEqual([{ id: 1, name: 'Harry Potter' }]);
+
+    studio$.next('Universal');
+    tick(100);
+    expect(store.movies()).toEqual([{ id: 2, name: 'Jurassic Park' }]);
+  }));
+
+  it('should cancel a running request when a new one is made', fakeAsync(() => {
+    const store = setup();
+
+    const studio$ = new Subject<string>();
+    store.load(studio$);
+    studio$.next('Warner Bros');
+
+    tick(50);
+    studio$.next('Universal');
+
+    tick(50);
+    expect(store.movies()).toEqual([]);
+    expect(store.loading()).toBe(true);
+
+    tick(50);
+    expect(store.movies()).toEqual([{ id: 2, name: 'Jurassic Park' }]);
+    expect(store.loading()).toBe(false);
+  }));
+});

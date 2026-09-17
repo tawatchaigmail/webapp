@@ -1,0 +1,29 @@
+import { effect } from '@angular/core';
+import {
+  getState,
+  patchState,
+  signalStore,
+  withHooks,
+  withMethods,
+  withState,
+} from '@ngrx/signals';
+
+export const CounterStore = signalStore(
+  withState({ count: 0 }),
+  withMethods((store) => ({
+    increment(): void {
+      patchState(store, { count: store.count() + 1 });
+    },
+  })),
+  withHooks({
+    onInit(store) {
+      effect(() => {
+        //  The effect is re-executed on state change.
+        const state = getState(store);
+        console.log('counter state', state);
+      });
+
+      setInterval(() => store.increment(), 1_000);
+    },
+  })
+);

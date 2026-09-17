@@ -1,0 +1,13 @@
+import { signalStore, type } from '@ngrx/signals';
+import { withEntities } from '@ngrx/signals/entities';
+
+type Todo = {
+  id: number;
+  text: string;
+  completed: boolean;
+};
+
+export const TodosStore = signalStore(
+  //  Entity type is specified using the `type` function.
+  withEntities({ entity: type<Todo>(), collection: 'todo' }),
+);

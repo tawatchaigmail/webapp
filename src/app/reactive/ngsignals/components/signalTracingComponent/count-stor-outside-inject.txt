@@ -1,0 +1,20 @@
+import { Component, inject, Injector, OnInit } from '@angular/core';
+import { watchState } from '@ngrx/signals';
+import { CounterStore } from './counter-store';
+
+@Component({
+  /* ... */
+  providers: [CounterStore],
+})
+export class Counter implements OnInit {
+  readonly #injector = inject(Injector);
+  readonly store = inject(CounterStore);
+
+  ngOnInit(): void {
+    watchState(this.store, console.log, {
+      injector: this.#injector,
+    });
+
+    setInterval(() => this.store.increment(), 2_000);
+  }
+}

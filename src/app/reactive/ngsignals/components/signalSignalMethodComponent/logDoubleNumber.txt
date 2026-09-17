@@ -1,0 +1,19 @@
+@Component({ /* ... */ })
+export class Numbers {
+  readonly logDoubledNumber = signalMethod<number>((num) => {
+    const double = num * 2;
+    console.log(double);
+  });
+
+  constructor() {
+    this.logDoubledNumber(1);
+    // console output: 2
+
+    const num = signal(2);
+    this.logDoubledNumber(num);
+    // console output: 4
+    
+    setTimeout(() => num.set(3), 3_000);
+    // console output after 3 seconds: 6
+  }
+}

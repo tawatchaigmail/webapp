@@ -1,0 +1,30 @@
+// ... other imports
+import { Dispatcher } from '@ngrx/signals/events';
+import { bookSearchEvents } from './book-search-events';
+
+@Component({
+  // ... component config
+  template: `
+    <h1>Search Books</h1>
+  
+    <input
+      type="text"
+      [ngModel]="store.query()"
+      (ngModelChange)="changeQuery($event)"
+    />
+
+    <!-- ... rest of the template -->
+  `,
+})
+export class BookSearch {
+  readonly dispatcher = inject(Dispatcher);
+  readonly store = inject(BookSearchStore);
+
+  constructor() {
+    this.dispatcher.dispatch(bookSearchEvents.opened());
+  }
+
+  changeQuery(query: string): void {
+    this.dispatcher.dispatch(bookSearchEvents.queryChanged(query));
+  }
+}

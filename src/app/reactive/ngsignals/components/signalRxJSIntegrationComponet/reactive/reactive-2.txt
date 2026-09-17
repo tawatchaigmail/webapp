@@ -1,0 +1,26 @@
+import { Component, inject, Injectable, Injector, OnInit } from '@angular/core';
+import { tap } from 'rxjs';
+import { rxMethod } from '@ngrx/signals/rxjs-interop';
+
+@Injectable({ providedIn: 'root' })
+export class NumbersService {
+  readonly log = rxMethod<number>(tap(console.log));
+}
+
+@Component({ /* ... */ })
+export class Numbers implements OnInit {
+  readonly #injector = inject(Injector);
+  readonly #numbersService = inject(NumbersService);
+
+  constructor() {
+    const num1$ = interval(1_000);
+    //  Automatic cleanup when component is destroyed.
+    this.#numbersService.log(num1$);
+  }
+
+  ngOnInit(): void {
+    const num2$ = interval(2_000);
+    //  Requires injector for cleanup when component is destroyed.
+    this.#numbersService.log(num2$, { injector: this.#injector });
+  }
+}

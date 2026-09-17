@@ -1,0 +1,28 @@
+import { Component, inject, signal } from '@angular/core';
+import { exhaustMap } from 'rxjs';
+import { rxMethod } from '@ngrx/signals/rxjs-interop';
+import { tapResponse } from '@ngrx/operators';
+import { BooksService } from './books-service';
+import { Book } from './book';
+
+@Component({ /* ... */ })
+export class BookList {
+  readonly #booksService = inject(BooksService);
+  readonly books = signal<Book[]>([]);
+
+  //  Creating a reactive method without arguments.
+  readonly loadAllBooks = rxMethod<void>(
+    exhaustMap(() => {
+      return this.#booksService.getAll().pipe(
+        tapResponse({
+          next: (books) => this.books.set(books),
+          error: console.error,
+        })
+      );
+    })
+  );
+
+  constructor() {
+    this.loadAllBooks();
+  }
+}

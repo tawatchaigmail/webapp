@@ -1,0 +1,13 @@
+@Component({ /* ... */ })
+export class Numbers implements OnInit {
+  readonly logDoubledNumber = signalMethod<number>((num) => {
+    const double = num * 2;
+    console.log(double);
+  });
+
+  ngOnInit(): void {
+    const value = signal(2);
+    //  Uses the injection context of the `Numbers` component.
+    this.logDoubledNumber(value);
+  }
+}

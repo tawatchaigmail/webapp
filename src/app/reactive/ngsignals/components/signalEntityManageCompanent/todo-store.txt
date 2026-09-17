@@ -1,0 +1,13 @@
+import { computed } from '@angular/core';
+import { signalStore } from '@ngrx/signals';
+import { withEntities } from '@ngrx/signals/entities';
+
+type Todo = {
+  id: number;
+  text: string;
+  completed: boolean;
+};
+
+export const TodosStore = signalStore(
+  withEntities<Todo>()
+);

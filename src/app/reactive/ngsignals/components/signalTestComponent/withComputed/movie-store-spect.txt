@@ -1,0 +1,9 @@
+import { MoviesStore } from './movies.store';
+
+describe('MoviesStore', () => {
+  it('should verify that three movies are available', () => {
+    const store = TestBed.inject(MoviesStore);
+
+    expect(store.moviesCount()).toBe(3);
+  });
+});

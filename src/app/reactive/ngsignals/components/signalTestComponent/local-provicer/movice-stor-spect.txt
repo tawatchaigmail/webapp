@@ -1,0 +1,13 @@
+import { MoviesStore } from './movies.store';
+
+describe('MoviesStore', () => {
+  it('should verify that three movies are available', () => {
+    TestBed.configureTestingModule({
+      providers: [MoviesStore],
+    });
+
+    const store = TestBed.inject(MoviesStore);
+
+    expect(store.movies()).toHaveLength(3);
+  });
+});

@@ -1,0 +1,17 @@
+export const CounterStore = signalStore(
+  /* ... */
+  withHooks((store) => {
+    const logger = inject(Logger);
+    let interval = 0;
+
+    return {
+      onInit() {
+        interval = setInterval(() => store.increment(), 2_000);
+      },
+      onDestroy() {
+        logger.info('count on destroy', store.count());
+        clearInterval(interval);
+      },
+    };
+  }),
+);

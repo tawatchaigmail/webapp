@@ -1,0 +1,11 @@
+import { signalStore } from '@ngrx/signals';
+import { withEntities } from '@ngrx/signals/entities';
+import { withRequestStatus } from './with-request-status';
+import { withLogger } from './with-logger';
+import { Book } from './book';
+
+export const BooksStore = signalStore(
+  withEntities<Book>(),
+  withRequestStatus(),
+  withLogger('books')
+);

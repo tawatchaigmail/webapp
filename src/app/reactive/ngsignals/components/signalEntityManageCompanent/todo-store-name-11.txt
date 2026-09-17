@@ -1,0 +1,16 @@
+export const LibraryStore = signalStore(
+  withEntities({ entity: type<Book>(), collection: 'book' }),
+  withEntities({ entity: type<Author>(), collection: 'author' }),
+  withEntities({ entity: type<Category>(), collection: 'category' }),
+  withMethods((store) => ({
+    addBook(book: Book): void {
+      patchState(store, addEntity(book, { collection: 'book' }));
+    },
+    addAuthor(author: Author): void {
+      patchState(store, addEntity(author, { collection: 'author' }));
+    },
+    addCategory(category: Category): void {
+      patchState(store, addEntity(category, { collection: 'category' }));
+    },
+  }))
+);

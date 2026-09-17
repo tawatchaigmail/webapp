@@ -1,0 +1,17 @@
+@Component({
+  // ... other metadata
+  providers: [OptionsStore],
+})
+export class OptionList {
+  readonly store = inject(OptionsStore);
+
+  constructor() {
+    console.log(this.store.selectedOption()); // logs: 1
+
+    this.store.setSelectedOption(2);
+    console.log(this.store.selectedOption()); // logs: 2
+
+    this.store.setOptions([4, 5, 6]);
+    console.log(this.store.selectedOption()); // logs: 4
+  }
+}

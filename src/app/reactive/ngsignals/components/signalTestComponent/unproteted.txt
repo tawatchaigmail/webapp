@@ -1,0 +1,21 @@
+// counter.store.ts
+const CounterStore = signalStore(
+  { providedIn: 'root' },
+  withState({ count: 1 }),
+  withComputed(({ count }) => ({
+    doubleCount: computed(() => count() * 2),
+  })),
+);
+
+// counter.store.spec.ts
+import { TestBed } from '@angular/core/testing';
+import { unprotected } from '@ngrx/signals/testing';
+
+describe('CounterStore', () => {
+  it('recomputes doubleCount on count changes', () => {
+    const counterStore = TestBed.inject(CounterStore);
+
+    patchState(unprotected(counterStore), { count: 10 });
+    expect(counterStore.doubleCount()).toBe(20);
+  });
+});

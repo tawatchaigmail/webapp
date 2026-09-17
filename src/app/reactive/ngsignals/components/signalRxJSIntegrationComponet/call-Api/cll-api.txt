@@ -1,0 +1,37 @@
+import { Component, inject, signal } from '@angular/core';
+import { concatMap, filter, pipe } from 'rxjs';
+import { rxMethod } from '@ngrx/signals/rxjs-interop';
+import { tapResponse } from '@ngrx/operators';
+import { BooksService } from './books-service';
+import { Book } from './book';
+
+@Component({ /* ... */ })
+export class BookList {
+  readonly #booksService = inject(BooksService);
+
+  readonly bookMap = signal<Record<string, Book>>({});
+  readonly selectedBookId = signal<string | null>(null);
+
+  readonly loadBookById = rxMethod<string | null>(
+    pipe(
+      filter((id) => !!id && !this.bookMap()[id]),
+      concatMap((id) => {
+        return this.#booksService.getById(id).pipe(
+          tapResponse({
+            next: (book) => this.addBook(book),
+            error: console.error,
+          })
+        );
+      })
+    )
+  );
+
+  constructor() {
+    //  Load book by id whenever the `selectedBookId` value changes.
+    this.loadBookById(this.selectedBookId);
+  }
+
+  addBook(book: Book): void {
+    this.bookMap.update((bookMap) => ({ ...bookMap, [book.id]: book }));
+  }
+}

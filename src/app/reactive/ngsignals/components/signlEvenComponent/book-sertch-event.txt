@@ -1,0 +1,9 @@
+import { type } from '@ngrx/signals';
+import { event } from '@ngrx/signals/events';
+
+export const opened = event('[Book Search Page] Opened');  
+export const queryChanged = event(
+  '[Book Search Page] Query Changed',
+  //  The payload type is defined using the `type` function.
+  type<string>(),
+);

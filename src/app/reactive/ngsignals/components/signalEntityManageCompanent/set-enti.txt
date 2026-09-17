@@ -1,0 +1,35 @@
+//Entity
+patchState(store, setEntity(todo));
+
+//Entities
+patchState(store, setEntities([todo1, todo2]));
+
+// all entity
+
+
+patchState(store, setAllEntities([todo1, todo2, todo3]));
+
+// upseert Entity
+
+patchState(store, upsertEntity(todo));
+
+
+// upser t  Entities
+
+patchState(store, upsertEntities([todo1, todo2]));
+
+// remove  Entity
+
+patchState(store, removeEntity(1));
+
+
+// remove entities by IDs
+patchState(store, removeEntities([1, 2]));
+
+// remove entities by predicate
+patchState(store, removeEntities((todo) => todo.completed));
+
+
+// remove sll enties
+
+patchState(store, removeAllEntities());

@@ -7,7 +7,7 @@ import {BookListStore} from './book-list-store';
     templateUrl : './book-list-service.component.html',
     styleUrls : ['./book-list-service.component.scss'],
     providers : [BookListStore],
-    changeDetection : ChangeDetectionStrategy.OnPush,
+    changeDetection : ChangeDetectionStrategy.OnPush,    
     standalone : true,
 })
 

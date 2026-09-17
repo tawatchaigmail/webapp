@@ -1,0 +1,33 @@
+import { computed, Signal } from '@angular/core';
+import {
+  patchState,
+  signalStore,
+  signalStoreFeature,
+  withComputed,
+  withFeature,
+  withMethods,
+  withState,
+} from '@ngrx/signals';
+import { withEntities } from '@ngrx/signals/entities';
+import { Book } from './book';
+
+export function withBooksFilter(books: Signal<Book[]>) {
+  return signalStoreFeature(
+    withState({ query: '' }),
+    withComputed(({ query }) => ({
+      filteredBooks: computed(() =>
+        books().filter((b) => b.name.includes(query()))
+      ),
+    })),
+    withMethods((store) => ({
+      setQuery(query: string): void {
+        patchState(store, { query });
+      },
+    })),
+)};
+
+export const BooksStore = signalStore(
+  withEntities<Book>(),
+  //  Using `withFeature` to pass input to the `withBooksFilter` feature.
+  withFeature(({ entities }) => withBooksFilter(entities)),
+);

@@ -1,0 +1,34 @@
+import { inject } from '@angular/core';
+import { signalStore, withProps, withState } from '@ngrx/signals';
+import { Logger } from './logger';
+import { BooksService } from './books-service';
+import { Book } from './book';
+
+type BooksState = {
+  books: Book[];
+  isLoading: boolean;
+};
+
+export const BooksStore = signalStore(
+  withState<BooksState>({ books: [], isLoading: false }),
+  withProps(() => ({
+    booksService: inject(BooksService),
+    logger: inject(Logger),
+  })),
+  withMethods(({ booksService, logger, ...store }) => ({
+    async loadBooks(): Promise<void> {
+      logger.debug('Loading books...');
+      patchState(store, { isLoading: true });
+      
+      const books = await booksService.getAll();
+      logger.debug('Books loaded successfully', books);
+      
+      patchState(store, { books, isLoading: false });
+    },
+  })),
+  withHooks({
+    onInit({ logger }) {
+      logger.debug('BooksStore initialized');
+    },
+  }),
+);

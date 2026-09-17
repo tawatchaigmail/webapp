@@ -1,0 +1,9 @@
+import { signalStore } from '@ngrx/signals';
+import { withEntities } from '@ngrx/signals/entities';
+import { withSelectedEntity } from './with-selected-entity';
+import { Book } from './book';
+
+export const BooksStore = signalStore(
+  withEntities<Book>(),
+  withSelectedEntity()
+);

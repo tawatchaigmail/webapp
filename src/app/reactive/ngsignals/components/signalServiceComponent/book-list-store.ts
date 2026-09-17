@@ -7,21 +7,30 @@ import {signalState, patchState} from '@ngrx/signals'
 import {Book} from '../../../../models/ngrx/bookInterface';
 import {BookService} from '../../../../service/ngrx/book.service';
 
-type BookListState = {books: Book[]; isLoading: boolean};
+type BookListState = {bbooks: Book[]; isLoading: boolean};
 
 const initialState: BookListState = {
-                      books: [],
+
+                      bbooks:  
+                      
+                             [{ id : '1154' , 
+                                  volumeInfo : {
+                                                title : '154',
+                                                authers : ['5474'] 
+                                               }
+                                }] ,
+                       
                       isLoading: false,
-};
+}; 
 
 @Injectable()
 export class BookListStore {
    readonly #bookService = inject(BookService);
    readonly #state = signalState(initialState);
  
-   readonly books = this.#state.books;
-   readonly isLoading = this.#state.isLoading;
-
+ //  readonly books = this.#state.bbooks;
+ //  readonly isLoading = this.#state.isLoading;
+   
    readonly loadBooks = rxMethod<void>(
 
        pipe(
@@ -30,7 +39,14 @@ export class BookListStore {
                   //         return this.#bookService.getAll().pipe(
                            return this.#bookService.getBook().pipe(
                                                                tapResponse({
-                                                                            next: (books) => patchState(this.#state, {books}),
+                                                                            next: (books) => patchState(this.#state, 
+                                                                                                          { 
+                                                                                                            bbooks : books ,  
+                                                                                                            isLoading: false 
+                                                                                                          } 
+                                                                                                         //    [{
+                                                                                                         //    }]
+                                                                                                        ),
                                                                             error : console.error,
                                                                             finalize: () => patchState(this.#state, { isLoading: false}), 
                                                                           })
@@ -38,4 +54,5 @@ export class BookListStore {
                           }  )  // exhasusMap
      )  // pipe 1
    );
+ 
 } 

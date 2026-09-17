@@ -1,0 +1,33 @@
+// ... other imports
+import { switchMap, tap } from 'rxjs';
+import { Events, withEffects } from '@ngrx/signals/events';
+import { mapResponse } from '@ngrx/operators';
+import { BooksService } from './books-service';
+
+export const BookSearchStore = signalStore(
+  // ... other features
+  withEffects(
+    (
+      store,
+      events = inject(Events),
+      booksService = inject(BooksService),
+    ) => ({
+      loadBooksByQuery$: events
+        .on(bookSearchEvents.opened, bookSearchEvents.queryChanged)
+        .pipe(
+          switchMap(() =>
+            booksService.getByQuery(store.query()).pipe(
+              mapResponse({
+                next: (books) => booksApiEvents.loadedSuccess(books),
+                error: (error: { message: string }) =>
+                  booksApiEvents.loadedFailure(error.message),
+              }),
+            ),
+          ),
+        ),
+      logError$: events
+        .on(booksApiEvents.loadedFailure)
+        .pipe(tap(({ payload }) => console.error(payload))),
+    }),
+  ),
+);

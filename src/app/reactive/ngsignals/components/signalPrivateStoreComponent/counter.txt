@@ -1,0 +1,24 @@
+import { Component, inject, OnInit } from '@angular/core';
+import { CounterStore } from './counter-store';
+
+@Component({
+  /* ... */
+  providers: [CounterStore],
+})
+export class Counter implements OnInit {
+  readonly store = inject(CounterStore);
+
+  ngOnInit(): void {
+    console.log(this.store.count1()); // 
+    console.log(this.store._count2()); // 
+
+    console.log(this.store._doubleCount1()); // 
+    console.log(this.store.doubleCount2()); // 
+
+    this.store._count2$.subscribe(console.log); // 
+    this.store.doubleCount1$.subscribe(console.log); // 
+
+    this.store.increment1(); // 
+    this.store._increment2(); // 
+  }
+}

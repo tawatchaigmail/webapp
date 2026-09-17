@@ -2,7 +2,8 @@ import {Component,OnInit} from '@angular/core'
 import {CommonModule} from '@angular/common'
 
 import {SignalStateCountComponent} from './signalStateComponent/signal.state.component';
-//import {BookListComponent} from './signalServiceComponent/book-list-service.component';
+import {BookListComponent} from './signalServiceComponent/book-list-service.component';
+import {BookStoreSerchComponent} from './signalStoreComponent/signal.store.book.search.component';
 
 @Component ({
      selector : 'ngx-signel-st',          
@@ -11,7 +12,8 @@ import {SignalStateCountComponent} from './signalStateComponent/signal.state.com
      standalone : true,
      imports : [
                 SignalStateCountComponent, 
-               // BookListComponent
+                BookListComponent,
+                BookStoreSerchComponent
                ]
 })
 

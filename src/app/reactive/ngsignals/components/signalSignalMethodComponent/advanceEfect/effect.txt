@@ -1,0 +1,14 @@
+@Component({ /* ... */ })
+export class Numbers {
+  readonly num = signal(2);
+  readonly logDoubledNumberEffect = effect(() => {
+    console.log(this.num() * 2);
+  });
+  readonly logDoubledNumber = signalMethod<number>((num) => {
+    console.log(num * 2);
+  });
+
+  constructor() {
+    this.logDoubledNumber(this.num);
+  }
+}
