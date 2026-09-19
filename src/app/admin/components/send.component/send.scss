@@ -1,0 +1,19 @@
+
+:host { 
+    
+    position: fixed;
+    z-index: 90000; /* ค่ายิ่งมาก ยิ่งแสดงอยู่เหนือตัวอื่น */
+    margin: auto; /* กำหนดเพื่อให้ค่าอยู่ตรงกลาง */
+    width: 60%;
+    top: 35%;
+    left: 50%; /* ต้องกำหนดเป็น 50% */
+    margin-top: -100px;
+    margin-left: -30%;  /* เป็นค่าติดบ ครึ่งหนึ่งของความกว้าง width*/    
+    padding: 10px;
+    padding-top: 30px;
+    z-index: 99999;
+    background-color: #FFFFFF;
+    box-shadow: 6px 5px 5px 0px rgba(196,196,196,1);
+    border: 1px solid #868686; 
+    
+}

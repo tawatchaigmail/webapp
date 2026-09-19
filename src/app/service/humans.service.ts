@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { catchError, map, tap } from 'rxjs/operators';
 import {HumansInterface} from '../models/humansInterface';
-import {environment} from '../environments/environment';
+import {environment} from '../environments/environments';
 
 @Injectable({
    providedIn : 'root'

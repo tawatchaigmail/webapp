@@ -1,0 +1,23 @@
+import { Component } from '@angular/core';
+import { interval, map, of, pipe, tap } from 'rxjs';
+import { rxMethod } from '@ngrx/signals/rxjs-interop';
+
+@Component({ /* ... */ })
+export class Numbers {
+  readonly logDoubledNumber = rxMethod<number>(
+    pipe(
+      map((num) => num * 2),
+      tap(console.log)
+    )
+  );
+
+  constructor() {
+    const num1$ = of(100, 200, 300);
+    this.logDoubledNumber(num1$);
+    // console output: 200, 400, 600
+
+    const num2$ = interval(2_000);
+    this.logDoubledNumber(num2$);
+    // console output: 0, 2, 4, 6, 8, 10, ... (every 2 seconds)
+  }
+}

@@ -1,0 +1,37 @@
+import { computed } from '@angular/core';
+import { toObservable } from '@angular/core/rxjs-interop';
+import {
+  patchState,
+  signalStore,
+  withComputed,
+  withMethods,
+  withProps,
+  withState,
+} from '@ngrx/signals';
+
+export const CounterStore = signalStore(
+  withState({
+    count1: 0,
+    //  private state slice
+    _count2: 0,
+  }),
+  withComputed(({ count1, _count2 }) => ({
+    //  private computed signal
+    _doubleCount1: computed(() => count1() * 2),
+    doubleCount2: computed(() => _count2() * 2),
+  })),
+  withProps(({ count2, _doubleCount1 }) => ({
+    //  private property
+    _count2$: toObservable(count2),
+    doubleCount1$: toObservable(_doubleCount1),
+  })),
+  withMethods((store) => ({
+    increment1(): void {
+      patchState(store, { count1: store.count1() + 1 });
+    },
+    //  private method
+    _increment2(): void {
+      patchState(store, { _count2: store._count2() + 1 });
+    },
+  })),
+);

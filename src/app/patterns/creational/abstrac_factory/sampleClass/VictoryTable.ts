@@ -1,0 +1,1 @@
+victoryTable extend Interfacetable

@@ -1,0 +1,2 @@
+macButton implement Button
++pain()

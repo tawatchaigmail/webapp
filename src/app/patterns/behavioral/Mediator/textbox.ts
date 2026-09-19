@@ -1,0 +1,1 @@
+class textbox extend component

@@ -1,0 +1,28 @@
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { BookListStore } from './book-list-store';
+
+@Component({
+  selector: 'ngrx-book-list',
+  template: `
+    <h1>Books</h1>
+  
+    @if (store.isLoading()) {
+      <p>Loading...</p>
+    } @else {
+      <ul>
+        @for (book of store.books(); track book.id) {
+          <li>{{ book.title }}</li>
+        }
+      </ul>
+    }
+  `,
+  providers: [BookListStore],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class BookList {
+  readonly store = inject(BookListStore);
+
+  constructor() {
+    this.store.loadBooks();
+  }
+}

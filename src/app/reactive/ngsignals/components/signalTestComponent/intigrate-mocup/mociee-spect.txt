@@ -1,0 +1,31 @@
+it('should show movies with MoviesStore', async () => {
+  const fixture = TestBed.configureTestingModule({
+    imports: [MoviesComponent],
+    providers: [provideHttpClient(), provideHttpClientTesting()],
+  }).createComponent(MoviesComponent);
+
+  const ctrl = TestBed.inject(HttpTestingController);
+
+  fixture.autoDetectChanges(true);
+
+  const input: HTMLInputElement = fixture.debugElement.query(
+    By.css('input')
+  ).nativeElement;
+  input.value = 'Warner Bros';
+  input.dispatchEvent(new Event('input'));
+
+
+  ctrl.expectOne('https://movies.com/studios?query=Warner%20Bros').flush(
+    [
+      {id: 1, name: 'Harry Potter'},
+      {id: 2, name: 'The Dark Knight'},
+    ]
+  )
+  await fixture.whenStable()
+
+  const movies = fixture.debugElement.queryAll(By.css('p')).map((el) =>
+    el.nativeElement.textContent
+  );
+  expect(movies).toEqual(['1: Harry Potter', '2: The Dark Knight']);
+  ctrl.verify();
+});

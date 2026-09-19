@@ -1,0 +1,15 @@
+import { toObservable } from '@angular/core/rxjs-interop';
+import { signalStore, withProps, withState } from '@ngrx/signals';
+import { Book } from './book';
+
+type BooksState = {
+  books: Book[];
+  isLoading: boolean;
+};
+
+export const BooksStore = signalStore(
+  withState<BooksState>({ books: [], isLoading: false }),
+  withProps(({ isLoading }) => ({
+    isLoading$: toObservable(isLoading),
+  })),
+);

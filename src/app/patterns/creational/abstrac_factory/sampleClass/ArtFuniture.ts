@@ -1,0 +1,1 @@
+ArtFuniturre extend InterfaceFunitureFactory

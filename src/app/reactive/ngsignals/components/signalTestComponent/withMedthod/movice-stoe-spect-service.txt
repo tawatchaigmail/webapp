@@ -1,0 +1,34 @@
+describe('MoviesStore', () => {
+  // ... beforeEach, and afterEach omitted
+
+  it('should depend on flushEffects because of synchronous execution', () => {
+    const moviesService = {
+      load: jest.fn((studio: string) =>
+        of([
+          studio === 'Warner Bros'
+            ? { id: 1, name: 'Harry Potter' }
+            : { id: 2, name: 'Jurassic Park' }
+        ])
+      ),
+    };
+
+    TestBed.configureTestingModule({
+      providers: [
+        {
+          provide: MoviesService,
+          useValue: moviesService,
+        },
+      ],
+    });
+
+    const store = TestBed.inject(MoviesStore);
+    const studio = signal('Warner Bros');
+    store.load(studio);
+    TestBed.tick(); // required
+    expect(store.movies()).toEqual([{ id: 1, name: 'Harry Potter' }]);
+
+    studio.set('Universal');
+    TestBed.tick(); // required
+    expect(store.movies()).toEqual([{ id: 2, name: 'Jurassic Park' }]);
+  });
+});

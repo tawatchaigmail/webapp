@@ -1,0 +1,17 @@
+import { Signal } from '@angular/core';
+import { signalStoreFeature, type, withMethods } from '@ngrx/signals';
+
+export function withBaz<Foo extends string | number>() {
+  return signalStoreFeature(
+    {
+      props: type<{ foo: Signal<Foo> }>(),
+      methods: type<{ bar(foo: number): void }>(),
+    },
+    withMethods((store) => ({
+      baz(): void {
+        const foo = store.foo();
+        store.bar(typeof foo === 'number' ? foo : Number(foo));
+      },
+    }))
+  );
+}

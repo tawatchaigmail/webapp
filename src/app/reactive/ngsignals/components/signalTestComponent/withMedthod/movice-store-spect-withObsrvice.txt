@@ -1,0 +1,29 @@
+describe('MoviesStore', () => {
+  it('should load movies of Warner Bros', fakeAsync(() => {
+    const moviesService = {
+      load: () =>
+        Promise.resolve([
+          { id: 1, name: 'Harry Potter' },
+          { id: 2, name: 'The Dark Knight' },
+        ]),
+    };
+
+    TestBed.configureTestingModule({
+      providers: [
+        {
+          provide: MoviesService,
+          useValue: moviesService,
+        },
+      ],
+    });
+
+    const store = TestBed.inject(MoviesStore);
+    store.load('Warner Bros');
+    expect(store.loading()).toBe(true);
+    
+    tick();
+
+    expect(store.moviesCount()).toBe(2);
+    expect(store.loading()).toBe(false);
+  }));
+});

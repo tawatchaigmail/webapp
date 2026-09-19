@@ -1,0 +1,1 @@
+macFactory implement GuiInterrace

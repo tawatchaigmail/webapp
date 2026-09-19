@@ -1,0 +1,23 @@
+import { signalStore, withState } from '@ngrx/signals';
+import { on, withReducer } from '@ngrx/signals/events';
+import { bookSearchEvents } from './book-search-events';
+import { booksApiEvents } from './books-api-events';
+import { Book } from './book';
+
+type State = { query: string; books: Book[]; isLoading: boolean };
+
+export const BookSearchStore = signalStore(
+  withState<State>({ query: '', books: [], isLoading: false }),
+  withReducer(
+    on(bookSearchEvents.opened, () => ({ isLoading: true })),
+    on(
+      bookSearchEvents.queryChanged,
+      ({ payload: query }) => ({ query, isLoading: true }),
+    ),
+    on(
+      booksApiEvents.loadedSuccess,
+      ({ payload: books }) => ({ books, isLoading: false }),
+    ),
+    on(booksApiEvents.loadedFailure, () => ({ isLoading: false })),
+  ),
+);

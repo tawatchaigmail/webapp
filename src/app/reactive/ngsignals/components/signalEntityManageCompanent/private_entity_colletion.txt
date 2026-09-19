@@ -1,0 +1,25 @@
+const todoConfig = entityConfig({
+  entity: type<Todo>(),
+  //  private collection
+  collection: '_todo',
+});
+
+const TodosStore = signalStore(
+  withEntities(todoConfig),
+  withComputed(({ _todoEntities }) => ({
+    //  exposing entity array publicly
+    todos: _todoEntities,
+  }))
+);
+
+@Component({
+  /* ... */
+  template: `
+    <h1>Todos</h1>
+    <ngrx-todo-list [todos]="store.todos()" />
+  `,
+  providers: [TodosStore],
+})
+class Todos {
+  readonly store = inject(TodosStore);
+}

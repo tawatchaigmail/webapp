@@ -3,8 +3,8 @@ import {CommonModule} from '@angular/common';
 import {RouterModule ,RouterLink ,Routes} from '@angular/router';
          
 @Component({ 
-           selector: 'dash-bord',
-         //  stanalon: true,
+           standalone: false,
+           selector: 'dash-bord',           
           // imports: [CommonModule,],
            templateUrl : './dashbord.component.html'
 })

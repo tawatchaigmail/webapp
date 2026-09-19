@@ -1,0 +1,17 @@
+@Component({ /* ... */ })
+export class Numbers implements OnInit {
+  readonly numbersService = inject(NumbersService);
+  readonly injector = inject(Injector);
+
+  ngOnInit(): void {
+    const value = signal(1);
+    //  Providing the `Numbers` component injector
+    // to ensure cleanup on component destroy.
+    this.numbersService.logDoubledNumber(value, {
+      injector: this.injector,
+    });
+  
+    //  No need to provide an injector for static values.
+    this.numbersService.logDoubledNumber(2);
+  }
+}

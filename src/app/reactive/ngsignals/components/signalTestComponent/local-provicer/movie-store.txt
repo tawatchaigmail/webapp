@@ -1,0 +1,7 @@
+export const MoviesStore = signalStore(
+  withState({
+    movies: [
+      // ... entries
+    ],
+  })
+);

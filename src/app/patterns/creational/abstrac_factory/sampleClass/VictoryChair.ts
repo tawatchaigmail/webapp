@@ -1,0 +1,1 @@
+victoryChair extend interfaceChair

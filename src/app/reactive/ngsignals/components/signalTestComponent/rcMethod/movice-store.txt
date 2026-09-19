@@ -1,0 +1,19 @@
+export const MoviesStore = signalStore(
+  // ... code omitted
+  withMethods((store, moviesService = inject(MoviesService)) => ({
+    load: rxMethod<string>(
+      pipe(
+        tap(() => patchState(store, { loading: true })),
+        switchMap((studio) =>
+          moviesService.load(studio).pipe(
+            tapResponse({
+              next: (movies) =>
+                patchState(store, { movies, loading: false }),
+              error: console.error,
+            })
+          )
+        )
+      )
+    ),
+  }))
+);

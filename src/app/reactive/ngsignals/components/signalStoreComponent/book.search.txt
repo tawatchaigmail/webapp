@@ -1,0 +1,74 @@
+import { Component, inject } from '@angular/core';
+import { BookSearchStore } from './book-search-store';
+
+@Component({
+  /* ... */
+  // ?? Providing `BookSearchStore` at the component level.
+  providers: [BookSearchStore],
+})
+export class BookSearch {
+  readonly store = inject(BookSearchStore);
+}
+
+
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { JsonPipe } from '@angular/common';
+import { BookSearchStore } from './book-search-store';
+
+@Component({
+  imports: [JsonPipe],
+  template: `
+    <p>Books: {{ store.books() | json }}</p>
+    <p>Loading: {{ store.isLoading() }}</p>
+
+    <!-- ?? The `DeepSignal` value can be read in the same way as `Signal`. -->
+    <p>Pagination: {{ store.filter() | json }}</p>
+
+    <!-- ?? Nested signals are created as `DeepSignal` properties. -->
+    <p>Query: {{ store.filter.query() }}</p>
+    <p>Order: {{ store.filter.order() }}</p>
+  `,
+  providers: [BookSearchStore],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class BookSearch {
+  readonly store = inject(BookSearchStore);
+}
+
+
+
+
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { BookFilter } from './book-filter';
+import { BookList } from './book-list';
+import { BooksStore } from './books.store';
+
+@Component({
+  imports: [BookFilter, BookList],
+  template: `
+    <h1>Books ({{ store.booksCount() }})</h1>
+
+    <ngrx-book-filter
+      [query]="store.filter.query()"
+      [order]="store.filter.order()"
+      (queryChange)="store.updateQuery($event)"
+      (orderChange)="store.updateOrder($event)"
+    />
+
+    <ngrx-book-list
+      [books]="store.sortedBooks()"
+      [isLoading]="store.isLoading()"
+    />
+  `,
+  providers: [BookSearchStore],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class BookSearch {
+  readonly store = inject(BookSearchStore);
+
+  constructor() {
+    const query = this.store.filter.query;
+    // ?? Re-fetch books whenever the value of query signal changes.
+    this.store.loadByQuery(query);
+  }
+}

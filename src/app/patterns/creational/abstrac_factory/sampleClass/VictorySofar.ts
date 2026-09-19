@@ -1,0 +1,1 @@
+victorySofar extend InterfaceSofar

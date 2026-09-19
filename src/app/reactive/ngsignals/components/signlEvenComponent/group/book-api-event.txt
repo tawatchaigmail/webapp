@@ -1,0 +1,11 @@
+import { type } from '@ngrx/signals';
+import { eventGroup } from '@ngrx/signals/events';
+import { Book } from './book';
+
+export const booksApiEvents = eventGroup({
+  source: 'Books API',
+  events: {
+    loadedSuccess: type<Book[]>(),
+    loadedFailure: type<string>(),
+  },
+});

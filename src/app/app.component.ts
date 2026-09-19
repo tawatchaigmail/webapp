@@ -8,7 +8,7 @@ import { CompanyComponent } from './components/company/companyComponent';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
- // standalone: true,  
+  standalone: false,  
 /*
   imports: [
            HomeComponent,

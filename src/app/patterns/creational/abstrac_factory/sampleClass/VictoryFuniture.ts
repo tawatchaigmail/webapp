@@ -1,0 +1,2 @@
+
+victoryFuniture extend InterfaceFunitureFactory

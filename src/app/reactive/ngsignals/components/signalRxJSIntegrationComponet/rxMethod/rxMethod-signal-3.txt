@@ -1,0 +1,22 @@
+import { Component, signal } from '@angular/core';
+import { map, pipe, tap } from 'rxjs';
+import { rxMethod } from '@ngrx/signals/rxjs-interop';
+
+@Component({ /* ... */ })
+export class Numbers {
+  readonly logDoubledNumber = rxMethod<number>(
+    pipe(
+      map((num) => num * 2),
+      tap(console.log)
+    )
+  );
+
+  constructor() {
+    const num = signal(10);
+    this.logDoubledNumber(num);
+    // console output: 20
+
+    num.set(20);
+    // console output: 40
+  }
+}

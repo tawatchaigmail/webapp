@@ -1,0 +1,21 @@
+<h2>page<h2>
+
+<div *ngIf="vm$ | async as vm">
+
+  <div>Items movies length</div>
+  <div>{{vm.movies.length}}</div>
+
+
+  <div>Items userPreferredMovieIds</div>
+  <div>{{vm.userPreferredMovieIds}}</div>
+
+
+  <div>Items userPreferredMovies</div>
+  <div>{{vm.userPreferredMovies}}</div>
+  
+</div>
+
+
+<li *ngFor= "let movie of (movies$ | async)">
+      {{movie.name}}
+</li>

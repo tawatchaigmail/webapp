@@ -1,11 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-
+import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+
+import {StoreModule, provideState, provideStore} from '@ngrx/store' ;
+import {StoreRouterConnectingModule, routerReducer} from '@ngrx/router-store'; 
+import {EffectsModule, provideEffects} from '@ngrx/effects';
+
 import { HttpClientModule } from '@angular/common/http';
 
-import { AppRoutingModule } from './app-routing.module';
+import { AppRouting } from './app.routing';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -16,6 +20,7 @@ import { DashbordComponent} from './components/dashbord/dashbord.component';
 import { ReportsComponent } from './components/reports/reports.component';
 
 import { HumansComponent } from './components/humans/humans.component';
+
 import { HumansDetailsComponent } from './components/humans-details/humans-details.component';
 
 import { Base64Pipe } from './share/convert-base64-img.pipe';
@@ -25,27 +30,75 @@ import { Base64Pipe } from './share/convert-base64-img.pipe';
 //import { CompanyComponent } from './components/company/companyComponent';
 //import { CompanyDetails } from './components/CompanyDetails/CompanyDetails';
 
+// import {AdminModule} from './admin/admin.module';
+import {LoginModule} from './login/login.module';
+
+import {DialogService} from './service/auth/dialogService';
+import {AuthGuadService} from './service/auth/authGuadService'; 
+import {AuthService} from './service/auth/authService'; 
+
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {HttpInterceptorService} from './service/interceptor/interceptor.service';
+
+import {InfoService} from './service/info/info.service';
+
+
+import {enviromentdevtools} from './environments/environments';
+
+import {ReportFileMastersEffect} from './store/ngrx/effects/reportFileMasters.effects';
 
 @NgModule({
-  declarations: [
+  declarations: [      
       AppComponent,
-      DashbordComponent,
-      ReportsComponent,
-      HumansComponent,
+      DashbordComponent,           
+   //   HumansComponent,
       HumansDetailsComponent,
-      Base64Pipe,
+   //   Base64Pipe,
+      
   ],
   imports: [
-    BrowserModule,
-    FormsModule,
-    CommonModule,
-    AppRoutingModule,
-    HttpClientModule,
-    HomeComponent ,   
-    HousingLocationComponent,
-    
+           BrowserModule,
+           CommonModule,
+           FormsModule,
+           ReactiveFormsModule,
+           
+           StoreModule.forRoot({}), 
+           
+           EffectsModule.forRoot(
+                              //   ReportFileMastersEffect
+           ),
+           
+           AppRouting,
+           HttpClientModule,
+           HomeComponent,   
+           HousingLocationComponent,
+           ReportsComponent,
+       //   AdminModule,    
+           LoginModule,
+           enviromentdevtools.imports,
+           StoreRouterConnectingModule.forRoot(),
   ],
-  providers: [],
+  exports:[],
+  providers: [
+             //  provideStore(),
+               AuthGuadService,
+               AuthService,
+               InfoService,
+               {
+                provide : HTTP_INTERCEPTORS,
+                useClass : HttpInterceptorService ,        
+                multi : true,
+               },
+
+/*
+    { provide: APP_BASE_HREF, useValue: '/' },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: 'AUTH_URL', useValue: 'http://localhost:8080/auth' },
+    { provide: 'API_URL', useValue: 'http://localhost:8080/api' },
+    { provide: 'HEADERS', useValue: new HttpHeaders({'Content-Type': 'application/json'}) },
+
+*/
+  ],
   bootstrap: [AppComponent]
 
 })

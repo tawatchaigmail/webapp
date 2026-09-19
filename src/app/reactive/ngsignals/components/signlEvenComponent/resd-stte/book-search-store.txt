@@ -1,0 +1,28 @@
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { BookSearchStore } from './book-search-store';
+
+@Component({
+  selector: 'ngrx-book-search',
+  imports: [FormsModule],
+  template: `
+    <h1>Search Books</h1>
+  
+    <input type="text" [ngModel]="store.query()" />
+    
+    @if (store.isLoading()) {
+      <p>Loading...</p>
+    }
+
+    <ul>
+      @for (book of store.books(); track book.id) {
+        <li>{{ book.title }}</li>
+      }
+    </ul>
+  `,
+  providers: [BookSearchStore],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class BookSearch {
+  readonly store = inject(BookSearchStore);
+}
