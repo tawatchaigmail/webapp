@@ -14,16 +14,14 @@
     "sourceMap": true,
     "declaration": false,
     "experimentalDecorators": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "importHelpers": true,
- /*    "target": "ES2023",  */
-     "target": "ESNext",  
-     "module": "ESNext", 
+    "target": "ESNext",
+    "module": "ESNext",
     "useDefineForClassFields": false,
     "lib": [
-       "ESNext.Array",
-       "ESNext",  
-/*       "ES2022",    */  
+      "ESNext.Array",
+      "ESNext",
       "dom"
     ]
   },
