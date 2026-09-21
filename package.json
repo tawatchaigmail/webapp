@@ -2,7 +2,7 @@
   "name": "webapp",
   "version": "0.0.0",
   "scripts": {
-    "prestart": "nvm use 19.2.25",
+    "prestart": "nvm use 20.9.0",
     "ng": "ng",
     "start": "ng serve --port 4202 ",
     "build": "ng build",
