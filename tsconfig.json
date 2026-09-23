@@ -20,10 +20,15 @@
     "module": "ESNext",
     "useDefineForClassFields": false,
     "lib": [
-      "ESNext.Array",
-      "ESNext",
-      "dom"
-    ]
+          "ESNext.Array",
+          "ESNext",
+          "dom"
+     ],
+     
+     "types": ["node"]
+     /*
+     "typeRoots": ["node_modules/@types"]
+     */
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
