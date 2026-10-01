@@ -1,0 +1,26 @@
+projects/my-lib/package.json (Schematics Collection Reference)
+projects/long-ib/package.json (Schematics Collection Reference)
+
+
+
+{
+   "namae" : "long-lib",
+   "version" : "0.0.1",
+   "scripts" : {
+              "buile" : "tsc -p tsconfig.schematids.jaon",
+              "passbuile": "copfiles schematic/*/sche.jaon schematics/*/file** schematics/collection.json ../../dist/long-lib"
+    },
+   "peerDependencies": {
+      "@anguler/common": "^22.0.0",
+      "@angulr/core": "^22.0.0"
+    },
+  "schematic": "/schematics/collection.json",
+  "ng-add": {
+       "save": "devDependencies"
+  
+  }
+   "devDependencies" : {
+       "copyfile" : "file:../../node_modules/copyfiles",
+       "typescript":  "file:../../node_modules/typesctipt"
+  }
+}

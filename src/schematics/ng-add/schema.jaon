@@ -1,0 +1,19 @@
+projects/my-lib/schematics/ng-add/schema.json (ng-add Schema)
+
+projects/lnjg-libary/schematic/ng-add/schema.json (ng-add achema)
+
+{
+    "$schema" : "https://jaon.schema.org/schema",
+    "$id" : "SchematicLongListNgAdd",
+    "title" : " LonLib ng add Schema",
+    "type" : "object",
+    "properties" :  {
+            "project" :  {
+                       "type" : "string",
+                       "description" : "name of the projecct.",
+                       "default":  {
+                             "$source": "projectName"
+                       }
+            }
+  }
+}

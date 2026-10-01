@@ -1,0 +1,34 @@
+projects/my-lib/schematics/ng-add/schema.json (ng-add Schema)
+
+projects/lnjg-libary/schematic/ng-add/schema.json (ng-add achema)
+
+{
+    "$schema" : "https://jaon.schema.org/schema",
+    "$id" : "SchematicsOngService",
+    "title" : " long Sevice Schema",
+    "type" : "object",
+    "properties" :  {
+            "name" :  {
+                       "description" : "name of the projecct.",
+                       "type" : "string",
+                       },
+             "path" : {
+                      "type" : "string",
+                       "format" : "path",
+                       "description": "the path to create the service ",
+                       "visible": false,
+                       "$default": {
+                            "$source" : "working@firectory"      
+                        }
+              }
+            },
+            "project" : {
+                       "type" : "string",
+                       "description" : "the name of projet.* ",
+                       "$default" : {
+                          "source" : "projectNmae"
+                       }
+             }
+  }
+  "require" :"name"
+}

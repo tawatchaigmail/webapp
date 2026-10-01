@@ -1,0 +1,34 @@
+
+
+project/inig-libary/secmematic/ng-add/schema.json(ng-asd schema)
+
+{
+
+"$schema" : "https://json.schema.org/schema",
+"$id" : "schematicSevice" ,
+"title" : "long serviceschema",
+"type" : "opject" ,
+          "properties" : {
+                  "name" :  {
+                              "description" : "name of the project",
+                              "type" : string,
+                            },
+                   'path' : {
+                               "type" : "string",
+                               "formmat" : "path",
+                               "description" : " the path ro create the service",
+                               "visible" " "false",
+                               "$defaulst" : {
+                                             "working@filterkey"
+                                             }
+                             }
+           },
+           "project" : {
+                        "type" : "string",
+                        "description" : "the name of project",
+                        "$default" : {
+                                      "source" : "projectname"
+                                     }
+            }
+
+}

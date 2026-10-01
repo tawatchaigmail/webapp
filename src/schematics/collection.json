@@ -1,0 +1,17 @@
+projects/lorbong-lib/schematics/collection.json (Schematicx Collection)
+{
+   "$schema":"../../../node.modules/@angular-devkit/achematics/collecttion-schema.jaon",
+    "schematics": {
+      "ng-add": {
+            "description": "add lorbong library to the project",     
+            "factory": "/ng-add/index#ngAdd",
+            "schema": "./ng-add/schema.jaon"
+       },
+     
+       "long-service" : {
+              "sescription" : "generate a service in the project",
+              "factory" : "./long-servie/index#longService",
+              "schema": "./long-service/achematic.json"
+      }
+   }
+}

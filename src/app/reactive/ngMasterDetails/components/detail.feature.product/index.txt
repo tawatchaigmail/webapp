@@ -1,0 +1,46 @@
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FacturaService } from '../../services/factura.service';
+import { Factura } from '../../models/factura';
+
+@Component({
+  selector: 'app-detalle-factura',
+  templateUrl: './detalle-factura.component.html',
+  styleUrls: ['./detalle-factura.component.css']
+})
+export class DetalleFacturaComponent implements OnInit {
+
+  cargado: boolean = false;
+  posicion: number;
+  factura: Factura;
+  idFactura: string;
+   
+  constructor(private facturaService: FacturaService,
+                private route: ActivatedRoute, private router: Router) {
+  }
+
+  ngOnInit() {
+    this.route.paramMap.subscribe(
+      params => {        
+        //Recuperamos la posicion de los parametros
+        this.posicion = +params.get('posicion'); 
+
+        //Recuperamos la factura del array
+        this.factura = this.facturaService.arrayFacturas[this.posicion];
+      }
+    );
+
+    this.cargado = true;
+  }
+
+  verDetalleSig() {
+    this.posicion = this.posicion + 1;
+    this.router.navigate(['detalleFactura', this.posicion]);
+  }
+
+  verDetalleAnt() {
+    this.posicion = this.posicion - 1;
+    this.router.navigate(['detalleFactura', this.posicion]);
+  }
+
+}

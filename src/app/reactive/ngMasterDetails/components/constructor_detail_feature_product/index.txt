@@ -1,0 +1,15 @@
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-contenedor-detalle-factura',
+  templateUrl: './contenedor-detalle-factura.component.html',
+  styleUrls: ['./contenedor-detalle-factura.component.css']
+})
+export class ContenedorDetalleFacturaComponent implements OnInit {
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+}

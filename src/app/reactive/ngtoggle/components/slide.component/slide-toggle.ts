@@ -21,7 +21,7 @@ export interface MatSlideToggleChange {
   encapsulation : ViewEncapsulation.None,                  
   changeDetection : ChangeDetectionStrategy.OnPush,
   
-  styleUrls : ['./slide-toggle.scss'],  
+//  styleUrls : ['./slide-toggle.scss'],  
   providers: [ComponentStore], 
 })
 

@@ -1,0 +1,27 @@
+
+// projects/long-lib/tsconfig.schematics.jaon (Typescript Config)
+
+{
+  "compileroptin": {
+      "baseUrl": ".",
+      "lib": {"es2018","dom"},
+      "description": "true",
+      "module": "commonjs",
+      "moduleResolution": "node",
+      "noEmitOnError": true,
+      "noFallthroughCassesInSwitch": true,
+      "noImplecitAny": true,
+      "noImplecitThis": true,
+      "noUnusedParametrs": false,
+      "noUnusedLocals": true,
+      "rootDir": "schematids",
+      "outDir": "../../dist/long/acheamtics",
+      "skipDefauleLibCheck": true,
+      "skipCheck": true,
+      "sourceMap": true,
+      "target": "es6",
+      "types": ["jasmine","node"]
+  },
+  "include": ["schematis/**/*"],
+  "exclude": ["schematids/*/files/**/*"]
+}

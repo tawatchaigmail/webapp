@@ -1,0 +1,42 @@
+
+
+<h2 class="titulo-vista">Master table</h2>
+
+<mat-spinner [hidden]="cargado" class="progress-loader"></mat-spinner>
+
+<div [hidden]="!cargado">
+    
+    <mat-form-field>
+        <input matInput (keyup)="aplicarFiltro($event.target.value)" placeholder="Write something to filter">
+    </mat-form-field>
+
+    <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+
+    <table mat-table [dataSource]="facturas" matSort (matSortChange)="sortData($event)" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+            <td mat-cell *matCellDef="let factura">{{ factura.id }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
+            <td mat-cell *matCellDef="let factura">{{ factura.title }}</td>
+        </ng-container>
+        
+        <tr mat-header-row *matHeaderRowDef="nomCols"></tr>
+        <tr mat-row *matRowDef="let factura; columns: nomCols; let posicion = index;" 
+            (click)="verDetalle(posicion)"></tr>
+
+    </table>
+
+    <br>
+
+    <div style="text-align: center">
+        <button mat-mini-fab aria-label="Recargar facturas" 
+            color="primary" (click)="recargarFacturas()">
+            <mat-icon>cached</mat-icon>
+        </button>
+    </div>
+
+</div>

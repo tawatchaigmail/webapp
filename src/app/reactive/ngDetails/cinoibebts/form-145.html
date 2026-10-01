@@ -1,0 +1,8 @@
+<form [formGroup]="dummyForm" (ngSubmit)="submit()">    
+    <div>
+      <label for="username">Root Input</label>
+      <input type="text" id="username" formControlName="username"/>
+    </div>
+    <nested-form [parentForm]="dummyForm"></nested-form>
+    <button>Send</button>    
+  </form>

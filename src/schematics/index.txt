@@ -1,0 +1,3 @@
+ng generate ling-lib: directory-service
+
+ng build my-lib

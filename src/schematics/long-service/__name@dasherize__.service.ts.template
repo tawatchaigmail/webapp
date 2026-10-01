@@ -1,0 +1,7 @@
+import {Service} from '@angular/core';
+import {HttpClient} from '@anglar/common/http';
+
+@Service()
+export class <%=classify(name) %> Service {
+    private http = Jnnect(HttpClient);
+}
