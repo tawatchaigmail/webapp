@@ -1,0 +1,32 @@
+{
+    "aspectModelTFiles": ["src\\app\\schematics-esmf\\models\\Movement-2.1.0.ttl"],
+    "excludedProperties": [],
+    "configFile": "wizard.config.json",
+    "complexProps": [
+        {
+            "prop": "position",
+            "propsToShow": ["x", "y", "z"]
+        }
+    ],
+    "selectedModelElementUrn": "urn:samm:org.eclipse.esmf.test:1.0.0#Movement",
+    "jsonAccessPath": "",
+    "defaultSortingCol": "moving",
+    "customColumns": [],
+    "addRowCheckboxes": false,
+    "customRowActions": ["schedule"],
+    "addCommandBar": true,
+    "enabledCommandBarFunctions": ["addCustomCommandBarActions", "addSearchBar", "addEnumQuickFilters", "addDateQuickFilters"],
+    "customCommandBarActions": ["edit.svg"],
+    "enableRemoteDataHandling": true,
+    "enableVersionSupport": true,
+    "overwrite": true,
+    "getOptionalMaterialTheme": false,
+    "datePickers": [
+      {
+        "propertyUrn": "urn:samm:org.eclipse.test:1.0.0#datePicker",
+        "datePicker": {
+          "type": "singleDatePicker"
+        }
+      }
+    ]
+}
