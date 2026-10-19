@@ -1,0 +1,15 @@
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-contenedor-tabla-factura',
+  templateUrl: './contenedor-tabla-factura.component.html',
+  styleUrls: ['./contenedor-tabla-factura.component.css']
+})
+export class ContenedorTablaFacturaComponent implements OnInit {
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+}

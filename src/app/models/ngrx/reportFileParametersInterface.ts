@@ -12,3 +12,18 @@ export interface ReportFileParameters {
       MUTI_FLAG       : string;
       
 }
+
+export interface ReportFileParametersForms {
+      seqNo    : number;
+      reportId : string;
+      parammetrName  : string;
+      initialValue   : string;
+      initialValueTo : string;
+      deswcription   : string;
+      rgText         : string;
+      rgText2        : string;
+      dataType       : string;
+      updatedAllowed : string;
+      multiFlag       : string;
+      
+}

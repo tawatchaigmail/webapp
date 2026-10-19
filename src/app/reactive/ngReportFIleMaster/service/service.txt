@@ -1,0 +1,43 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Factura } from '../models/factura';
+import { Observable } from 'rxjs';
+
+let service: string = 'https://jsonplaceholder.typicode.com';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class FacturaService {
+
+  arrayFacturas: Array<Factura>;
+
+  constructor(private http: HttpClient) { }
+
+  recuperarFacturas(): Observable<Array<Factura>> {
+    return new Observable(observer => {
+      if (this.arrayFacturas) {
+        observer.next(this.arrayFacturas);
+        return observer.complete();
+      }
+      this.http
+        .get(service + '/photos')        
+        .subscribe((facturas: Array<Factura>) => {
+          this.arrayFacturas = facturas;
+          observer.next(this.arrayFacturas);
+          observer.complete();
+        });
+    });
+  }
+
+  recargarFacturas(): Observable<Array<Factura>> {
+    return new Observable(observer => {
+      this.http
+        .get(service + '/photos')        
+        .subscribe((facturas: Array<Factura>) => {
+          this.arrayFacturas = facturas;
+          observer.next(this.arrayFacturas);
+          observer.complete();
+        });
+    });
+  }

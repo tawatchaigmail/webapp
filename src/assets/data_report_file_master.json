@@ -1,0 +1,12 @@
+{
+     "results": {
+                "report_id" : '1',
+                "fileName" : "rpt_contry",
+                "description" : "Contry",
+                "reportGroup" : "1",    
+                "orantation" : "P",
+                "ctrlDocNo" : "",
+                "flagLogFile" : "Y"
+                "paperSize" : "A4"
+    }
+}

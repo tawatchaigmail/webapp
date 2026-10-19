@@ -1,0 +1,41 @@
+
+<h2 class="titulo-vista">Detail page</h2>
+
+<mat-spinner [hidden]="cargado" class="progress-loader"></mat-spinner>
+
+<div [hidden]="!cargado">
+
+    <mat-card class="detalle-card centrado2">
+        <mat-card-header>
+            <div *ngIf="factura">        
+                <img mat-card-avatar src="{{factura.thumbnailUrl}}"/>        
+                <mat-card-title>Id: {{ factura.id }}</mat-card-title>
+                <mat-card-subtitle>Title: {{ factura.title }}</mat-card-subtitle>
+            </div>
+        </mat-card-header>
+        <mat-card-content>
+            <div *ngIf="factura">
+                <p>Url: {{ factura.url }}</p>
+                <p>Thumbnail: {{ factura.thumbnailUrl }}</p>
+            </div>                    
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-mini-fab aria-label="Factura anterior" 
+                color="primary" (click)="verDetalleAnt()">
+                <mat-icon>arrow_back</mat-icon>
+            </button>
+            <button mat-mini-fab aria-label="Volver al listado de facturas" 
+                color="primary" [routerLink]="['/tablaFacturas']">
+                <mat-icon>table_chart</mat-icon> <!-- list_alt, table_chart -->
+            </button>
+            <button mat-mini-fab aria-label="Factura siguiente" 
+                color="primary" (click)="verDetalleSig()">
+                <mat-icon>arrow_forward</mat-icon>
+            </button>
+        </mat-card-actions>
+        <div *ngIf="factura">
+            <mat-card-footer>Album Id: {{ factura.albumId }}</mat-card-footer>
+        </div>
+    </mat-card>
+
+</div>    

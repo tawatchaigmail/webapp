@@ -16,6 +16,8 @@ import {CompanyDetailResolveSevice} from './service/company-detail-resolve.servi
 
 import {SelectivePreloadingStrategyService} from './service/selective-preloading-strategy.service';
 
+// import {ReportFIleMasterDetail} from './reactive/ngstate/master.report.file.details.app.module';
+
 const appRoutes: Routes = [
   { path: '', 
     redirectTo: 'dashbord', 
@@ -116,6 +118,11 @@ const appRoutes: Routes = [
     path : 'product', 
     loadChildren : () =>  import ('./product/product.module').then(m => m.ProductModule ),
     data: { preload: true }
+  },
+
+  {
+    path : 'reportFile',
+    loadChildren : () => import ('./reactive/ngReportFIleMaster/master.report.file.details.app.module').then(m=> m.ReportFIleMasterDetail),
   },
 
   { path: 'about', component: AboutComponent },

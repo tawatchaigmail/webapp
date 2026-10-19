@@ -1,0 +1,14 @@
+{
+     "results": {
+                "reportId" : '1',
+                "seqNno" : "1"
+                "parameterName" : "rpt_contry",
+                "initialValues" : "0"
+                "initialValuesTo" : "0"
+                "dataType"   : "number"
+                "description" : "Contry",
+                "rgText" : "hrifdgdr",    
+                "updateAllowed"  : "N"
+                "multiFlag"  : "Y"
+    }
+}

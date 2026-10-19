@@ -12,3 +12,14 @@ export interface ReportFileMasters {
       FORM_FOOTER : string;
       CTRL_DOC_NUMBER : string;
 }
+
+export interface ReportFileMastersForms {
+    reportId    : string;
+    fileName    : string;
+    description : string;
+    reportGroup : string;
+    orantation  : string;
+    ctrlDocNo   : string;
+    flagLogFile : string;
+    paperSize   : string;
+}
