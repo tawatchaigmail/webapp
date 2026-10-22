@@ -1,4 +1,4 @@
-import {createSction, props} from '@ngrx/store'
+import {createAction, props} from '@ngrx/store'
 
 import {Book} from '../books/model'
 

@@ -1,5 +1,6 @@
 import { Component,Input,OnInit,Output } from '@angular/core';
 //import {DetailReportParameterComponent} from './components/detail.report.file.parameter/detail.report.file.parameter.component'
+import {RouterOutlet} from '@angular/router';
 
 import {ReportFileParametersForms} from '../../../../models/ngrx/reportFileParametersInterface'
 
@@ -9,6 +10,7 @@ import {ReportFileParametersForms} from '../../../../models/ngrx/reportFileParam
   styleUrls: ['./report.master.parameters.list.component.scss'],
  // stanalone : false,
   imports : [
+             RouterOutlet
             ]
 })
 export class ReportMasterParametersListComponent implements OnInit {

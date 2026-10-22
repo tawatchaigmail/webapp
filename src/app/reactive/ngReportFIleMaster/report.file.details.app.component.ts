@@ -9,7 +9,7 @@ import {RouterOutlet} from '@angular/router';
             imports : [RouterOutlet],
 })
 
-export class MasterReportFileDetailComponent implements OnInit {
+export class MasterReportFileDetailAppComponent implements OnInit {
                                              
      constructor() {
      }

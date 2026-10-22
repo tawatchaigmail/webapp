@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router'
-import {MasterReportFileDetailComponent} from './report.file.details.app.component'
+import {MasterReportFileDetailAppComponent} from './report.file.details.app.component'
 
 import {ReportFileMasterListsComponent}       from './components/report.file.master.lists/report.file.master.lists.component'
 import {ReportMasterParametersListComponent} from './components/report.file.parameters.list/report.master.parameters.list.component'
@@ -11,7 +11,7 @@ import {DetailReportParameterComponent} from './components/detail.report.file.pa
 export const masterRoute : Routes = [
                              { 
                                 path : '',
-                                component : MasterReportFileDetailComponent,
+                                component : MasterReportFileDetailAppComponent,
                              
                                 children : [
                                             {

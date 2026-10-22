@@ -122,7 +122,7 @@ const appRoutes: Routes = [
 
   {
     path : 'reportFile',
-    loadChildren : () => import ('./reactive/ngReportFIleMaster/master.report.file.details.app.module').then(m=> m.ReportFIleMasterDetail),
+    loadChildren : () => import ('./reactive/ngReportFIleMaster/master.report.file.details.app.module').then(m=> m.ReportFIleMasterDetailAppModule),
   },
 
   { path: 'about', component: AboutComponent },
