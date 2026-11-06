@@ -15,14 +15,17 @@ import {ReportFileMastersForms} from '../../../../models/ngrx/reportFileMastersI
 
 export class DetailPreviewReportFileComponent implements OnInit {
   @Input() reportFileMaster : ReportFileMastersForms = {
-                                                       reportId    : '',
+                                                       reportId    : 0,
                                                        fileName    : '',
+                                                       reportName  : '',
                                                        description : '',
                                                        reportGroup : '',
                                                        orantation  : '',
                                                        ctrlDocNo   : '',
                                                        flagLogFile : '',
-                                                       paperSize   : ''
+                                                       paperSize   : '',
+                                                       showFooter  : '', 
+                                                       formFooter  : ''
                                                        } ;                                             
      constructor() {
      }

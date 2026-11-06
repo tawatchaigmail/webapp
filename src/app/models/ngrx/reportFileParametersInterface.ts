@@ -9,21 +9,26 @@ export interface ReportFileParameters {
       RG_TEXT2        : string;
       DATA_TYPE       : string;
       UPDATED_ALLOWED : string;
-      MUTI_FLAG       : string;
-      
+      MUTI_FLAG       : string;      
 }
 
 export interface ReportFileParametersForms {
       seqNo    : number;
-      reportId : string;
-      parammetrName  : string;
+      reportId : number;
+      parameterName  : string;
       initialValue   : string;
       initialValueTo : string;
-      deswcription   : string;
+      description    : string;
       rgText         : string;
       rgText2        : string;
       dataType       : string;
       updatedAllowed : string;
-      multiFlag       : string;
-      
+      multiFlag      : string;      
+}
+
+export interface Response { results: ReportFileParametersForms[] } 
+
+export interface ReportFileParametersFormsId {
+      seqNo    : number;
+      reportId : number;
 }

@@ -1,0 +1,33 @@
+import { Component, OnInit } from '@angular/core';
+
+interface Student { id: number; name: string; hwId: number; }
+interface Homework { id: number; name: string; }
+
+@Component({
+  selector: 'app-student-table',
+  templateUrl: './student-table.component.html'
+})
+export class StudentTableComponent implements OnInit {
+  students: Student[] = [
+    { id: 1, name: 'Bob', hwId: 7 },
+    { id: 2, name: 'Alice', hwId: 10 }
+  ];
+  
+  homeworks: Homework[] = [
+    { id: 7, name: 'Addition Practice 1' },
+    { id: 10, name: 'Multiplication Basics' }
+  ];
+
+  combinedData: any[] = [];
+
+  ngOnInit() {
+    // Map and join the two data sources based on the foreign key relationship
+    this.combinedData = this.students.map(student => {
+      const matchedHw = this.homeworks.find(hw => hw.id === student.hwId);
+      return {
+        studentName: student.name,
+        homeworkName: matchedHw ? matchedHw.name : 'No Assignment'
+      };
+    });
+  }
+}

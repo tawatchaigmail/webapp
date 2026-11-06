@@ -1,0 +1,43 @@
+<h4>fileParameter<h4>
+<table>
+   <tr>     
+      <th>SeqNo</th>
+      <th>rEportId</th>
+      <th>ParametrName</th>
+      <th>InitialValue</th>
+      <th>InitialValueTo</th>
+      <th>Deswcription</th>
+      <th>RgText</th>
+      <th>RgText2</th>
+      <th>DataType</th>
+      <th>UpdatedAllowed</th>
+      <th>MultiFlag</th>
+  </tr>
+  <tr *ngFor="let reportFileParameter of reportFileParameters | async " (click)="onSelect(reportFileParameter)">
+     
+      <td>{{reportFileParameter.seqNo}}</td>
+      <td>{{reportFileParameter.reportId}}</td>
+      <td>{{reportFileParameter.parameterName}}</td>
+      <td>{{reportFileParameter.initialValue}}</td>
+      <td>{{reportFileParameter.initialValueTo}}</td>
+      <td>{{reportFileParameter.description}}</td>
+      <td>{{reportFileParameter.rgText}}</td>
+      <td>{{reportFileParameter.rgText2}}</td>
+      <td>{{reportFileParameter.dataType}}</td>
+      <td>{{reportFileParameter.updatedAllowed}}</td>
+      <td>{{reportFileParameter.multiFlag}}</td>
+      
+      <input type="button" (click)="onEdit(reportFileParameter)" value="edit"/>
+      <input type="button" (click)="onRemove(reportFileParameter)" value="remove"/>
+
+  </tr>
+
+</table>
+
+<input type="button" value="add"/>
+
+<button type="button" (click)="onAddNewItem(reportFileMasterChild)">Add to parent's Parent</button> 
+
+<router-outlet></router-outlet>
+
+

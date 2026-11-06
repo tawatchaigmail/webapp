@@ -1,9 +1,11 @@
-import {Component,Input,OnInit,Output,Injectable} from '@angular/core';
+import {Component,ViewChild,ElementRef,Input,OnInit,Output,Injectable} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {FormsModule, ReactiveFormsModule, FormGroup, Validators, ControlContainer, FormControl, NgForm} from '@angular/forms';
+import {ActivatedRoute} from '@angular/router';
 // import {MatCardModule} from '@amgular/material/card'
-//import {CommonModule} from '@angular/common';
-//import {FormsModule,FormGroup,FormControl} from '@angular/forms';
 
-import {ReportFileParametersForms} from '../../../../models/ngrx/reportFileParametersInterface'
+import {ReportFileParametersForms, ReportFileParametersFormsId} from '../../../../models/ngrx/reportFileParametersInterface'
+import {ReportFileParametersFormService} from '../../../../service/ngrx/reportFileParamsters.form.service';
 
 @Component({
             selector    :  'app-master-report-parameter',
@@ -11,31 +13,68 @@ import {ReportFileParametersForms} from '../../../../models/ngrx/reportFileParam
             styleUrls   : ['./detail.report.file.parameter.component.scss'],
             standalone  : true,
             imports : [
-                    //  CommonModule, 
+                      CommonModule,
+                      FormsModule 
                     //  MatCardModule
             ],
 })
 
-// @Injectable()
+
 export class DetailReportParameterComponent implements OnInit {
-     @Input() reportFileParameter : ReportFileParametersForms = {
+
+     @ViewChild('detailForm') detailForm? :  NgForm  ;
+  // @Input() reportFileParameter : ReportFileParametersForms = {
+      reportFileParameter : ReportFileParametersForms = {
                                                                 seqNo    : 0,
-                                                                reportId : '',
-                                                                parammetrName  : '',
+                                                                reportId : 0,
+                                                                parameterName  : '',
                                                                 initialValue   : '',
                                                                 initialValueTo : '',
-                                                                deswcription   : '',
+                                                                description    : '',
                                                                 rgText         : '',
                                                                 rgText2        : '',
                                                                 dataType       : '',
                                                                 updatedAllowed : '',
-                                                                multiFlag       : ''
+                                                                multiFlag      : ''
                                                                 } ;                                        
-     /*
-     constructor( data : ReportFileParametersForms) {
-         this.reportFileParameter = data ;
+
+     public formData = new FormData();
+     
+     constructor(private route : ActivatedRoute,
+                 private reportFileParametersService : ReportFileParametersFormService) {
+        // this.reportFileParameter = data ;
      }
-     */
-     ngOnInit(){}
-          
+     
+     ngOnInit(){
+         /*
+         let id : number = this.route.snapshot.paramMap.get('id') || '';
+         if (id !== null ) {
+               console.log('ngOnInit id :'+id);
+               this.reportFileParametersService.getDataById(id);
+         }
+         */
+     }
+
+     doSubmit(data : any){
+      console.log('submit value :');
+      /*
+      comData.setValue({
+                        "SEQ_NO" : "",
+                        "COMPANY": "",
+                        "DESCRIPTION" : "",
+                        "COMPANY_ADDRESS" : "",
+                        "TAX_ID" : "",
+                        "TELEPHONE" : "",
+                        "CREATED_ON" : "",
+                        "CREATED_BY" : "",
+                        "NARRATION" : "",
+                        "LOGO" : "",
+                       });
+      */
+     console.log(JSON.stringify(data.value));
+      
+      this.reportFileParametersService.addData(data.value);
+      data.reset();
+  }          
+
 }

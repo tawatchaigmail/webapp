@@ -1,0 +1,35 @@
+<table class="parent-table">
+  <thead>
+    <tr><th>Company Name</th><th>Actions</th></tr>
+  </thead>
+  <tbody>
+    <ng-container *ngFor="let company of companies">
+      <!-- Parent Row -->
+      <tr>
+        <td>{{ company.name }}</td>
+        <td>
+          <button (click)="company.isExpanded = !company.isExpanded">
+            {{ company.isExpanded ? 'Hide Branches' : 'View Branches' }}
+          </button>
+        </td>
+      </tr>
+      
+      <!-- Nested Child Table Row -->
+      <tr *ngIf="company.isExpanded">
+        <td colspan="2">
+          <table class="child-table" style="margin-left: 20px; background: #f9f9f9;">
+            <thead>
+              <tr><th>Branch Location</th><th>Employees Count</th></tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let branch of company.branches">
+                <td>{{ branch.location }}</td>
+                <td>{{ branch.employees }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </ng-container>
+  </tbody>
+</table>

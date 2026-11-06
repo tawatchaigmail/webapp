@@ -9,22 +9,27 @@
  <th>CtrlDocNo</th>
  <th>FlagLogFile</th>
  <th>paperSize</th>
-
 </tr>
-<tr>
-  <td>ReportId</td>
-  <td>FileName</td>
-  <td>Description</td>
-  <td>ReportGroup</td>
-  <td>Orantation</td>
-  <td>CtrlDocNo</td>
-  <td>FlagLogFile</td>
-  <td>paperSize</td>
-  <input type="button" value="edit"/>
-  <input type="button" value="remove"/>
-  <input type="button" value="submit"/>
+<tr *ngFor="let reportFile of reportFiles | async" (click)="onSelect(reportFile)">
+  <td>{{reportFile.reportId}}</td>
+  <td>{{reportFile.fileName}}</td>
+  <td>{{reportFile.description}}</td>
+  <td>{{reportFile.reportGroup}}</td>
+  <td>{{reportFile.orantation}}</td>
+  <td>{{reportFile.ctrlDocNo}}</td>
+  <td>{{reportFile.flagLogFile}}</td>
+  <td>{{reportFile.paperSize}}</td>
+  <input type="button" (click)="onEdit(reportFile)" value="edit"/>
+  <input type="button" (click)="onRemove(reportFile)" value="remove"/>
+  
 </tr>
 </table>
+<input type="button" value="Add"/>
+
+
+<!--app-report-parameter-list (newItemEvent)="onAdd($event)"></app-report-parameter-list-->
+
+<app-report-parameter-list [reportFileMasterChild]="reportFileCurrentInput">
 
 <router-outlet></router-outlet>
 

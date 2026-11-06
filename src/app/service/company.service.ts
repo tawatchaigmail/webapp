@@ -11,10 +11,10 @@ import {environment} from '../environments/environments';
 
   var baseUrl = environment.apiUrl;
   var apiurl = {
-     getAll : baseUrl + '/api/company/readall',
-     getById : baseUrl + '/api/company/reada/',
-     addCompany : baseUrl + '/api/company/create',
-     editCompany : baseUrl + '/api/company/update',
+     getAll        : baseUrl + '/api/company/readall',
+     getById       : baseUrl + '/api/company/reada/',
+     addCompany    : baseUrl + '/api/company/create',
+     editCompany   : baseUrl + '/api/company/update',
      deleteCompany : baseUrl + '/api/company/delete',
   }
 

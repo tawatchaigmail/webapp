@@ -1,12 +1,43 @@
-{
-     "results": {
-                "report_id" : '1',
+ { "results"  :   [
+               {
+                "reportId" : "1",
                 "fileName" : "rpt_contry",
                 "description" : "Contry",
                 "reportGroup" : "1",    
                 "orantation" : "P",
                 "ctrlDocNo" : "",
-                "flagLogFile" : "Y"
+                "flagLogFile" : "Y",
                 "paperSize" : "A4"
-    }
+              },
+               {
+                "reportId" : "2",
+                "fileName" : "rpt_contry",
+                "description" : "Contry",
+                "reportGroup" : "1",    
+                "orantation" : "P",
+                "ctrlDocNo" : "",
+                "flagLogFile" : "Y",
+                "paperSize" : "A4"
+              },
+               {
+                "reportId" : "3",
+                "fileName" : "rpt_contry",
+                "description" : "Contry",
+                "reportGroup" : "1",    
+                "orantation" : "P",
+                "ctrlDocNo" : "",
+                "flagLogFile" : "Y",
+                "paperSize" : "A4"
+              },
+                          {
+                "reportId" : "4",
+                "fileName" : "rpt_contry",
+                "description" : "Contry",
+                "reportGroup" : "1",    
+                "orantation" : "P",
+                "ctrlDocNo" : "",
+                "flagLogFile" : "Y",
+                "paperSize" : "A4"
+              }
+      ]
 }

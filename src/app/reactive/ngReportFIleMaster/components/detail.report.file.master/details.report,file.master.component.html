@@ -1,31 +1,40 @@
 <H4>File Master Details </H4>
 <div>
-<form>
+<form name="detailReportFIle" #detailForm="ngForm" (ngSubmit)="doSubmit(detailForm)">
   <label for="reportId">ReportId</label>
-  <input type="text" id="reportId" value="ReportId"/>
+  <input name="reportId" id="reportId" required [(ngModel)]="reportFileMaster.reportId" placeholder="reportId"  />
   
   <label for="fileName">FileName</label>
-  <input type="text" id="fileName" value="FileName"/>
+  <input name="fileName" id="fileName" [(ngModel)]="reportFileMaster.fileName" placeholder="FileName"/>
+
+  <label for="reportName">ReportName</label>
+  <input name="reportName" id="reportName" [(ngModel)]="reportFileMaster.reportName" placeholder="reportName"/>
 
   <label for="description">Description</label>
-  <input type="text" id="description" value="Description"/>
+  <input name="description" id="description" [(ngModel)]="reportFileMaster.description" placeholder="Description"/>
 
   <label for="reportGroup">ReportGroup</label>
-  <input type="text" id="reportGroup" value="ReportGroup"/>
+  <input name="reportGroup" id="reportGroup" [(ngModel)]="reportFileMaster.reportGroup" placeholder="ReportGroup"/>
 
   <label for="orantation">Orantation</label>
-  <input type="text" id="orantation" value="Orantation"/>
+  <input name="orantation" id="orantation" [(ngModel)]="reportFileMaster.orantation" placeholder="Orantation"/>
   
   <label for="ctrlDocNo">CtrlDocNo</label>
-  <input type="text" id="ctrlDocNo" value="CtrlDocNo"/>
+  <input name="ctrlDocNo" id="ctrlDocNo" [(ngModel)]="reportFileMaster.ctrlDocNo" placeholder="CtrlDocNo"/>
 
   <label for="flagLogFile">FlagLogFile</label>
-  <input type="text" id="flagLogFile" value="FlagLogFile"/>
+  <input name="flagLogFile" id="flagLogFile" [(ngModel)]="reportFileMaster.flagLogFile" placeholder="FlagLogFile"/>
+
+  <label for="showFooter">ShowFooter</label>
+  <input name="showFooter" id="showFooter" [(ngModel)]="reportFileMaster.showFooter" placeholder="showFooter"/>
+
+  <label for="formFooter">FormFooter</label>
+  <input name="formFooter" id="formFooter" [(ngModel)]="reportFileMaster.formFooter" placeholder="formFooter"/>
 
   <label for="paperSize">PaperSize</label>
-  <input type="text" id="paperSize" value="paperSize"/>
+  <input name="paperSize" id="paperSize" [(ngModel)]="reportFileMaster.paperSize" placeholder="paperSize"/>
 
-  <input type="submit">
+  <button type="submit">submit</button>
 </form>
   <input type="button" value="previes"/>
   <input type="button" value="next"/>

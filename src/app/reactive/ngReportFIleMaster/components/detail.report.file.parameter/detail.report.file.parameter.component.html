@@ -1,39 +1,41 @@
 <h4>detail parameter<h4>
 <div>
-<form>
+
+<form name="detailName" #detailForm="ngForm" (ngSubmit)="doSubmit(detailForm)">
   <label for="seqNo">SeqNo</label>
-  <input type="text" id="seqNo" value="SeqNo"/>
+  <input name="seqNo" id="seqNo" required [(ngModel)]="reportFileParameter.seqNo" #seqNo="ngModel" placeholder="seqNo"/>
 
   <label for="reportId">ReportId</label>
-  <input type="text" id="reportId"  value="ReportId">
+  <input name="reportId" id="reportId" required [(ngModel)]="reportFileParameter.reportId" #reportId="ngModel" placeholder="ReportId"/>
 
   <label for="parammetrName">parammetrName</label>
-  <input type="text" id="parammetrName" value="parammetrName"/>
+  <input name="parameterName"  id="parameterName" [(ngModel)]="reportFileParameter.parameterName" #parameterName="ngModel" placeholder="parameterName"/>
 
   <label for="initialValue">initialValue</label>
-  <input type="text" id="initialValue" value="initialValue"/>
+  <input name="initialValue" id="initialValue" [(ngModel)]="reportFileParameter.initialValue" #initialValue="ngModel" placeholder="initialValue"/>
 
   <label for="initialValueTo">initialValueTo</label>
-  <input type="text" id="initialValueTo" value="initialValueTo"/>
+  <input name="initialValueTo" id="initialValueTo" [(ngModel)]="reportFileParameter.initialValueTo" #initialValueTo="ngModel" placeholder="initialValueTo"/>
 
   <label for="deswcription">deswcription</label>
-  <input type="text" id="deswcription" value="deswcription"/>
+  <input name="description" id="description" [(ngModel)]="reportFileParameter.description" #description="ngModel" placeholder="description"/>
 
   <label for="rgText">rgText</label>
-  <input type="text" id="rgText" value="rgText">
+  <input name="rgText" id="rgText" [(ngModel)]="reportFileParameter.rgText" #rgText="ngModel" placeholder="rgText"/>
 
   <label for="rgText2">rgText2</label>
-  <input type="text" id="rgText2" value="rgText2"/>
+  <input name="rgText2" id="rgText2" [(ngModel)]="reportFileParameter.rgText2" #rgText2="ngModel" placeholder="rgText2"/>
 
   <label for="dataType">dataType</label>
-  <input type="text" id="dataType"  value="dataType"/>
+  <input name="dataType" id="dataType" [(ngModel)]="reportFileParameter.dataType" #dataType="ngModel" placeholder="dataType"/>
 
   <label for="updatedAllowed">updatedAllowed</label>
-  <input type="text" id="updatedAllowed" value="updatedAllowed"/>
+  <input name="updatedAllowed" id="updatedAllowed" [(ngModel)]="reportFileParameter.updatedAllowed" #updatedAllowed="ngModel" placeholder="updatedAllowed"/>
 
   <label for="multiFlag">multiFlag</label>
-  <input type="text" id="multiFlag" value="multiFlag"/>
-
-  <input type="submit" />
+  <input name="multiFlag" id="multiFlag" [(ngModel)]="reportFileParameter.multiFlag" #multiFlag="ngModel" placeholder="multiFlag"/>
+  
+  <button type="submit">submit</button>
 </form>
+
 </div>

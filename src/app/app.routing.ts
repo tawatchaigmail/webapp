@@ -125,6 +125,11 @@ const appRoutes: Routes = [
     loadChildren : () => import ('./reactive/ngReportFIleMaster/master.report.file.details.app.module').then(m=> m.ReportFIleMasterDetailAppModule),
   },
 
+  {
+    path : 'projectMasters',
+    loadChildren : () => import ('./reactive/ngMasterDetails/project.masters.app.module').then(m=> m.ProjectMastersAppModule),
+  },
+
   { path: 'about', component: AboutComponent },
   { path: 'dashbord', component: DashbordComponent }, 
   { path: 'home', component: HomeComponent },

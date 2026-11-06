@@ -3,7 +3,8 @@ import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {catchError, map, tap } from 'rxjs/operators';
 
-import {ReportFileMasters} from '../../models/ngrx/reportFileMastersInterface';
+import {ReportFileMastersForms} from '../../models/ngrx/reportFileMastersInterface'
+
 import {environment} from '../../environments/environments';
 
 @Injectable({providedIn : 'root'})
@@ -32,48 +33,48 @@ private repfilmasUrl = environment.apiUrl+'/api/repfilmas';  // URL to web api
   url = '/assets/data_bicycle.json';
   constructor(private http : HttpClient) {}
 
-  reportFileMastersList : ReportFileMasters[] = [
+  ReportFileMastersFormsList : ReportFileMastersForms[] = [
      {
-      REPORT_ID   :  '0' ,
-      REPORT_NAME : '0' ,
-      FILENAME    :  '0' ,
-      REPORT_GROUP  : '0' ,
-      DESCRIPTION   : '0' ,
-      FLAG_LOG_FILE :  '0' ,
-      ORIENTATION   :  '0' ,
-      PAPER_SIZE   : '0' ,
-      SHOW_FOOTER  : '0' ,
-      FORM_FOOTER  : '0' ,
-      CTRL_DOC_NUMBER  : '0' ,
+                                             "reportId" : 0,
+                                             "fileName" : "",
+                                             "reportName"   : "",
+                                             "description" : "",
+                                             "reportGroup" : "",    
+                                             "orantation" : "",
+                                             "ctrlDocNo" : "",
+                                             "flagLogFile" : "",
+                                             "showFooter"  : "", 
+                                             "formFooter"  : "",
+                                             "paperSize" : ""
      },
 
      {
-      REPORT_ID   :  '1' ,
-      REPORT_NAME : '1' ,
-      FILENAME    :  '1' ,
-      REPORT_GROUP  : '1' ,
-      DESCRIPTION   : '1' ,
-      FLAG_LOG_FILE :  '1' ,
-      ORIENTATION   :  '1' ,
-      PAPER_SIZE   : '1' ,
-      SHOW_FOOTER  : '1' ,
-      FORM_FOOTER  : '1' ,
-      CTRL_DOC_NUMBER  : '1' ,
+                                             "reportId" : 0,
+                                             "fileName" : "",
+                                             "reportName"   : "",
+                                             "description" : "",
+                                             "reportGroup" : "",    
+                                             "orantation" : "",
+                                             "ctrlDocNo" : "",
+                                             "flagLogFile" : "",
+                                             "showFooter"  : "", 
+                                             "formFooter"  : "",
+                                             "paperSize" : ""
      }
      ]
 
-   // ReadonlyArray<ReportFileMasters>
-   getApiAll() : Observable<ReportFileMasters[]> {
- //  getApiAll() : Observable<ReadonlyArray<ReportFileMasters>> {
+   // ReadonlyArray<ReportFileMastersForms>
+   getApiAll() : Observable<ReportFileMastersForms[]> {
+ //  getApiAll() : Observable<ReadonlyArray<ReportFileMastersForms>> {
         console.log(' getApiAll ');
-        return this.http.get<ReportFileMasters[]>(this.repfilmasUrl+'/readall')
+        return this.http.get<ReportFileMastersForms[]>(this.repfilmasUrl+'/readall')
      }
 
-   getAllReportFileMastersList() : ReportFileMasters[] {
-            return this.reportFileMastersList ;
+   getAllReportFileMastersFormsList() : ReportFileMastersForms[] {
+            return this.ReportFileMastersFormsList ;
      }
 /*
- getReportFileMastersUrl() : Observable<CompanyInterface[]> {
+ getReportFileMastersFormsUrl() : Observable<CompanyInterface[]> {
      
     return this.http.get<CompanyInterface[]>(this.companyUrl+'/readall')
       .pipe(
@@ -82,24 +83,29 @@ private repfilmasUrl = environment.apiUrl+'/api/repfilmas';  // URL to web api
      );  
  }     
 */
-     async getReportFileMasters() : Promise<ReportFileMasters[]> {
+     async getReportFileMastersForms() : Promise<ReportFileMastersForms[]> {
        const data = await fetch(this.url+'/readall');
        return await data.json() ?? [];
      }
       
 
-     getAllList() : ReportFileMasters[] {
-         return this.reportFileMastersList;
+     getAllList() : ReportFileMastersForms[] {
+         return this.ReportFileMastersFormsList;
      }
 
-   addData(body: any) : Observable<any> {
-  //  const headers = { 'content-type': 'application/json'}  
+ //  addData(body: any) : Observable<any> {
+   addData(body: any) {
      const data = JSON.stringify(body);
-
+        console.log(' ReportFileMastersFormService addData ');
         return this.http.post(this.repfilmasUrl+'/create', data, this.httpOptions)
-               /*
+        /*
+                       .pipe(
+                           tap(val => this.log('fetched data ${id} ')),
+                           catchError(this.handleError<ReportFileMastersForms>('getyById id=${id}'))
+                       )
+        */     
                .subscribe( (datares) => { 
-                                        console.log('POST completed sucessfully. The response received'+datares) 
+                                        console.log('POST ReportFileMaster sucessfully. The response received'+datares) 
                           },
                          (error) => {
                                      console.log('Post failed with the errors')
@@ -108,12 +114,12 @@ private repfilmasUrl = environment.apiUrl+'/api/repfilmas';  // URL to web api
                                 console.log('Post completed')
                          }
                 )
-                */ 
+                 
                 ;
 
    }
      
-   updateData(id : string, body : ReportFileMasters) : Observable<any>{
+   updateData(id : string, body : ReportFileMastersForms) : Observable<any>{
 
        const data = JSON.stringify(body);
        console.log(' id : '+id);
@@ -134,7 +140,7 @@ private repfilmasUrl = environment.apiUrl+'/api/repfilmas';  // URL to web api
                 ;
    }
 
-   removeData(id : string) : Observable<any> {
+   removeData(id : number) : Observable<any> {
          return this.http.delete(this.repfilmasUrl+'/delete/'+id, this.httpOptions)
             /*
             .subscribe( (respon) => {
@@ -151,11 +157,11 @@ private repfilmasUrl = environment.apiUrl+'/api/repfilmas';  // URL to web api
               ;  
    }
      
-   getDataById(id : string) : Observable<ReportFileMasters> {
-        return this.http.get<ReportFileMasters>(this.repfilmasUrl+'/read/'+id, this.httpOptions)
+   getDataById(id : number) : Observable<ReportFileMastersForms> {
+        return this.http.get<ReportFileMastersForms>(this.repfilmasUrl+'/read/'+id, this.httpOptions)
         .pipe(
           tap(val => this.log('fetched data ${id} ')),
-          catchError(this.handleError<ReportFileMasters>('getyById id=${id}'))
+          catchError(this.handleError<ReportFileMastersForms>('getyById id=${id}'))
         )
     }
      

@@ -14,7 +14,8 @@ export interface ReportFileMasters {
 }
 
 export interface ReportFileMastersForms {
-    reportId    : string;
+    reportId    : number;
+    reportName  : string;
     fileName    : string;
     description : string;
     reportGroup : string;
@@ -22,4 +23,12 @@ export interface ReportFileMastersForms {
     ctrlDocNo   : string;
     flagLogFile : string;
     paperSize   : string;
+    showFooter  : string;
+    formFooter  : string;
+}
+
+export interface Response { results: ReportFileMastersForms[] } 
+
+export interface ReportFileMastersFormsId { 
+      reportId : number;
 }

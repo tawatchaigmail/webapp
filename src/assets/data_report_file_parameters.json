@@ -1,14 +1,199 @@
-{
-     "results": {
-                "reportId" : '1',
-                "seqNno" : "1"
+
+ { "results" :  [
+                {
+                "reportId"  : "1",
+                "seqNo"     : 1,
                 "parameterName" : "rpt_contry",
-                "initialValues" : "0"
-                "initialValuesTo" : "0"
-                "dataType"   : "number"
+                "initialValue" : "0",
+                "initialValueTo" : "0",
+                "dataType"   : "number",
                 "description" : "Contry",
-                "rgText" : "hrifdgdr",    
-                "updateAllowed"  : "N"
+                "rgText" : "hrifdgdr",
+                "rgText2" : "hrifdgdr",
+                "updatedAllowed"  : "N",
                 "multiFlag"  : "Y"
-    }
+                },
+                {
+                "reportId" : "1",
+                "seqNo" : 1,
+                "parameterName" : "rpt_contry",
+                "initialValue" : "0",
+                "initialValueTo" : "0",
+                "dataType"   : "number",
+                "description" : "Contry",
+                "rgText" : "hrifdgdr",
+                "rgText2" : "hrifdgdr",
+                "updatedAllowed"  : "N",
+                "multiFlag"  : "Y"
+                },
+                {
+                "reportId" : "1",
+                "seqNo" : 1,
+                "parameterName" : "rpt_contry",
+                "initialValue" : "0",
+                "initialValueTo" : "0",
+                "dataType"   : "number",
+                "description" : "Contry",
+                "rgText" : "hrifdgdr",
+                "rgText2" : "hrifdgdr",
+                "updatedAllowed"  : "N",
+                "multiFlag"  : "Y"
+                },
+                {
+                "reportId" : "2",
+                "seqNo" : 2,
+                "parameterName" : "rpt_contry",
+                "initialValue" : "0",
+                "initialValueTo" : "0",
+                "dataType"   : "number",
+                "description" : "Contry",
+                "rgText" : "hrifdgdr",
+                "rgText2" : "hrifdgdr",
+                "updatedAllowed"  : "N",
+                "multiFlag"  : "Y"
+                },
+                {
+                "reportId" : "2",
+                "seqNo" : 2,
+                "parameterName" : "rpt_contry",
+                "initialValue" : "0",
+                "initialValueTo" : "0",
+                "dataType"   : "number",
+                "description" : "Contry",
+                "rgText" : "hrifdgdr",
+                "rgText2" : "hrifdgdr",
+                "updatedAllowed"  : "N",
+                "multiFlag"  : "Y"
+                },
+                {
+                "reportId" : "2",
+                "seqNo" : 2,
+                "parameterName" : "rpt_contry",
+                "initialValue" : "0",
+                "initialValueTo" : "0",
+                "dataType"   : "number",
+                "description" : "Contry",
+                "rgText" : "hrifdgdr",
+                "rgText2" : "hrifdgdr",
+                "updatedAllowed"  : "N",
+                "multiFlag"  : "Y"
+                },
+                {
+                "reportId" : "2",
+                "seqNo" : 1,
+                "parameterName" : "rpt_contry",
+                "initialValue" : "0",
+                "initialValueTo" : "0",
+                "dataType"   : "number",
+                "description" : "Contry",
+                "rgText" : "hrifdgdr",
+                "rgText2" : "hrifdgdr",
+                "updatedAllowed"  : "N",
+                "multiFlag"  : "Y"
+                },
+                {
+                "reportId" : "3",
+                "seqNo" : 1,
+                "parameterName" : "rpt_contry",
+                "initialValue" : "0",
+                "initialValueTo" : "0",
+                "dataType"   : "number",
+                "description" : "Contry",
+                "rgText" : "hrifdgdr",
+                "rgText2" : "hrifdgdr",
+                "updatedAllowed"  : "N",
+                "multiFlag"  : "Y"
+                },
+                {
+                "reportId" : "3",
+                "seqNo" : 2,
+                "parameterName" : "rpt_contry",
+                "initialValue" : "0",
+                "initialValueTo" : "0",
+                "dataType"   : "number",
+                "description" : "Contry",
+                "rgText" : "hrifdgdr",
+                "rgText2" : "hrifdgdr",
+                "updatedAllowed"  : "N",
+                "multiFlag"  : "Y"
+                },
+                {
+                "reportId" : "3",
+                "seqNo" : 3,
+                "parameterName" : "rpt_contry",
+                "initialValue" : "0",
+                "initialValueTo" : "0",
+                "dataType"   : "number",
+                "description" : "Contry",
+                "rgText" : "hrifdgdr",
+                "rgText2" : "hrifdgdr",
+                "updatedAllowed"  : "N",
+                "multiFlag"  : "Y"
+                },
+                {
+                "reportId" : "3",
+                "seqNo" : 4,
+                "parameterName" : "rpt_contry",
+                "initialValue" : "0",
+                "initialValueTo" : "0",
+                "dataType"   : "number",
+                "description" : "Contry",
+                "rgText" : "hrifdgdr",
+                "rgText2" : "hrifdgdr",
+                "updatedAllowed"  : "N",
+                "multiFlag"  : "Y"
+                },
+                {
+                "reportId" : "4",
+                "seqNo" : 1,
+                "parameterName" : "rpt_contry",
+                "initialValue" : "0",
+                "initialValueTo" : "0",
+                "dataType"   : "number",
+                "description" : "Contry",
+                "rgText" : "hrifdgdr",
+                "rgText2" : "hrifdgdr",
+                "updatedAllowed"  : "N",
+                "multiFlag"  : "Y"
+                },
+                {
+                "reportId" : "4",
+                "seqNo" : 2,
+                "parameterName" : "rpt_contry",
+                "initialValue" : "0",
+                "initialValueTo" : "0",
+                "dataType"   : "number",
+                "description" : "Contry",
+                "rgText" : "hrifdgdr",
+                "rgText2" : "hrifdgdr",
+                "updatedAllowed"  : "N",
+                "multiFlag"  : "Y"
+                },
+                {
+                "reportId" : "4",
+                "seqNo" : 3,
+                "parameterName" : "rpt_contry",
+                "initialValue" : "0",
+                "initialValueTo" : "0",
+                "dataType"   : "number",
+                "description" : "Contry",
+                "rgText" : "hrifdgdr",
+                "rgText2" : "hrifdgdr",
+                "updatedAllowed"  : "N",
+                "multiFlag"  : "Y"
+                },
+                {
+                "reportId" : "4",
+                "seqNo" : 4,
+                "parameterName" : "rpt_contry",
+                "initialValue" : "0",
+                "initialValueTo" : "0",
+                "dataType"   : "number",
+                "description" : "Contry",
+                "rgText" : "hrifdgdr",
+                "rgText2" : "hrifdgdr",
+                "updatedAllowed"  : "N",
+                "multiFlag"  : "Y"
+                }
+         ]
 }

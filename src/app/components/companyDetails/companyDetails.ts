@@ -14,8 +14,8 @@ import {CompanyService} from '../../service/company.service';
   standalone: true,   
   imports: [
               CommonModule,
-              FormsModule,
-  ],  
+              FormsModule
+           ],  
   templateUrl : './companyDetails.html',
   styleUrls : ['./companyDetails.scss']
 })
